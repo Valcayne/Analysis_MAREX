@@ -308,6 +308,7 @@ int main(int argc, char** argv) {
         thePKUPInfo->PKUPAmp[npul], thePKUPInfo->PKUPArea[npul], hPulIntens);
 
     if (ThereIsC6D6Detector) {
+      cout << "There isThereIsC6D6Detector " << endl;
       NC6D6Signals =
           GetSignals(HistoInfoC6D6->DetectorName, trC6D6, &theC6D6S,
                      bunchesIndexC6D6[npul], bunchesIndexC6D6[npul + 1] - 1,
@@ -326,6 +327,8 @@ int main(int argc, char** argv) {
                 1.e20, HistoInfoC6D6);
     }
     if (ThereIsSILIDetector) {
+      cout << "There isThereIsC6D6Detector " << endl;
+
       NSILISignals =
           GetSignals(HistoInfoSILI->DetectorName, trSILI, &theSILIS,
                      bunchesIndexSILI[npul], bunchesIndexSILI[npul + 1] - 1,
@@ -335,6 +338,8 @@ int main(int argc, char** argv) {
                 1.e20, HistoInfoSILI);
     }
     if (ThereIsFIMGDetector) {
+      cout << "There isThereIsC6D6Detector " << endl;
+
       NFIMGSignals =
           GetSignals(HistoInfoFIMG->DetectorName, trFIMG, &theFIMGS,
                      bunchesIndexFIMG[npul], bunchesIndexFIMG[npul + 1] - 1,
@@ -345,6 +350,8 @@ int main(int argc, char** argv) {
     }
 
     if (ThereIsLIGLDetector) {
+      cout << "There isThereIsC6D6Detector " << endl;
+
       //  NLIGLSignals =
       // GetSignals(HistoInfoLIGL->DetectorName, trLIGL, &theLIGLS,
       //            bunchesIndexLIGL[npul], bunchesIndexLIGL[npul + 1] - 1,
