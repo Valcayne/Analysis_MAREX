@@ -1,0 +1,32 @@
+#!/bin/bash
+
+
+Arguments=Condor/Inputs/ArgumentsForCondorMerge2DHisto2DHisto.txt
+rm $Arguments
+
+
+
+
+
+#echo "EmptyTimePiX">>${Arguments}
+echo "Y">>${Arguments}
+echo "Cs">>${Arguments}
+echo "Background">>${Arguments}
+echo "Empty_Er">>${Arguments}
+echo "C_2_6000">>${Arguments}
+echo "Au_13_100">>${Arguments}
+
+
+
+
+
+more $Arguments
+condor_submit Condor/ProgramsLaunch/LaunchCondorMergeMake2D.sh
+
+
+
+
+
+
+exit
+

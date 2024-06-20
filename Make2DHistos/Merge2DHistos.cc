@@ -8,13 +8,16 @@ std::ifstream::pos_type GetFileSize(const char* filename);
 
 int main(int argc, char** argv) {
   if (argc != 2) {
-    cout << " ******* Input has to be like: Merge01 [RunType]  ***************"<< endl;
+    cout << " ******* Input has to be like: Merge01 [RunType]  ***************"
+         << endl;
     return 1;
   }
 
   //========================================================================
-  char DirName[200] = "/afs/cern.ch/user/e/emendoza/Er-2024/Make2DHistos/out01/";
-  char RunListFname[200] = "/afs/cern.ch/user/e/emendoza/Er-2024/RunLists/RunList2024_01.txt";
+  char DirName[200] =
+      "/eos/home-v/valcayne/nTOFDataProcessing/2024_Er_Cu_U/2DHistos/v03";
+  char RunListFname[200] =
+      "/afs/cern.ch/user/e/emendoza/Er-2024/RunLists/RunList2024_01.txt";
   char StartFname[100] = "Histo01";
   //========================================================================
 

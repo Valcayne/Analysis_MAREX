@@ -14,14 +14,18 @@ int main(int argc, char** argv) {
   //  3 Save the TFlash values
   //  4 Save the DeltaTime; The difference in time with the preovious detector.
   //  (Delta/TOF )
-  
+
   //==================================================================================
-  char outdir[200]="/afs/cern.ch/user/e/emendoza/Er-2024/Make2DHistos/out01/";
-  //char EOSPATH[200]="/eos/experiment/ntof/processing/official/done/";
-  //char EOSPATH[200]="/eos/home-v/valcayne/nTOFDataProcessing/2024_Er_Cu_U/RootFiles/v01/done/";
-  char EOSPATH[200]="/afs/cern.ch/user/e/emendoza/Er-2024/DSTProcessing/outputs/out01/done/";
-  //char CalibDirName[200]="/afs/cern.ch/user/v/valcayne/LinkEOS/nTOFDataProcessing/2024_Er_Cu_U/Calibration/CalibrationRunByRun/";
-  char CalibDirName[200]="/afs/cern.ch/user/e/emendoza/Er-2024/Calibrations/Calib01/";
+  char outdir[200] =
+      "/eos/home-v/valcayne/nTOFDataProcessing/2024_Er_Cu_U/2DHistos/v03";
+
+  char EOSPATH[200] =
+      "/eos/home-v/valcayne/nTOFDataProcessing/2024_Er_Cu_U/RootFiles/v02/"
+      "done/";
+
+  char CalibDirName[200] =
+      "/eos/home-v/valcayne/nTOFDataProcessing/2024_Er_Cu_U/Calibration/"
+      "CalibrationRunByRun";
   //==================================================================================
 
   HistoInfo* HistoInfoC6D6 = new HistoInfo();
@@ -63,7 +67,7 @@ int main(int argc, char** argv) {
 
   HistoInfoSILI->DetectorName = "SILI";
   HistoInfoSILI->DetectorNumber = {0, 1, 2, 3, 4};
-  
+
   HistoInfoSILI->HistoName.push_back("Edep");
   HistoInfoSILI->HistoTitle.push_back("Edep");
   HistoInfoSILI->HistoType.push_back(1);
@@ -79,8 +83,8 @@ int main(int argc, char** argv) {
   HistoInfo* HistoInfoFIMG = new HistoInfo();
 
   HistoInfoFIMG->DetectorName = "FIMG";
-  HistoInfoFIMG->DetectorNumber = {0, 1, 2};
-  
+  HistoInfoFIMG->DetectorNumber = {1};
+
   HistoInfoFIMG->HistoName.push_back("Edep");
   HistoInfoFIMG->HistoTitle.push_back("Edep");
   HistoInfoFIMG->HistoType.push_back(1);
@@ -93,7 +97,23 @@ int main(int argc, char** argv) {
   HistoInfoFIMG->Xaxis.push_back({10000, 1.e-3, 1.e7});
   HistoInfoFIMG->Yaxis.push_back({200, 0, 1e4});
 
-  
+  HistoInfo* HistoInfoLIGL = new HistoInfo();
+
+  HistoInfoLIGL->DetectorName = "LIGL";
+  HistoInfoLIGL->DetectorNumber = {0, 1, 2};
+
+  HistoInfoLIGL->HistoName.push_back("Edep");
+  HistoInfoLIGL->HistoTitle.push_back("Edep");
+  HistoInfoLIGL->HistoType.push_back(1);
+  HistoInfoLIGL->Xaxis.push_back({100, 1.e-3, 1.e7});
+  HistoInfoLIGL->Yaxis.push_back({1000, 0, 1e4});
+
+  HistoInfoLIGL->HistoName.push_back("En");
+  HistoInfoLIGL->HistoTitle.push_back("En");
+  HistoInfoLIGL->HistoType.push_back(1);
+  HistoInfoLIGL->Xaxis.push_back({10000, 1.e-3, 1.e7});
+  HistoInfoLIGL->Yaxis.push_back({200, 0, 1e4});
+
   int const N_PULSETYPE = 4;  // All, Dedicated, Parasitic, Other
   //==============================================================================
   //==============================================================================
@@ -118,12 +138,12 @@ int main(int argc, char** argv) {
   // Output files:
   cout << " Creating output files ..." << endl;
   char outrootfname[1000];
-  //char outtxtfname[1000];
+  // char outtxtfname[1000];
   sprintf(outrootfname, "%s/Histos01_%d.root", outdir, RunNumber);
-  //sprintf(outtxtfname, "%s/Histo01_%d.txt", outdir, RunNumber);
+  // sprintf(outtxtfname, "%s/Histo01_%d.txt", outdir, RunNumber);
   TFile* fout = new TFile(outrootfname, "RECREATE");
-  //ofstream out(outtxtfname);
-  //out << " RUN " << RunNumber << endl;
+  // ofstream out(outtxtfname);
+  // out << " RUN " << RunNumber << endl;
 
   //==============================================================================
   //==============================================================================
@@ -139,7 +159,7 @@ int main(int argc, char** argv) {
   // Calibrate all detectors:
   CalibrationManager* theCalibM =
       new CalibrationManager(CalibDirName, RunNumber);
-  //theCalibM->PrintData(outtxtfname);
+  // theCalibM->PrintData(outtxtfname);
   //==============================================================================
   //==============================================================================
 
@@ -202,8 +222,25 @@ int main(int argc, char** argv) {
   //==============================================================================
   //==============================================================================
 
+  TTree* trLIGL = (TTree*)f1->Get(HistoInfoLIGL->DetectorName.c_str());
+  bool ThereIsLIGLDetector = false;
+  Signal theLIGLS;
+  int nbunchesLIGL = 0;
+  Long64_t bunchesIndexLIGL[MAXNBUNCHESINFILE];
+  int BunchNumberLIGL[MAXNBUNCHESINFILE];
+  int NLIGLSignals = 0;
+  Signal* theLIGLSignals;
+  if (!trLIGL == 0) {
+    ThereIsLIGLDetector = true;
 
-  
+    nbunchesLIGL =
+        CreateBunchesIndex(trLIGL, bunchesIndexLIGL, BunchNumberLIGL);
+    AttachStruct(&theLIGLS, trLIGL);
+    theLIGLSignals = new Signal[MAXNSIGNALSINPULSE];
+  }
+  //==============================================================================
+  //==============================================================================
+
   cout << " Creating histograms ..." << endl;
 
   // Pulse intensity histograms:
@@ -228,6 +265,12 @@ int main(int argc, char** argv) {
   CreateTH2DHisto(ThereIsFIMGDetector, HistoInfoFIMG, N_PULSETYPE, h2D_FIMG,
                   fout);
 
+  // LIGL histos
+
+  TH2D*** h2D_LIGL[N_PULSETYPE];
+  CreateTH2DHisto(ThereIsLIGLDetector, HistoInfoLIGL, N_PULSETYPE, h2D_LIGL,
+                  fout);
+
   /************************************************************************
    *************************************************************************
    ************************************************************************/
@@ -248,6 +291,8 @@ int main(int argc, char** argv) {
     double C6D6TFlash = -1;
     double SILITFlash = -1;
     double FIMGTFlash = -1;
+    double LIGLTFlash = -1;
+
     // cout << "Inte " << thePKUPInfo->PulseIntensity[npul] << endl;
     if (thePKUPInfo->PulseIntensity[npul] < 1.e12) {
       // There is not beam in this run so I force the Tflash to Zero for
@@ -255,6 +300,7 @@ int main(int argc, char** argv) {
       C6D6TFlash = 0;
       SILITFlash = 0;
       FIMGTFlash = 0;
+      LIGLTFlash = 0;
     }
 
     FillPulseIntensity(
@@ -297,6 +343,16 @@ int main(int argc, char** argv) {
       FillType1(thisPulseType, NFIMGSignals, theFIMGSignals, h2D_FIMG, -1.e20,
                 1.e20, HistoInfoFIMG);
     }
+
+    if (ThereIsLIGLDetector) {
+      NLIGLSignals =
+          GetSignals(HistoInfoLIGL->DetectorName, trLIGL, &theLIGLS,
+                     bunchesIndexLIGL[npul], bunchesIndexLIGL[npul + 1] - 1,
+                     theLIGLSignals, theCalibM, 1, LIGLTFlash);  //
+
+      FillType1(thisPulseType, NLIGLSignals, theLIGLSignals, h2D_LIGL, -1.e20,
+                1.e20, HistoInfoLIGL);
+    }
   }
   cout << " ... end main loop" << endl;
 
@@ -313,7 +369,7 @@ int main(int argc, char** argv) {
   //==============================================================================
   //==============================================================================
 
-  cout << " File "<<outrootfname<<" has been created "<< endl;
+  cout << " File " << outrootfname << " has been created " << endl;
 
   return 0;
 }

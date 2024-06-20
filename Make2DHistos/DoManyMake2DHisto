@@ -1,0 +1,124 @@
+#!/bin/bash
+RunMin=118816
+RunMax=118890
+
+
+outdir=/eos/home-v/valcayne/nTOFDataProcessing/2024_Er_Cu_U/2DHistos/v03
+EOSPATH=/eos/home-v/valcayne/nTOFDataProcessing/2024_Er_Cu_U/RootFiles/v02/done/
+#EOSPATH=/eos/experiment/ntof/processing/official/done
+
+Arguments=Condor/Inputs/ArgumentsForCondor2DHisto.txt
+
+
+
+ archivo=Make2DHisto.cc
+ SizeFile=$(stat -c %s "$archivo")
+echo " File Size $SizeFile"
+
+if [ $SizeFile -lt 1000 ];  
+
+then 
+echo " The file 2DHisto_${number}.root is too small (${SizeFile}) "
+
+fi
+
+
+
+
+rm $Arguments
+
+for (( number=$RunMin; number<=$RunMax; number++ )); do
+
+
+if ! [ -f ${outdir}/2DHisto_${number}.root ];
+then 
+
+if [ -f ${EOSPATH}/run${number}.root ];
+then 
+echo "We launch run $number"
+echo "$number">>${Arguments}
+#DoManyMake2DHisto $number
+else
+echo "There is not run${number}.root so we do not launch"
+
+fi
+
+else
+ SizeFile=$(stat -c %s "${outdir}/2DHisto_${number}.root")
+
+echo " There  is 2DHisto_${number}.root size $SizeFile"
+
+if [ $SizeFile -lt 1000 ];  
+
+then 
+echo " The file 2DHisto_${number}.root is too small (${SizeFile}) "
+
+fi
+
+
+fi
+done
+echo "condor_submit Condor/ProgramsLaunch/LaunchCondorMake2D.sh"
+condor_submit Condor/ProgramsLaunch/LaunchCondorMake2D.sh
+exit
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+number=5
+
+if  [ $number == '57' ]
+
+then
+
+echo entra
+
+done
+echo sale
+
+
+#for (( number=$RunMin; number<=$RunMax; number++ )); do
+SizeFile= stat -c %s ${outdir}/2DHisto_${number}.root
+
+
+if  [$SizeFile < 1000]
+then
+
+SizeFile= stat -c %s ${EOSPATH}/run${number}.root
+
+#if  ($SizeFile < 1000)  then
+#echo Process run ${number}
+#done
+
+#else
+echo "File 2DHisto_${number}.root exits "
+
+done
+#done
+ 
