@@ -341,7 +341,7 @@ int main(int argc, char** argv) {
                 1.e20, HistoInfoSILI);
     }
     if (ThereIsFIMGDetector) {
-      cout << "There isThereIsC6D6Detector " << endl;
+      cout << "There isThereIsFIMGDetector " << endl;
 
       NFIMGSignals =
           GetSignals(HistoInfoFIMG->DetectorName, trFIMG, &theFIMGS,
@@ -353,7 +353,7 @@ int main(int argc, char** argv) {
     }
 
     if (ThereIsLIGLDetector) {
-      cout << "There isThereIsC6D6Detector " << endl;
+      cout << "There isThereIsLIGLDetector " << endl;
 
       //  NLIGLSignals =
       // GetSignals(HistoInfoLIGL->DetectorName, trLIGL, &theLIGLS,
