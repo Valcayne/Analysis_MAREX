@@ -83,7 +83,7 @@ int main(int argc, char** argv) {
   HistoInfo* HistoInfoFIMG = new HistoInfo();
 
   HistoInfoFIMG->DetectorName = "FIMG";
-  HistoInfoFIMG->DetectorNumber = {1};
+  HistoInfoFIMG->DetectorNumber = {0, 1, 2};
 
   HistoInfoFIMG->HistoName.push_back("Edep");
   HistoInfoFIMG->HistoTitle.push_back("Edep");
@@ -206,22 +206,22 @@ int main(int argc, char** argv) {
   //==============================================================================
   //==============================================================================
 
-  // TTree* trFIMG = (TTree*)f1->Get(HistoInfoFIMG->DetectorName.c_str());
-  // bool ThereIsFIMGDetector = false;
-  // Signal theFIMGS;
-  // int nbunchesFIMG = 0;
-  // Long64_t bunchesIndexFIMG[MAXNBUNCHESINFILE];
-  // int BunchNumberFIMG[MAXNBUNCHESINFILE];
-  // int NFIMGSignals = 0;
-  // Signal* theFIMGSignals;
-  // if (!trFIMG == 0) {
-  //   cout << "There is FIMG" << endl;
-  //   ThereIsFIMGDetector = true;
-  //   nbunchesFIMG =
-  //       CreateBunchesIndex(trFIMG, bunchesIndexFIMG, BunchNumberFIMG);
-  //   AttachStruct(&theFIMGS, trFIMG);
-  //   theFIMGSignals = new Signal[MAXNSIGNALSINPULSE];
-  // }
+  TTree* trFIMG = (TTree*)f1->Get(HistoInfoFIMG->DetectorName.c_str());
+  bool ThereIsFIMGDetector = false;
+  Signal theFIMGS;
+  int nbunchesFIMG = 0;
+  Long64_t bunchesIndexFIMG[MAXNBUNCHESINFILE];
+  int BunchNumberFIMG[MAXNBUNCHESINFILE];
+  int NFIMGSignals = 0;
+  Signal* theFIMGSignals;
+  if (!trFIMG == 0) {
+    cout << "There is FIMG" << endl;
+    ThereIsFIMGDetector = true;
+    nbunchesFIMG =
+        CreateBunchesIndex(trFIMG, bunchesIndexFIMG, BunchNumberFIMG);
+    AttachStruct(&theFIMGS, trFIMG);
+    theFIMGSignals = new Signal[MAXNSIGNALSINPULSE];
+  }
   // //==============================================================================
   //==============================================================================
 
