@@ -80,27 +80,27 @@ int main(int argc, char** argv) {
   HistoInfoSILI->Xaxis.push_back({10000, 1.e-3, 1.e7});
   HistoInfoSILI->Yaxis.push_back({200, 0, 1e5});
 
-  // HistoInfo* HistoInfoFIMG = new HistoInfo();
+  HistoInfo* HistoInfoFIMG = new HistoInfo();
 
-  // HistoInfoFIMG->DetectorName = "FIMG";
-  // HistoInfoFIMG->DetectorNumber = {1};
+  HistoInfoFIMG->DetectorName = "FIMG";
+  HistoInfoFIMG->DetectorNumber = {1};
 
-  // HistoInfoFIMG->HistoName.push_back("Edep");
-  // HistoInfoFIMG->HistoTitle.push_back("Edep");
-  // HistoInfoFIMG->HistoType.push_back(1);
-  // HistoInfoFIMG->Xaxis.push_back({100, 1.e-3, 1.e7});
-  // HistoInfoFIMG->Yaxis.push_back({1000, 0, 1e4});
+  HistoInfoFIMG->HistoName.push_back("Edep");
+  HistoInfoFIMG->HistoTitle.push_back("Edep");
+  HistoInfoFIMG->HistoType.push_back(1);
+  HistoInfoFIMG->Xaxis.push_back({100, 1.e-3, 1.e7});
+  HistoInfoFIMG->Yaxis.push_back({1000, 0, 1e4});
 
-  // HistoInfoFIMG->HistoName.push_back("En");
-  // HistoInfoFIMG->HistoTitle.push_back("En");
-  // HistoInfoFIMG->HistoType.push_back(1);
-  // HistoInfoFIMG->Xaxis.push_back({10000, 1.e-3, 1.e7});
-  // HistoInfoFIMG->Yaxis.push_back({200, 0, 1e4});
+  HistoInfoFIMG->HistoName.push_back("En");
+  HistoInfoFIMG->HistoTitle.push_back("En");
+  HistoInfoFIMG->HistoType.push_back(1);
+  HistoInfoFIMG->Xaxis.push_back({10000, 1.e-3, 1.e7});
+  HistoInfoFIMG->Yaxis.push_back({200, 0, 1e4});
 
   HistoInfo* HistoInfoLIGL = new HistoInfo();
 
   HistoInfoLIGL->DetectorName = "LIGL";
-  HistoInfoLIGL->DetectorNumber = {0, 1, 2};
+  HistoInfoLIGL->DetectorNumber = {1};
 
   HistoInfoLIGL->HistoName.push_back("Edep");
   HistoInfoLIGL->HistoTitle.push_back("Edep");
