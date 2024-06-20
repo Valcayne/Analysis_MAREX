@@ -1,7 +1,7 @@
 # Simple HTCondor submit description file
 # Everything with a leading # is a comment
  
-executable   = /afs/cern.ch/user/v/valcayne/Workspace/2024_Er_U_ProgramsC6D6/Analysis_nTOF_v01/Make2DHistos/Make2DHisto
+executable   = /afs/cern.ch/user/v/valcayne/Workspace/2024_Er_U_ProgramsC6D6/Analysis_nTOF_v01/Make2DHistos/Merge2DHisto
 arguments    = $(run)
 #output       = outputs_condor/DTAnalyzer01_$(EXTRRun)_$(RAWRun)_det$(DetN)_$(Quant)_$(nEn)_$(nE1).out
 output       = Condor/outputs/output_$(run).out
@@ -13,8 +13,8 @@ requirements = (OpSysAndVer =?= "AlmaLinux9")
 #requirements = (OpSysAndVer =?= "CentOS7")
 #+JobFlavour = "workday"
 #+JobFlavour = "espresso"
-+JobFlavour = "longlunch"
++JobFlavour = "microcentury"
 
 
 
-queue run from /afs/cern.ch/user/v/valcayne/Workspace/2024_Er_U_ProgramsC6D6/Analysis_nTOF_v01/Make2DHistos/Condor/Inputs/ArgumentsForCondor2DHisto.txt
+queue run from /afs/cern.ch/user/v/valcayne/Workspace/2024_Er_U_ProgramsC6D6/Analysis_nTOF_v01/Make2DHistosCondor/Inputs/ArgumentsForCondorMerge2DHisto2DHisto.txt

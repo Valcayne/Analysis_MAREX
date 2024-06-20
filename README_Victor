@@ -1,0 +1,43 @@
+To pull al programs
+cd ../ApsC6D6/; git pull; cd ../ InputsFor_Er_Cu_U/; git pull;
+
+
+###########################################################################################################################################################
+###########################################################################################################################################################
+###########################################################################################################################################################
+###########################################################################################################################################################
+To Launch Calibrations
+cd ../ApsC6D6/; git pull;cd EnergyCalibration/;doroot  MakeEnergyCalibration12VIC; cd ../../InputsFor_Er_Cu_U/; git pull;doroot MakeEnergyCalibration_2024_Er_Cu_U_L6D6;#
+MakeEnergyCalibration_2024_Er_Cu_U_L6D6;
+
+
+cd ../ApsC6D6/; git pull;cd EnergyCalibration/;doroot  MakeEnergyCalibration12VIC; cd ../../InputsFor_Er_Cu_U/; git pull;doroot MakeEnergyCalibration_2024_Er_Cu_U_L6D6;#
+MakeEnergyCalibration_2024_Er_Cu_U_L6D6;
+
+
+###########################################################################################################################################################
+###########################################################################################################################################################
+
+To put all the calibrations equal for 2DHisto
+RunMin=118816
+RunMax=119100 
+PathCalibrations=/afs/cern.ch/user/v/valcayne/LinkEOS/nTOFDataProcessing/2024_Er_Cu_U/Calibration/CalibrationRunByRun
+for (( number=$RunMin; number<=$RunMax; number++ )); do
+echo " cp ${PathCalibrations}/Calib_Er_Cu_U_v01.dat  ${PathCalibrations}/Calib_${number}.dat "
+ cp ${PathCalibrations}/Calib_Er_Cu_U_v01.dat  ${PathCalibrations}/Calib_${number}.dat
+done
+######################################################################################################################################################
+###########################################################################################################################################################
+To produce all the 2DHisto
+cd ../ApsC6D6/; git pull; cd ../InputsFor_Er_Cu_U/; git pull;doroot Make2DHisto;doroot Merge2DHisto
+doroot Make2DHisto;
+ DoManyMake2DHisto
+
+###########################################################################################################################################################
+###########################################################################################################################################################
+To produce merge all the 2DHisto
+
+doroot Merge2DHisto;
+DoManyMakeMerge2DHisto
+
+
