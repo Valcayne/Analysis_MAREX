@@ -357,14 +357,13 @@ int main(int argc, char** argv) {
     if (ThereIsLIGLDetector) {
       cout << "There isThereIsLIGLDetector " << endl;
 
-      //  NLIGLSignals =
-      // GetSignals(HistoInfoLIGL->DetectorName, trLIGL, &theLIGLS,
-      //            bunchesIndexLIGL[npul], bunchesIndexLIGL[npul + 1] - 1,
-      //            theLIGLSignals, theCalibM, 1, LIGLTFlash);  //
+      NLIGLSignals =
+          GetSignals(HistoInfoLIGL->DetectorName, trLIGL, &theLIGLS,
+                     bunchesIndexLIGL[npul], bunchesIndexLIGL[npul + 1] - 1,
+                     theLIGLSignals, theCalibM, 1, LIGLTFlash);  //
 
-      // FillType1(thisPulseType, NLIGLSignals, theLIGLSignals, h2D_LIGL,
-      // -1.e20,
-      //           1.e20, HistoInfoLIGL);
+      FillType1(thisPulseType, NLIGLSignals, theLIGLSignals, h2D_LIGL, -1.e20,
+                1.e20, HistoInfoLIGL);
     }
   }
   cout << " ... end main loop" << endl;
