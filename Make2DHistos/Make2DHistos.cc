@@ -349,8 +349,9 @@ int main(int argc, char** argv) {
                      theFIMGSignals, theCalibM, 1, FIMGTFlash);  //
       cout << "There isThereIsFIMGDetector " << endl;
 
-      FillType1(thisPulseType, NFIMGSignals, theFIMGSignals, h2D_FIMG, -1.e20,
-                1.e20, HistoInfoFIMG);
+      // FillType1(thisPulseType, NFIMGSignals, theFIMGSignals, h2D_FIMG,
+      // -1.e20,
+      //         1.e20, HistoInfoFIMG);
       //   cout << "There isThereIsFIMGDetector " << endl;
     }
 
