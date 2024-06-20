@@ -228,7 +228,7 @@ int FillType1(int thisPulseType, int NSignals, Signal* theSignals, TH2D**** hEn,
             //      << "
             //      "
             //      << NeutEne << endl;
-            cout << thisPulseType << " " << j << " "
+            cout << thisPulseType << "  " << j << " "
                  << FindDetectorPosition(TheHistoInfo->DetectorNumber, DetN)
                  << endl;
             hEn[thisPulseType][j]
