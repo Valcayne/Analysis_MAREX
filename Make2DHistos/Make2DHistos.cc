@@ -176,6 +176,8 @@ int main(int argc, char** argv) {
   theC6D6Signals = new Signal[MAXNSIGNALSINPULSE];
 
   if (!(trC6D6 == 0)) {
+    cout << "There is C6D6" << endl;
+
     ThereIsC6D6Detector = true;
     nbunchesC6D6 =
         CreateBunchesIndex(trC6D6, bunchesIndexC6D6, BunchNumberC6D6);
@@ -194,8 +196,8 @@ int main(int argc, char** argv) {
   int NSILISignals = 0;
   Signal* theSILISignals;
   if (!trSILI == 0) {
+    cout << "There is SILI" << endl;
     ThereIsSILIDetector = true;
-
     nbunchesSILI =
         CreateBunchesIndex(trSILI, bunchesIndexSILI, BunchNumberSILI);
     AttachStruct(&theSILIS, trSILI);
@@ -213,8 +215,8 @@ int main(int argc, char** argv) {
   int NFIMGSignals = 0;
   Signal* theFIMGSignals;
   if (!trFIMG == 0) {
+    cout << "There is FIMG" << endl;
     ThereIsFIMGDetector = true;
-
     nbunchesFIMG =
         CreateBunchesIndex(trFIMG, bunchesIndexFIMG, BunchNumberFIMG);
     AttachStruct(&theFIMGS, trFIMG);
@@ -232,8 +234,8 @@ int main(int argc, char** argv) {
   int NLIGLSignals = 0;
   Signal* theLIGLSignals;
   if (!trLIGL == 0) {
+    cout << "There is LIGL" << endl;
     ThereIsLIGLDetector = true;
-
     nbunchesLIGL =
         CreateBunchesIndex(trLIGL, bunchesIndexLIGL, BunchNumberLIGL);
     AttachStruct(&theLIGLS, trLIGL);
