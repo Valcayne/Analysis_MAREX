@@ -4,11 +4,21 @@
 #include "GetSignalsFunctions.hh"
 
 //=====================================================================================
-int FillPulseIntensity(int N_PULSETYPE, int thisPulseType,double PulseIntensity, double PKUPAmp, double PKUPArea,TH1D** hPulIntens);
-int FillType4(int thisPulseType, int NSignals, Signal* theSignals, TH2D**** hEn,double EdepThresholdMin, double EdepThresholdMax,HistoInfo* TheHistoInfo);
-int FillType3(int thisPulseType, int NSignals, Signal* theSignals, TH2D**** hEn,double EdepThresholdMin, double EdepThresholdMax,HistoInfo* TheHistoInfo);
-int FillType2(int thisPulseType, int NSignals, Signal* theSignals, TH2D**** hEn,double EdepThresholdMin, double EdepThresholdMax,HistoInfo* TheHistoInfo);
-int FillType1(int thisPulseType, int NSignals, Signal* theSignals, TH2D**** hEn,double EdepThresholdMin, double EdepThresholdMax,HistoInfo* TheHistoInfo);
+int FillPulseIntensity(int N_PULSETYPE, int thisPulseType,
+                       double PulseIntensity, double PKUPAmp, double PKUPArea,
+                       TH1D** hPulIntens);
+int FillType4(int thisPulseType, int NSignals, Signal* theSignals, TH2D**** hEn,
+              double EdepThresholdMin, double EdepThresholdMax,
+              HistoInfo* TheHistoInfo);
+int FillType3(int thisPulseType, int NSignals, Signal* theSignals, TH2D**** hEn,
+              double EdepThresholdMin, double EdepThresholdMax,
+              HistoInfo* TheHistoInfo);
+int FillType2(int thisPulseType, int NSignals, Signal* theSignals, TH2D**** hEn,
+              double EdepThresholdMin, double EdepThresholdMax,
+              HistoInfo* TheHistoInfo);
+int FillType1(int thisPulseType, int NSignals, Signal* theSignals, TH2D**** hEn,
+              double EdepThresholdMin, double EdepThresholdMax,
+              HistoInfo* TheHistoInfo);
 //=====================================================================================
 
 /************************************************************************
@@ -76,15 +86,15 @@ int FillType4(int thisPulseType, int NSignals, Signal* theSignals, TH2D**** hEn,
 
               hEn[thisPulseType][j]
                  [FindDetectorPosition(TheHistoInfo->DetectorNumber, DetN)]
-		->Fill(DeltaTime,Edep);
+                     ->Fill(DeltaTime, Edep);
               hEn[thisPulseType][j]
                  [FindDetectorPosition(TheHistoInfo->DetectorNumber, 0)]
-		->Fill(DeltaTime,Edep);
+                     ->Fill(DeltaTime, Edep);
               hEn[0][j]
                  [FindDetectorPosition(TheHistoInfo->DetectorNumber, DetN)]
-		->Fill(DeltaTime,Edep);
+                     ->Fill(DeltaTime, Edep);
               hEn[0][j][FindDetectorPosition(TheHistoInfo->DetectorNumber, 0)]
-		->Fill(DeltaTime,Edep);
+                  ->Fill(DeltaTime, Edep);
 
               // h2[ptype][HistoType][det]
             }
@@ -110,40 +120,39 @@ int FillType3(int thisPulseType, int NSignals, Signal* theSignals, TH2D**** hEn,
 
         if ((!(thisPulseType == 3)) &&
             (Tflash >
-             hEn[thisPulseType][j][FindDetectorPosition(
-                                       TheHistoInfo->DetectorNumber, DetN)]
-                 ->GetXaxis()
-                 ->GetBinUpEdge(hEn[thisPulseType][j]
-                                   [FindDetectorPosition(
-                                        TheHistoInfo->DetectorNumber, DetN)]
-                                       ->GetNbinsX()))) {
-          cout
-              << "Tflash= " << Tflash << "> up limit= "
-              << hEn[thisPulseType][j]
-                    [FindDetectorPosition(TheHistoInfo->DetectorNumber, DetN)]
-                        ->GetXaxis()
-                        ->GetBinUpEdge(
-                            hEn[thisPulseType][j]
-                               [FindDetectorPosition(
-                                    TheHistoInfo->DetectorNumber, DetN)]
-                                   ->GetNbinsX())
-              << endl
-              << " ########### Error in " << __FILE__ << ", line " << __LINE__
-              << " ###########" << endl;
+             hEn[thisPulseType][j]
+                [FindDetectorPosition(TheHistoInfo->DetectorNumber, DetN)]
+                    ->GetXaxis()
+                    ->GetBinUpEdge(hEn[thisPulseType][j]
+                                      [FindDetectorPosition(
+                                           TheHistoInfo->DetectorNumber, DetN)]
+                                          ->GetNbinsX()))) {
+          cout << "Tflash= " << Tflash << "> up limit= "
+               << hEn[thisPulseType][j]
+                     [FindDetectorPosition(TheHistoInfo->DetectorNumber, DetN)]
+                         ->GetXaxis()
+                         ->GetBinUpEdge(
+                             hEn[thisPulseType][j]
+                                [FindDetectorPosition(
+                                     TheHistoInfo->DetectorNumber, DetN)]
+                                    ->GetNbinsX())
+               << endl
+               << " ########### Error in " << __FILE__ << ", line " << __LINE__
+               << " ###########" << endl;
           // exit(1);
         }
 
         if (-1 != FindDetectorPosition(TheHistoInfo->DetectorNumber, DetN)) {
           hEn[thisPulseType][j]
              [FindDetectorPosition(TheHistoInfo->DetectorNumber, DetN)]
-	    ->Fill(Tflash,1);
+                 ->Fill(Tflash, 1);
           hEn[thisPulseType][j]
              [FindDetectorPosition(TheHistoInfo->DetectorNumber, 0)]
-	    ->Fill(Tflash,1);
+                 ->Fill(Tflash, 1);
           hEn[0][j][FindDetectorPosition(TheHistoInfo->DetectorNumber, DetN)]
-	    ->Fill(Tflash,1);
+              ->Fill(Tflash, 1);
           hEn[0][j][FindDetectorPosition(TheHistoInfo->DetectorNumber, 0)]
-	    ->Fill(Tflash,1);
+              ->Fill(Tflash, 1);
 
           // h2[ptype][HistoType][det]
         }
@@ -169,10 +178,9 @@ int FillType2(int thisPulseType, int NSignals, Signal* theSignals, TH2D**** hEn,
         int DetN = theSignals[i].detn;
 
         if (Edep > EdepThresholdMin && Edep < EdepThresholdMax) {
-          if (-1 !=
-              FindDetectorPosition(TheHistoInfo->DetectorNumber,
-                                   DetN)) {  // Check if the detector number
-                                             // is in TheHistoInfo
+          if (-1 != FindDetectorPosition(TheHistoInfo->DetectorNumber,
+                                         DetN)) {  // Check if the detector
+                                                   // number is in TheHistoInfo
             // cout << "Fill " << thisPulseType << " "
             //      << TheHistoInfo->HistoType[j] << " " << DetN << Edep << "
             //      "
@@ -180,15 +188,14 @@ int FillType2(int thisPulseType, int NSignals, Signal* theSignals, TH2D**** hEn,
 
             hEn[thisPulseType][j]
                [FindDetectorPosition(TheHistoInfo->DetectorNumber, DetN)]
-	      ->Fill(TOF - Tflash,Edep);
+                   ->Fill(TOF - Tflash, Edep);
             hEn[thisPulseType][j]
                [FindDetectorPosition(TheHistoInfo->DetectorNumber, 0)]
-                   ->Fill(TOF - Tflash,Edep);
-            hEn[0][j]
-               [FindDetectorPosition(TheHistoInfo->DetectorNumber, DetN)]
-                   ->Fill(TOF - Tflash,Edep);
+                   ->Fill(TOF - Tflash, Edep);
+            hEn[0][j][FindDetectorPosition(TheHistoInfo->DetectorNumber, DetN)]
+                ->Fill(TOF - Tflash, Edep);
             hEn[0][j][FindDetectorPosition(TheHistoInfo->DetectorNumber, 0)]
-                ->Fill(TOF - Tflash,Edep);
+                ->Fill(TOF - Tflash, Edep);
 
             // h2[ptype][HistoType][det]
           }
@@ -212,27 +219,27 @@ int FillType1(int thisPulseType, int NSignals, Signal* theSignals, TH2D**** hEn,
         int DetN = theSignals[i].detn;
 
         if (Edep > EdepThresholdMin && Edep < EdepThresholdMax) {
-          if (-1 !=
-              FindDetectorPosition(TheHistoInfo->DetectorNumber,
-                                   DetN)) {  // Check if the detector number
-                                             // is in TheHistoInfo
+          if (-1 != FindDetectorPosition(TheHistoInfo->DetectorNumber,
+                                         DetN)) {  // Check if the detector
+                                                   // number is in TheHistoInfo
             // cout << "Fill " << thisPulseType << " "
             //      << TheHistoInfo->HistoType[j] << " " << DetN << Edep << "
             //      "
             //      << NeutEne << endl;
-            hEn[thisPulseType][j]
-               [FindDetectorPosition(TheHistoInfo->DetectorNumber, DetN)]
-	      ->Fill(NeutEne,Edep);
-            hEn[thisPulseType][j]
-               [FindDetectorPosition(TheHistoInfo->DetectorNumber, 0)]
-	      ->Fill(NeutEne,Edep);
-            hEn[0][j]
-               [FindDetectorPosition(TheHistoInfo->DetectorNumber, DetN)]
-	      ->Fill(NeutEne,Edep);
-            hEn[0][j][FindDetectorPosition(TheHistoInfo->DetectorNumber, 0)]
-	      ->Fill(NeutEne,Edep);
+            //     hEn[thisPulseType][j]
+            //        [FindDetectorPosition(TheHistoInfo->DetectorNumber, DetN)]
+            // ->Fill(NeutEne,Edep);
+            //     hEn[thisPulseType][j]
+            //        [FindDetectorPosition(TheHistoInfo->DetectorNumber, 0)]
+            // ->Fill(NeutEne,Edep);
+            //     hEn[0][j]
+            //        [FindDetectorPosition(TheHistoInfo->DetectorNumber, DetN)]
+            // ->Fill(NeutEne,Edep);
+            //     hEn[0][j][FindDetectorPosition(TheHistoInfo->DetectorNumber,
+            //     0)]
+            // ->Fill(NeutEne,Edep);
 
-            // h2[ptype][HistoType][det]
+            //     // h2[ptype][HistoType][det]
           }
         }
       }

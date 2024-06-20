@@ -100,7 +100,7 @@ int main(int argc, char** argv) {
   HistoInfo* HistoInfoLIGL = new HistoInfo();
 
   HistoInfoLIGL->DetectorName = "LIGL";
-  HistoInfoLIGL->DetectorNumber = {1};
+  HistoInfoLIGL->DetectorNumber = {0, 11};
 
   HistoInfoLIGL->HistoName.push_back("Edep");
   HistoInfoLIGL->HistoTitle.push_back("Edep");
