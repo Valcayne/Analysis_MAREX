@@ -340,20 +340,20 @@ int main(int argc, char** argv) {
       FillType1(thisPulseType, NSILISignals, theSILISignals, h2D_SILI, -1.e20,
                 1.e20, HistoInfoSILI);
     }
-    // if (ThereIsFIMGDetector) {
-    //   cout << "There isThereIsFIMGDetector " << endl;
+    if (ThereIsFIMGDetector) {
+      cout << "There isThereIsFIMGDetector " << endl;
 
-    //   NFIMGSignals =
-    //       GetSignals(HistoInfoFIMG->DetectorName, trFIMG, &theFIMGS,
-    //                  bunchesIndexFIMG[npul], bunchesIndexFIMG[npul + 1] - 1,
-    //                  theFIMGSignals, theCalibM, 1, FIMGTFlash);  //
-    //   cout << "There isThereIsFIMGDetector " << endl;
+      //   NFIMGSignals =
+      //       GetSignals(HistoInfoFIMG->DetectorName, trFIMG, &theFIMGS,
+      //                  bunchesIndexFIMG[npul], bunchesIndexFIMG[npul + 1] -
+      //                  1, theFIMGSignals, theCalibM, 1, FIMGTFlash);  //
+      //   cout << "There isThereIsFIMGDetector " << endl;
 
-    //   FillType1(thisPulseType, NFIMGSignals, theFIMGSignals, h2D_FIMG,
-    //   -1.e20,
-    //             1.e20, HistoInfoFIMG);
-    //   cout << "There isThereIsFIMGDetector " << endl;
-    // }
+      //   FillType1(thisPulseType, NFIMGSignals, theFIMGSignals, h2D_FIMG,
+      //   -1.e20,
+      //             1.e20, HistoInfoFIMG);
+      //   cout << "There isThereIsFIMGDetector " << endl;
+    }
 
     if (ThereIsLIGLDetector) {
       cout << "There isThereIsLIGLDetector " << endl;
