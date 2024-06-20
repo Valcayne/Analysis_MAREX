@@ -330,7 +330,7 @@ int main(int argc, char** argv) {
                 1.e20, HistoInfoC6D6);
     }
     if (ThereIsSILIDetector) {
-      cout << "There isThereIsC6D6Detector " << endl;
+      cout << "There isThereIsSILIDetector " << endl;
 
       NSILISignals =
           GetSignals(HistoInfoSILI->DetectorName, trSILI, &theSILIS,
