@@ -264,9 +264,9 @@ int main(int argc, char** argv) {
 
   // FIMG histos
 
-  // TH2D*** h2D_FIMG[N_PULSETYPE];
-  // CreateTH2DHisto(ThereIsFIMGDetector, HistoInfoFIMG, N_PULSETYPE, h2D_FIMG,
-  //                 fout);
+  TH2D*** h2D_FIMG[N_PULSETYPE];
+  CreateTH2DHisto(ThereIsFIMGDetector, HistoInfoFIMG, N_PULSETYPE, h2D_FIMG,
+                  fout);
 
   // LIGL histos
 
@@ -343,15 +343,14 @@ int main(int argc, char** argv) {
     if (ThereIsFIMGDetector) {
       cout << "There isThereIsFIMGDetector " << endl;
 
-      //   NFIMGSignals =
-      //       GetSignals(HistoInfoFIMG->DetectorName, trFIMG, &theFIMGS,
-      //                  bunchesIndexFIMG[npul], bunchesIndexFIMG[npul + 1] -
-      //                  1, theFIMGSignals, theCalibM, 1, FIMGTFlash);  //
-      //   cout << "There isThereIsFIMGDetector " << endl;
+      NFIMGSignals =
+          GetSignals(HistoInfoFIMG->DetectorName, trFIMG, &theFIMGS,
+                     bunchesIndexFIMG[npul], bunchesIndexFIMG[npul + 1] - 1,
+                     theFIMGSignals, theCalibM, 1, FIMGTFlash);  //
+      cout << "There isThereIsFIMGDetector " << endl;
 
-      //   FillType1(thisPulseType, NFIMGSignals, theFIMGSignals, h2D_FIMG,
-      //   -1.e20,
-      //             1.e20, HistoInfoFIMG);
+      FillType1(thisPulseType, NFIMGSignals, theFIMGSignals, h2D_FIMG, -1.e20,
+                1.e20, HistoInfoFIMG);
       //   cout << "There isThereIsFIMGDetector " << endl;
     }
 
