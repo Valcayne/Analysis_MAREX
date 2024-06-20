@@ -234,9 +234,9 @@ int FillType1(int thisPulseType, int NSignals, Signal* theSignals, TH2D**** hEn,
             hEn[thisPulseType][j]
                [FindDetectorPosition(TheHistoInfo->DetectorNumber, DetN)]
                    ->Fill(NeutEne, Edep);
-            //     hEn[thisPulseType][j]
-            //        [FindDetectorPosition(TheHistoInfo->DetectorNumber, 0)]
-            // ->Fill(NeutEne,Edep);
+            hEn[thisPulseType][j]
+               [FindDetectorPosition(TheHistoInfo->DetectorNumber, 0)]
+                   ->Fill(NeutEne, Edep);
             //     hEn[0][j]
             //        [FindDetectorPosition(TheHistoInfo->DetectorNumber, DetN)]
             // ->Fill(NeutEne,Edep);
