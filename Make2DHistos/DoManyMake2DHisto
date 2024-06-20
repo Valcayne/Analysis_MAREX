@@ -5,8 +5,8 @@ RunMax=118890
 
 outdir=/eos/home-v/valcayne/nTOFDataProcessing/2024_Er_Cu_U/2DHistos/v03
 EOSPATH=/eos/home-v/valcayne/nTOFDataProcessing/2024_Er_Cu_U/RootFiles/v02/done/
-#EOSPATH=/eos/experiment/ntof/processing/official/done
-
+#EOSPATH=/eos/experiment/ntof/processing/official/don e
+  
 Arguments=Condor/Inputs/ArgumentsForCondor2DHisto.txt
 
 
