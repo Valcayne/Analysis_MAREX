@@ -1,0 +1,41 @@
+
+---------------------------------------------------------
+Junio de 2024
+
+Se trata de procesar datos del Si y de antes, pero con la rutina de ahora
+
+Quiero ver el Empty de la medida del Si.
+Y88: 118311
+Cs137:118312
+Empty:  118140-118149 y 118151-118156
+
+Víctor tiene cosas para procesar en:
+/afs/cern.ch/work/v/valcayne/public/Ta_Er/DataProcessing_v02/
+
+=====================================================================================================
+
+Para hacer un "ls":
+
+xrdfs xroot://eosctapublicdisk.cern.ch ls /eos/ctapublicdisk/archive/ntof/2024/EAR1/Si_Campaign_2024
+
+Para procesar runes:
+
+1- Preparar los datos:
+
+./ntof_prepare_processing_EM.py -d '/eos/ctapublicdisk/archive/ntof/2022/EAR1/Pu239_Campaign' -r 114258
+./ntof_prepare_processing_EM.py -d '/eos/ctapublicdisk/archive/ntof/2022/EAR1/Pu239_Campaign' -r [firstrun] -l [lastrun]
+
+2- Procesar:
+
+acrontab -e
+*/10 * * * * lxplus.cern.ch /afs/cern.ch/user/e/emendoza/Er-2024/DSTProcessing/scripts_EM/cronjob_EM.sh /afs/cern.ch/user/e/emendoza/Er-2024/DSTProcessing /afs/cern.ch/user/e/emendoza/Er-2024/DSTProcessing/UserInputs/UserInput_2024_EAR1_Si_01.h /afs/cern.ch/user/e/emendoza/eos/DSTProcessing/Er-2024/out01 auto > /afs/cern.ch/user/e/emendoza/Er-2024/DSTProcessing/cronjob.out 2>&1
+
+=====================================================================================================
+
+------------
+
+./ntof_prepare_processing_EM.py -d '/eos/ctapublicdisk/archive/ntof/2024/EAR1/Si_Campaign_2024' -r  118311
+./ntof_prepare_processing_EM.py -d '/eos/ctapublicdisk/archive/ntof/2024/EAR1/Si_Campaign_2024' -r  118312
+./ntof_prepare_processing_EM.py -d '/eos/ctapublicdisk/archive/ntof/2024/EAR1/Si_Campaign_2024' -r  118140 -l 118156
+
+/afs/cern.ch/user/e/emendoza/Er-2024/DSTProcessing/scripts_EM/cronjob_EM.sh /afs/cern.ch/user/e/emendoza/Er-2024/DSTProcessing /afs/cern.ch/user/e/emendoza/Er-2024/DSTProcessing/UserInputs/UserInput_2024_EAR1_Si_01.h /afs/cern.ch/user/e/emendoza/eos/DSTProcessing/Er-2024/out01

@@ -1,0 +1,21 @@
+
+Junio de 2024
+
+Make2DHistos 118831
+Make2DHistos 118852
+Make2DHistos 118853
+Make2DHistos 118854
+
+Para lanzar en condor:
+condor_submit inputs_condor/ejecutar01.sh
+
+Para hacer Merge:
+
+Merge2DHisto Y88-Si-01
+Merge2DHisto Cs137-Si-01
+Merge2DHisto Empty-Si
+
+Merge2DHisto Y88-01
+Merge2DHisto Cs137-01
+Merge2DHisto Empty01_NoBeam
+Merge2DHisto Empty01

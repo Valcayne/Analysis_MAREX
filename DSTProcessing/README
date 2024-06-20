@@ -1,0 +1,58 @@
+
+---------------------------------------------------------
+Junio de 2024
+
+Se trata de procesar datos del Si y de antes, pero con la rutina de ahora
+
+Quiero ver el Empty de la medida del Si.
+Cs137:118102
+Y88: 118103
+Empty:  118140-118149 y 118151-118156
+
+Víctor tiene cosas para procesar en:
+/afs/cern.ch/work/v/valcayne/public/Ta_Er/DataProcessing_v02/
+
+=====================================================================================================
+
+Para hacer un "ls":
+
+xrdfs xroot://eosctapublicdisk.cern.ch ls /eos/ctapublicdisk/archive/ntof/2024/EAR1/Si_Campaign_2024
+
+Para procesar runes:
+
+1- Preparar los datos:
+
+./ntof_prepare_processing_EM.py -d '/eos/ctapublicdisk/archive/ntof/2022/EAR1/Pu239_Campaign' -r 114258
+./ntof_prepare_processing_EM.py -d '/eos/ctapublicdisk/archive/ntof/2022/EAR1/Pu239_Campaign' -r [firstrun] -l [lastrun]
+
+2- Procesar:
+
+acrontab -e
+*/10 * * * * lxplus.cern.ch /afs/cern.ch/user/e/emendoza/Er-2024/DSTProcessing/scripts_EM/cronjob_EM.sh /afs/cern.ch/user/e/emendoza/Er-2024/DSTProcessing /afs/cern.ch/user/e/emendoza/Er-2024/DSTProcessing/UserInputs/UserInput_2024_EAR1_Si_01.h /afs/cern.ch/user/e/emendoza/eos/DSTProcessing/Er-2024/out01 auto > /afs/cern.ch/user/e/emendoza/Er-2024/DSTProcessing/cronjob.out 2>&1
+
+O en local (ejecutar varias veces, al menos 3):
+/afs/cern.ch/user/e/emendoza/Er-2024/DSTProcessing/scripts_EM/cronjob_EM.sh /afs/cern.ch/user/e/emendoza/Er-2024/DSTProcessing /afs/cern.ch/user/e/emendoza/Er-2024/DSTProcessing/UserInputs/UserInput_2024_EAR1_Si_01.h /afs/cern.ch/user/e/emendoza/eos/DSTProcessing/Er-2024/out01
+
+[ejecutable] [lugar de procesado] [input-PSA] [carpeta output (mejor en eos)]
+
+la carpeta output:
+mkdir [carpeta output (mejor en eos)]/completed
+mkdir [carpeta output (mejor en eos)]/done
+
+para ver cómo van los trabajos:
+condor_q
+
+=====================================================================================================
+
+------------
+
+./ntof_prepare_processing_EM.py -d '/eos/ctapublicdisk/archive/ntof/2024/EAR1/Si_Campaign_2024' -r  118102
+./ntof_prepare_processing_EM.py -d '/eos/ctapublicdisk/archive/ntof/2024/EAR1/Si_Campaign_2024' -r  118103
+./ntof_prepare_processing_EM.py -d '/eos/ctapublicdisk/archive/ntof/2024/EAR1/Si_Campaign_2024' -r  118140 -l 118156
+
+/afs/cern.ch/user/e/emendoza/Er-2024/DSTProcessing/scripts_EM/cronjob_EM.sh /afs/cern.ch/user/e/emendoza/Er-2024/DSTProcessing /afs/cern.ch/user/e/emendoza/Er-2024/DSTProcessing/UserInputs/UserInput_2024_EAR1_Si_01.h /afs/cern.ch/user/e/emendoza/eos/DSTProcessing/Er-2024/out01
+
+
+./ntof_prepare_processing_EM.py -d '/eos/ctapublicdisk/archive/ntof/2024/EAR1/Si_Campaign_2024' -r  118105
+
+/afs/cern.ch/user/e/emendoza/Er-2024/DSTProcessing/scripts_EM/cronjob_EM.sh /afs/cern.ch/user/e/emendoza/Er-2024/DSTProcessing /afs/cern.ch/user/e/emendoza/Er-2024/DSTProcessing/UserInputs/UserInput_2024_EAR1_Si_01.h /afs/cern.ch/user/e/emendoza/eos/DSTProcessing/Er-2024/out01

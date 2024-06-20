@@ -1,0 +1,80 @@
+
+
+#include "../GeneralFun/PlotFunctions02.hh"
+
+
+void plotEdep01(string fn1="inp01/Histo01_Y88-01.root",string basehname="Edep_C6D6",int PulseType=0,int rebin=1,double En_min=-1,double En_max=1.e20){
+
+  double npulses1;
+  double nprotons1;
+  TH1D* h1=GetEdepFrom2DHisto(fn1.c_str(),basehname.c_str(),1,PulseType,En_min,En_max,npulses1,nprotons1);
+  TH1D* h2=GetEdepFrom2DHisto(fn1.c_str(),basehname.c_str(),2,PulseType,En_min,En_max,npulses1,nprotons1);
+  TH1D* h3=GetEdepFrom2DHisto(fn1.c_str(),basehname.c_str(),3,PulseType,En_min,En_max,npulses1,nprotons1);
+  TH1D* h4=GetEdepFrom2DHisto(fn1.c_str(),basehname.c_str(),4,PulseType,En_min,En_max,npulses1,nprotons1);
+
+  h1->Rebin(rebin);  h1->SetLineColor(1);
+  h2->Rebin(rebin);  h2->SetLineColor(2);
+  h3->Rebin(rebin);  h3->SetLineColor(4);
+  h4->Rebin(rebin);  h4->SetLineColor(8);
+
+  if(PulseType==0){
+    h1->Scale(1./h1->GetBinWidth(1)/npulses1);
+    h2->Scale(1./h2->GetBinWidth(1)/npulses1);
+    h3->Scale(1./h3->GetBinWidth(1)/npulses1);
+    h4->Scale(1./h4->GetBinWidth(1)/npulses1);
+    h1->GetYaxis()->SetTitle("counts/(MeV #times pulse)");
+  }
+  else{
+    h1->Scale(7.e12/h1->GetBinWidth(1)/nprotons1);
+    h2->Scale(7.e12/h2->GetBinWidth(1)/nprotons1);
+    h3->Scale(7.e12/h3->GetBinWidth(1)/nprotons1);
+    h4->Scale(7.e12/h4->GetBinWidth(1)/nprotons1);
+    h1->GetYaxis()->SetTitle("counts/(MeV #times 7e12 prot.)");
+  }
+  
+  char title[100]; sprintf(title,"");
+  h1->SetTitle(title);
+  h1->GetXaxis()->SetTitle("E_{dep} (MeV)");
+  h1->GetXaxis()->SetNdivisions(507);
+  h1->GetYaxis()->SetTitleOffset(1.5);
+
+  TCanvas* c1=new TCanvas("c1","c1",800,800);
+  h1->Draw("histo");
+  h2->Draw("histo same");
+  h3->Draw("histo same");
+  h4->Draw("histo same");
+}
+
+
+void plotEdep02(string fn1="inp01/Histo01_Empty01.root",string fn2="inp01/Histo01_Empty-Si.root",string basehname="Edep_C6D6",int DetN=1,int PulseType=1,int rebin=1,double En_min=-1,double En_max=1.e20){
+
+  double npulses1,npulses2;
+  double nprotons1,nprotons2;
+  TH1D* h1=GetEdepFrom2DHisto(fn1.c_str(),basehname.c_str(),DetN,PulseType,En_min,En_max,npulses1,nprotons1);
+  TH1D* h2=GetEdepFrom2DHisto(fn2.c_str(),basehname.c_str(),DetN,PulseType,En_min,En_max,npulses2,nprotons2);
+
+  h1->Rebin(rebin);  h1->SetLineColor(1);
+  h2->Rebin(rebin);  h2->SetLineColor(2);
+
+  if(PulseType==0){
+    h1->Scale(1./h1->GetBinWidth(1)/npulses1);
+    h2->Scale(1./h2->GetBinWidth(1)/npulses2);
+    h1->GetYaxis()->SetTitle("counts/(MeV #times pulse)");
+  }
+  else{
+    h1->Scale(7.e12/h1->GetBinWidth(1)/nprotons1);
+    h2->Scale(7.e12/h2->GetBinWidth(1)/nprotons2);
+    h1->GetYaxis()->SetTitle("counts/(MeV #times 7e12 prot.)");
+  }
+
+  //char title[100]; sprintf(title,"");
+  //h1->SetTitle(title);
+  h1->GetXaxis()->SetTitle("E_{dep} (MeV)");
+  h1->GetXaxis()->SetNdivisions(507);
+  h1->GetYaxis()->SetTitleOffset(1.5);
+
+  TCanvas* c1=new TCanvas("c1","c1",800,800);
+  h1->Draw("histo");
+  h2->Draw("histo same");
+}
+

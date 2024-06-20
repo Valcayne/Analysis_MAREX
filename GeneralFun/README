@@ -1,0 +1,13 @@
+
+Septiembre de 2022
+
+Sacado de --> /afs/cern.ch/user/e/emendoza/Test2021/EAR1/TACTestOct2021/GeneralFun
+
+Tengo lo de TACFunctions.hh y TACCalibrationManager.hh + SILIFunctions.hh y SILICalibrationManager.hh. Hago lo mismo para la cámara de fisión.
+
+Voy a cambiar el formato de los ficheros de calibración. Ahora para todos los detectores voy a tener la siguiente estructura:
+
+[DetName] [DetID] [TOFD] [p0] [p1] [p2] [4 parámetros para discriminar las señales unas de otras] [t0] [t1]
+
+Donde [p0] [p1] [p2] es para calibrar en energías y [t0] [t1] para calibrar en tiempos.
+

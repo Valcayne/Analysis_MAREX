@@ -1,0 +1,276 @@
+#ifndef CALIBRATIONMANAGER_HH
+#define CALIBRATIONMANAGER_HH 1
+
+#include <TCanvas.h>
+#include <TF1.h>
+#include <TFile.h>
+#include <TGraph.h>
+#include <TGraphErrors.h>
+#include <TH1F.h>
+#include <TH2F.h>
+#include <TKey.h>
+#include <TLegend.h>
+#include <TMath.h>
+#include <TPad.h>
+#include <TPaletteAxis.h>
+#include <TROOT.h>
+#include <TRandom.h>
+#include <TStyle.h>
+#include <TTree.h>
+
+#include <cmath>
+#include <cstdlib>
+#include <fstream>
+#include <iostream>
+
+#include "GeneralFunctions.hh"
+
+using namespace std;
+
+/*
+
+Copiado de TACCalibrationManager
+
+*/
+
+//=======================================================================
+class CalibrationManager {
+ public:
+  CalibrationManager(const char* calibdirname, int run);
+  ~CalibrationManager();
+  double TakeTOF(Signal* P);     // ms
+  double TakeTFlash(Signal* P);  // ms
+  double TakeEnergy(Signal* P);  // MeV
+  double TakeTOFD(Signal* P);    // m
+  void PrintData(const char* outfname);
+  bool IsInsideThresholdLimits(Signal* P);
+
+ private:
+  string DetectorName[NDetectorMAX];
+  int DetID[NDetectorMAX];
+  double TOFD[NDetectorMAX];
+  double p0[NDetectorMAX];  // p0+p1*x+p2*x*x
+  double p1[NDetectorMAX];  // p0+p1*x+p2*x*x
+  double p2[NDetectorMAX];  // p0+p1*x+p2*x*x
+  double EneMin[NDetectorMAX];
+  double EneMax[NDetectorMAX];
+  double t0[NDetectorMAX];
+  double t1[NDetectorMAX];
+  int NumberOfEntries;
+};
+
+void CalibrationManager::PrintData(const char* outfname) {
+  ofstream out(outfname);
+  if (!out.good()) {
+    cout << "fname " << outfname << endl
+         << " ######### Error in " << __FILE__ << ", line " << __LINE__
+         << " #########" << endl;
+    exit(1);
+  }
+
+  out << "==================================================================="
+         "=================================================="
+      << endl;
+  for (int i = 1; i <= NumberOfEntries; i++) {
+    out << i << " " << DetectorName[i] << " " << DetID[i] << " " << " "
+        << TOFD[i] << " " << p0[i] << " " << p1[i] << " " << p2[i] << " "
+        << EneMin[i] << " " << EneMax[i] << " 0  0 " << t0[i] << " " << t1[i]
+        << endl;
+    out << "================================================================="
+           "===================================================="
+        << endl;
+    cout << i << " " << DetectorName[i] << " " << DetID[i] << " " << " "
+         << TOFD[i] << " " << p0[i] << " " << p1[i] << " " << p2[i] << " "
+         << EneMin[i] << " " << EneMax[i] << " 0  0 " << t0[i] << " " << t1[i]
+         << endl;
+    cout << "================================================================="
+            "===================================================="
+         << endl;
+
+    //          out << i << " " << DetectorName[i] << " " << std::setw(3) <<
+    //          DetID[i] << " "
+    //     << std::setw(3) << " " << std::setw(8) << TOFD[i] << " "
+    //     << std::setw(12) << p0[i] << " " << std::setw(12) << p1[i] << " "
+    //     << std::setw(12) << p2[i] << " " << std::setw(12) << EneMin[i] << " "
+    //     << std::setw(12) << EneMax[i] << " 0  0 " << std::setw(12) << t0[i]
+    //     << " " << std::setw(12) << t1[i] << endl;
+    // out <<
+    // "================================================================="
+    //        "===================================================="
+    //     << endl;
+    // cout << i << " " << DetectorName[i] << " " << std::setw(3) << DetID[i]
+    //      << " " << std::setw(3) << " " << std::setw(8) << TOFD[i] << " "
+    //      << std::setw(12) << p0[i] << " " << std::setw(12) << p1[i] << " "
+    //      << std::setw(12) << p2[i] << " " << std::setw(12) << EneMin[i] << "
+    //      "
+    //      << std::setw(12) << EneMax[i] << " 0  0 " << std::setw(12) << t0[i]
+    //      << " " << std::setw(12) << t1[i] << endl;
+    // cout <<
+    // "================================================================="
+    //         "===================================================="
+    //      << endl;
+  }
+
+  out.close();
+}
+
+bool CalibrationManager::IsInsideThresholdLimits(Signal* P) {
+  int DetN = P->detn;
+  string DetName = P->DetName;
+  double SignalEne = TakeEnergy(P);
+
+  for (int i = 1; i <= NumberOfEntries; i++) {
+    if ((DetN == DetID[i]) && (DetName == DetectorName[i])) {
+      if (SignalEne >= EneMin[i] && SignalEne <= EneMax[i]) {
+        return true;
+      }
+    }
+  }
+  return false;
+}
+
+double CalibrationManager::TakeTOF(Signal* P) {
+  int DetN = P->detn;
+  string DetName = P->DetName;
+  double SignalEne = TakeEnergy(P);
+  double TOF = -1;
+  for (int i = 1; i <= NumberOfEntries; i++) {
+    if ((DetN == DetID[i]) && (DetName == DetectorName[i])) {
+      TOF = (P->tof - (t0[i] + P->tof * t1[i])) * 1.e-6;
+    }
+  }
+  return TOF;
+}
+
+double CalibrationManager::TakeTFlash(Signal* P) {
+  int DetN = P->detn;
+  string DetName = P->DetName;
+  double TFLASH = -1;
+  for (int i = 1; i <= NumberOfEntries; i++) {
+    if ((DetN == DetID[i]) && (DetName == DetectorName[i])) {
+      TFLASH = (P->tflash - (t0[i] + P->tflash * t1[i])) * 1.e-6;
+      ;
+    }
+  }
+  return TFLASH;
+}
+
+double CalibrationManager::TakeEnergy(Signal* P) {
+  int DetN = P->detn;
+  string DetName = P->DetName;
+  double Amplitude = P->amp;
+  double ENERGY = -1;
+  for (int i = 1; i <= NumberOfEntries; i++) {
+    if ((DetN == DetID[i]) && (DetName == DetectorName[i])) {
+      ENERGY = (p0[i] + p1[i] * Amplitude + p2[i] * Amplitude * Amplitude);
+
+      // cout << "det " << P->detn << "NumberOfEntries" << i << "ENERGY " <<
+      // ENERGY
+      //      << " DetName " << DetName << " p0[DetN] " << p0[i] << " p1[i] "
+      //      << p1[i] << " p2[i] " << p2[i] << " " << Amplitude << " " <<
+      //      ENERGY
+      //      << endl;
+      // sleep(1);
+    }
+  }
+
+  ;
+
+  return ENERGY;
+}
+
+double CalibrationManager::TakeTOFD(Signal* P) {
+  int DetN = P->detn;
+  string DetName = P->DetName;
+
+  double TOFDistance = -1;
+  for (int i = 1; i <= NumberOfEntries; i++) {
+    if ((DetN == DetID[i]) && (DetName == DetectorName[i])) {
+      TOFDistance = TOFD[i];
+    }
+  }
+  return TOFDistance;
+}
+
+CalibrationManager::CalibrationManager(const char* calibdirname, int run) {
+  cout << " Taking calibration data from " << calibdirname << endl;
+
+  for (int j = 0; j < NDetectorMAX; j++) {
+    DetectorName[j] = "Empty";
+    TOFD[j] = -1;
+    p0[j] = -1;
+    p1[j] = -1;
+    p2[j] = -1;
+    t0[j] = -1;
+    t1[j] = -1;
+    EneMin[j] = -1;
+    EneMax[j] = -1;
+  }
+
+  //-----------------------------------------------------------------------------------------
+  // Read and store info:
+  cout << " Reading data ..." << endl;
+  char fname[300], word[100];
+  double dum;
+  int NumberCalibration = 0;
+  sprintf(fname, "%s/Calib_%d.dat", calibdirname, run);
+  ifstream in(fname);
+  if (!in.good()) {
+    cout << " do not exists " << fname << endl;
+    cout << " ######### Error in " << __FILE__ << ", line " << __LINE__
+         << " #########" << endl;
+    exit(1);
+  }
+
+  cout << " Reading " << fname << " for  ..." << endl;
+  while (in >> word) {
+    if (string(word) == string("#")) {
+      cout << "  " << word << endl;
+      in.ignore(1000, '\n');
+    } else {
+      DetectorName[NumberCalibration] = word;
+      in >> DetID[NumberCalibration];
+      in >> TOFD[NumberCalibration];
+      in >> p0[NumberCalibration] >> p1[NumberCalibration] >>
+          p2[NumberCalibration];
+      in >> EneMin[NumberCalibration] >> EneMax[NumberCalibration] >> dum >>
+          dum;
+      in >> t0[NumberCalibration] >> t1[NumberCalibration];
+      cout << "NumberCalibration " << NumberCalibration << "nameDetector "
+           << DetectorName[NumberCalibration] << " DetID "
+           << DetID[NumberCalibration] << endl;
+      NumberOfEntries = NumberCalibration;
+      NumberCalibration = NumberCalibration + 1;
+      if (NumberCalibration + 2 > NDetectorMAX) {
+        cout << " ######### Error in " << __FILE__ << ", line " << __LINE__
+             << " #########" << endl;
+        exit(1);
+      }
+    }
+  }
+  in.close();
+
+  cout << " ... done" << endl;
+  //-----------------------------------------------------------------------------------------
+
+  //-----------------------------------------------------------------------------------------
+
+  //-----------------------------------------------------------------------------------------
+
+  cout << " ...  done" << endl;
+}
+
+CalibrationManager::~CalibrationManager() {
+  // delete TOFD[];
+  // delete p0;
+  // delete p1;
+  // delete p2;
+  // delete EneMin;
+  // delete EneMax;
+  // delete t0;
+  // delete t1;
+}
+
+//=======================================================================
+
+#endif

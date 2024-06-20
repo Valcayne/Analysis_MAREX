@@ -1,0 +1,18 @@
+
+
+Junio de 2024
+----------------------------------------------------------------
+Programas para pintar histogramas varios
+
+Cosas de Víctor en:
+/afs/cern.ch/user/v/valcayne/LinkEOS/nTOFDataProcessing/2024_Er_Cu_U/2DHisto/v01
+
+plotEdep01();
+plotEdep01("inp01/Histos01_Empty01.root","Edep_C6D6",1,4,1.e4,1.e5);
+plotEdep01("inp01/Histo01_Empty-Si.root","Edep_C6D6",1,4,1.e4,1.e5);
+
+plotEdep02("inp01/Histos01_Empty01.root","inp01/Histo01_Empty-Si.root","Edep_C6D6",0,1,4,1.e4,1.e5);
+
+
+
+plotEdep02("inp01/Histos01_118836.root","inp01/Histos01_118837.root","Edep_C6D6",1,1,1,1,1.e5);

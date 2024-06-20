@@ -1,0 +1,38 @@
+
+#include "GainMonitoring01.hh"
+#include <iomanip>
+
+/*
+Programa para monitorizar ganancias:
+Compara las ganancias de los detectores en Run1 con las de Run2
+El resultado son los shift-factors por los que hay que multiplicar Run2 para tener la ganancia de Run1 
+*/
+
+struct GainMonInfo{
+  string detName;
+  int DetID,PulseType,rebin,npShift;
+  double EnMin,EnMax,ampMin,ampMax,ShiftMin,ShiftMax;
+  bool norm;
+};
+
+int main(int argc, char** argv) {
+
+  if(argc!=4){
+    cout<<" ########## Input has to be like: GainMonitoring01 [RunDescriptor] [RefRun] [inputfile] ########## "<<endl;
+    return 1;
+  }
+
+  //========================================================================
+  char RunListFname[500]="../RunLists/RunList2024_01.txt";
+  char outdir[500]="outputs/GainMon01";
+  int const MAXNRUNS=100000;
+  //========================================================================
+
+  //------------------------------------------------------------------------
+  //Read input file:
+
+  //------------------------------------------------------------------------
+
+  
+}
+
