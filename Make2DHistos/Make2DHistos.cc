@@ -80,22 +80,22 @@ int main(int argc, char** argv) {
   HistoInfoSILI->Xaxis.push_back({10000, 1.e-3, 1.e7});
   HistoInfoSILI->Yaxis.push_back({200, 0, 1e5});
 
-  HistoInfo* HistoInfoFIMG = new HistoInfo();
+  // HistoInfo* HistoInfoFIMG = new HistoInfo();
 
-  HistoInfoFIMG->DetectorName = "FIMG";
-  HistoInfoFIMG->DetectorNumber = {1};
+  // HistoInfoFIMG->DetectorName = "FIMG";
+  // HistoInfoFIMG->DetectorNumber = {1};
 
-  HistoInfoFIMG->HistoName.push_back("Edep");
-  HistoInfoFIMG->HistoTitle.push_back("Edep");
-  HistoInfoFIMG->HistoType.push_back(1);
-  HistoInfoFIMG->Xaxis.push_back({100, 1.e-3, 1.e7});
-  HistoInfoFIMG->Yaxis.push_back({1000, 0, 1e4});
+  // HistoInfoFIMG->HistoName.push_back("Edep");
+  // HistoInfoFIMG->HistoTitle.push_back("Edep");
+  // HistoInfoFIMG->HistoType.push_back(1);
+  // HistoInfoFIMG->Xaxis.push_back({100, 1.e-3, 1.e7});
+  // HistoInfoFIMG->Yaxis.push_back({1000, 0, 1e4});
 
-  HistoInfoFIMG->HistoName.push_back("En");
-  HistoInfoFIMG->HistoTitle.push_back("En");
-  HistoInfoFIMG->HistoType.push_back(1);
-  HistoInfoFIMG->Xaxis.push_back({10000, 1.e-3, 1.e7});
-  HistoInfoFIMG->Yaxis.push_back({200, 0, 1e4});
+  // HistoInfoFIMG->HistoName.push_back("En");
+  // HistoInfoFIMG->HistoTitle.push_back("En");
+  // HistoInfoFIMG->HistoType.push_back(1);
+  // HistoInfoFIMG->Xaxis.push_back({10000, 1.e-3, 1.e7});
+  // HistoInfoFIMG->Yaxis.push_back({200, 0, 1e4});
 
   HistoInfo* HistoInfoLIGL = new HistoInfo();
 
@@ -206,23 +206,23 @@ int main(int argc, char** argv) {
   //==============================================================================
   //==============================================================================
 
-  TTree* trFIMG = (TTree*)f1->Get(HistoInfoFIMG->DetectorName.c_str());
-  bool ThereIsFIMGDetector = false;
-  Signal theFIMGS;
-  int nbunchesFIMG = 0;
-  Long64_t bunchesIndexFIMG[MAXNBUNCHESINFILE];
-  int BunchNumberFIMG[MAXNBUNCHESINFILE];
-  int NFIMGSignals = 0;
-  Signal* theFIMGSignals;
-  if (!trFIMG == 0) {
-    cout << "There is FIMG" << endl;
-    ThereIsFIMGDetector = true;
-    nbunchesFIMG =
-        CreateBunchesIndex(trFIMG, bunchesIndexFIMG, BunchNumberFIMG);
-    AttachStruct(&theFIMGS, trFIMG);
-    theFIMGSignals = new Signal[MAXNSIGNALSINPULSE];
-  }
-  //==============================================================================
+  // TTree* trFIMG = (TTree*)f1->Get(HistoInfoFIMG->DetectorName.c_str());
+  // bool ThereIsFIMGDetector = false;
+  // Signal theFIMGS;
+  // int nbunchesFIMG = 0;
+  // Long64_t bunchesIndexFIMG[MAXNBUNCHESINFILE];
+  // int BunchNumberFIMG[MAXNBUNCHESINFILE];
+  // int NFIMGSignals = 0;
+  // Signal* theFIMGSignals;
+  // if (!trFIMG == 0) {
+  //   cout << "There is FIMG" << endl;
+  //   ThereIsFIMGDetector = true;
+  //   nbunchesFIMG =
+  //       CreateBunchesIndex(trFIMG, bunchesIndexFIMG, BunchNumberFIMG);
+  //   AttachStruct(&theFIMGS, trFIMG);
+  //   theFIMGSignals = new Signal[MAXNSIGNALSINPULSE];
+  // }
+  // //==============================================================================
   //==============================================================================
 
   TTree* trLIGL = (TTree*)f1->Get(HistoInfoLIGL->DetectorName.c_str());
@@ -264,9 +264,9 @@ int main(int argc, char** argv) {
 
   // FIMG histos
 
-  TH2D*** h2D_FIMG[N_PULSETYPE];
-  CreateTH2DHisto(ThereIsFIMGDetector, HistoInfoFIMG, N_PULSETYPE, h2D_FIMG,
-                  fout);
+  // TH2D*** h2D_FIMG[N_PULSETYPE];
+  // CreateTH2DHisto(ThereIsFIMGDetector, HistoInfoFIMG, N_PULSETYPE, h2D_FIMG,
+  //                 fout);
 
   // LIGL histos
 
@@ -294,7 +294,7 @@ int main(int argc, char** argv) {
     double C6D6TFlash = -1;
     double SILITFlash = -1;
     double FIMGTFlash = -1;
-    double LIGLTFlash = -1;
+    // double LIGLTFlash = -1;
 
     // cout << "Inte " << thePKUPInfo->PulseIntensity[npul] << endl;
     if (thePKUPInfo->PulseIntensity[npul] < 1.e12) {
@@ -303,7 +303,7 @@ int main(int argc, char** argv) {
       C6D6TFlash = 0;
       SILITFlash = 0;
       FIMGTFlash = 0;
-      LIGLTFlash = 0;
+      // LIGLTFlash = 0;
     }
 
     FillPulseIntensity(
@@ -340,19 +340,20 @@ int main(int argc, char** argv) {
       FillType1(thisPulseType, NSILISignals, theSILISignals, h2D_SILI, -1.e20,
                 1.e20, HistoInfoSILI);
     }
-    if (ThereIsFIMGDetector) {
-      cout << "There isThereIsFIMGDetector " << endl;
+    // if (ThereIsFIMGDetector) {
+    //   cout << "There isThereIsFIMGDetector " << endl;
 
-      NFIMGSignals =
-          GetSignals(HistoInfoFIMG->DetectorName, trFIMG, &theFIMGS,
-                     bunchesIndexFIMG[npul], bunchesIndexFIMG[npul + 1] - 1,
-                     theFIMGSignals, theCalibM, 1, FIMGTFlash);  //
-      cout << "There isThereIsFIMGDetector " << endl;
+    //   NFIMGSignals =
+    //       GetSignals(HistoInfoFIMG->DetectorName, trFIMG, &theFIMGS,
+    //                  bunchesIndexFIMG[npul], bunchesIndexFIMG[npul + 1] - 1,
+    //                  theFIMGSignals, theCalibM, 1, FIMGTFlash);  //
+    //   cout << "There isThereIsFIMGDetector " << endl;
 
-      FillType1(thisPulseType, NFIMGSignals, theFIMGSignals, h2D_FIMG, -1.e20,
-                1.e20, HistoInfoFIMG);
-      cout << "There isThereIsFIMGDetector " << endl;
-    }
+    //   FillType1(thisPulseType, NFIMGSignals, theFIMGSignals, h2D_FIMG,
+    //   -1.e20,
+    //             1.e20, HistoInfoFIMG);
+    //   cout << "There isThereIsFIMGDetector " << endl;
+    // }
 
     if (ThereIsLIGLDetector) {
       cout << "There isThereIsLIGLDetector " << endl;
