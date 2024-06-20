@@ -220,7 +220,6 @@ int FillType1(int thisPulseType, int NSignals, Signal* theSignals, TH2D**** hEn,
 
         if (Edep > EdepThresholdMin && Edep < EdepThresholdMax) {
           if (-1 != FindDetectorPosition(TheHistoInfo->DetectorNumber, DetN)) {
-            cout << " " << endl;
             // Check if the detector
             // number is in TheHistoInfo
             // cout << "Fill " << thisPulseType << " "
@@ -228,9 +227,9 @@ int FillType1(int thisPulseType, int NSignals, Signal* theSignals, TH2D**** hEn,
             //      << "
             //      "
             //      << NeutEne << endl;
-            cout << thisPulseType << "  " << j << " "
-                 << FindDetectorPosition(TheHistoInfo->DetectorNumber, DetN)
-                 << endl;
+            // cout << thisPulseType << "  " << j << " "
+            //      << FindDetectorPosition(TheHistoInfo->DetectorNumber, DetN)
+            //      << endl;
             hEn[thisPulseType][j]
                [FindDetectorPosition(TheHistoInfo->DetectorNumber, DetN)]
                    ->Fill(NeutEne, Edep);
