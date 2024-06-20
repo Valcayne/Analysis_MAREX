@@ -294,7 +294,7 @@ int main(int argc, char** argv) {
     double C6D6TFlash = -1;
     double SILITFlash = -1;
     double FIMGTFlash = -1;
-    // double LIGLTFlash = -1;
+    double LIGLTFlash = -1;
 
     // cout << "Inte " << thePKUPInfo->PulseIntensity[npul] << endl;
     if (thePKUPInfo->PulseIntensity[npul] < 1.e12) {
@@ -303,7 +303,7 @@ int main(int argc, char** argv) {
       C6D6TFlash = 0;
       SILITFlash = 0;
       FIMGTFlash = 0;
-      // LIGLTFlash = 0;
+      LIGLTFlash = 0;
     }
 
     FillPulseIntensity(
