@@ -17,4 +17,4 @@ requirements = (OpSysAndVer =?= "AlmaLinux9")
 
 
 
-queue run from /afs/cern.ch/user/v/valcayne/Workspace/2024_Er_U_ProgramsC6D6/Analysis_nTOF_v01/Make2DHistosCondor/Inputs/ArgumentsForCondorMerge2DHisto2DHisto.txt
+queue run from /afs/cern.ch/user/v/valcayne/Workspace/2024_Er_U_ProgramsC6D6/Analysis_nTOF_v01/Make2DHistos/Condor/Inputs/ArgumentsForCondorMerge2DHistos.txt
