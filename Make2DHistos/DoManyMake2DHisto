@@ -18,35 +18,26 @@ rm $Arguments
 
 for (( number=$RunMin; number<=$RunMax; number++ )); do
 
-
-echo "File  ${outdir}/Histos01_${number}.root"
-
 if ! [ -f ${outdir}/2DHisto_${number}.root ];
 then 
 echo " exits ${outdir}/2DHisto_${number}.root"
+SizeFile=$(stat -c %s "${outdir}/2DHisto_${number}.root")
 
-else if [ -f ${EOSPATH}/run${number}.root ];
+elif [ $SizeFile -lt 1000 ];  
 then 
+echo " The file 2DHisto_${number}.root is too small (${SizeFile}) I delete it and launch again"
+rm ${outdir}/2DHisto_${number}.root
+echo "$number">>${Arguments}
+
+
+
+elif [ -f ${EOSPATH}/run${number}.root ];
+ then
 echo "We launch run $number"
 echo "$number">>${Arguments}
 #DoManyMake2DHisto $number
 else
 echo "There is not run${number}.root so we do not launch"
-
-fi
-
-else
- SizeFile=$(stat -c %s "${outdir}/2DHisto_${number}.root")
-
-echo " There  is 2DHisto_${number}.root size $SizeFile"
-
-if [ $SizeFile -lt 1000 ];  
-
-then 
-echo " The file 2DHisto_${number}.root is too small (${SizeFile}) "
-
-fi
-
 
 fi
 done
