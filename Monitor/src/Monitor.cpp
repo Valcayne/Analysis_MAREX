@@ -47,8 +47,6 @@ void Monitor::Start() {
         "READ"));
     if (!run_file || !run_file->IsOpen() || run_file->IsZombie()) continue;
 
-    monitored_runs.push_back(run);
-
     std::string h_name;
     for (const auto pulse : pulses) {
       const auto pulse_type = std::to_string(pulse->type);
@@ -86,6 +84,7 @@ void Monitor::Start() {
         }
       }
     }
+    if (pulses.front()->HasProtons()) monitored_runs.push_back(run);
   }
 
   Pulse::runs = monitored_runs;

@@ -27,6 +27,8 @@ class Pulse {
   void AppendProtons(const double p);
   void AppendPkupAreas(const double pa);
 
+  bool HasProtons();
+
   void CreateGraphs();
   void WriteGraphsToFile(const std::string filename);
 

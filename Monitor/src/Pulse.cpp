@@ -14,6 +14,8 @@ void Pulse::AppendProtons(const double p) { protons.push_back(p); }
 
 void Pulse::AppendPkupAreas(const double pa) { pkup_areas.push_back(pa); }
 
+bool Pulse::HasProtons() { return !protons.empty(); }
+
 void Pulse::CreateGraphs() {
   std::string result;
   std::vector<double> ratios;
