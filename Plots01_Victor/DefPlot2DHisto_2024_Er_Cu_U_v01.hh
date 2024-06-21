@@ -61,7 +61,7 @@ vector<string> BackgroundDummyPredefined = {
 vector<string> NameSimulArray = {"Au_13_100", "Au_40_200", "Er167_13"};
 vector<string> NameSimulRootfile = {"DataPlot/Yield_Au_2_100",
                                     "DataPlot/Yield_Au_2_200",
-                                    "DataPlot/Yield_SAMMY_Er167_13mm"};
+                                    "DataPlot/Yield_TC_Er167_13mm_ENDF8"};
 
 vector<double> Activity_kBq = {274, 274};
 
@@ -77,11 +77,11 @@ vector<double> ResolParameter2 = {0.00838911, 0.00181082, 0.00139247};
 // double NormalizeMaxEn = 500;
 
 double NormalizeMinEn = 0.4;
-double NormalizeMaxEn = 0.6;
+double NormalizeMaxEn = 1.0e3;
 
 // En or the xaxis plot
-double ForPlotEminEn = 280;
-double ForPlotEmaxEn = 340;
+double ForPlotEminEn = 0.02;
+double ForPlotEmaxEn = 1.0e7;
 
 // Edep for integrals normalize
 double NormalizeMinEdep = 0.2;
