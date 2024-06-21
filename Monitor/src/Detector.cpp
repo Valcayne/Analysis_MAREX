@@ -18,6 +18,6 @@ void Detector::AppendCounts(const int id, const double c) {
 
 std::map<int, std::vector<double>> Detector::GetCounts() { return counts; }
 
-void Detector::AppendGraph(TGraphErrors* graph) { graphs.push_back(graph); }
+void Detector::AppendGraph(TCanvas* graph) { graphs.push_back(graph); }
 
-std::vector<TGraphErrors*> Detector::GetGraphs() { return graphs; }
+std::vector<TCanvas*> Detector::GetGraphs() { return graphs; }
