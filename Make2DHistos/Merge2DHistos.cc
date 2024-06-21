@@ -19,7 +19,7 @@ int main(int argc, char** argv) {
   char RunListFname[200] =
       "/afs/cern.ch/work/v/valcayne/2024_Er_U_ProgramsC6D6/Analysis_nTOF_v01/"
       "RunLists/RunList2024_02.txt";
-  char StartFname[100] = "Histo01";
+  char StartFname[100] = "Histos01";
   //========================================================================
 
   string RunType = string(argv[1]);
