@@ -2,6 +2,7 @@
 # DO NOT DELETE
 
 ./Plot2DHisto_cc.so: ../GeneralFun/PlotFunctions_Victor.hh
+./Plot2DHisto_cc.so: ../GeneralFun/AnalysisFunctions01.hh
 ./Plot2DHisto_cc.so: ../GeneralFun/GeneralFunctions.hh
 ./Plot2DHisto_cc.so: ../GeneralFun/GeneralDefinitions.hh
 ./Plot2DHisto_cc.so: /home/victor93/Programs/root_v6.30.06/root_v6.30.06.Linux-ubuntu20.04-x86_64-gcc9.4/root/include/TCanvas.h

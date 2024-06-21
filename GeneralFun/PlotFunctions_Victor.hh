@@ -1,7 +1,7 @@
 #ifndef PLOTFUNCTIONS_VICTOR_HH
 #define PLOTFUNCTIONS_VICTOR_HH 1
 
-#include "GeneralFunctions.hh"
+#include "AnalysisFunctions01.hh"
 
 TH1D* TH1DFromMC_Resol_v01(TH1D* h1, string MCFile, int detn, double Resa,
                            double Resb);
