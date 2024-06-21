@@ -27,10 +27,12 @@ fi
 
 rm $Arguments
 
-for (( number=$RunMin; number<=$RunMax; number++ )); do
+for (( number=$RunMin; number<=$RunMax; number++ )); do;
 echo "File  ${outdir}/Histos01_${number}.root"
 
-if ! [ -f ${outdir}/Histos01_${number}.root ];
+
+
+if ! [ -f ${outdir}/2DHisto_${number}.root ];
 then 
 
 if [ -f ${EOSPATH}/run${number}.root ];
@@ -59,7 +61,7 @@ fi
 fi
 done
 echo "condor_submit Condor/ProgramsLaunch/LaunchCondorMake2D.sh"
-#condor_submit Condor/ProgramsLaunch/LaunchCondorMake2D.sh
+condor_submit Condor/ProgramsLaunch/LaunchCondorMake2D.sh
 exit
 
 
