@@ -11,18 +11,6 @@ Arguments=Condor/Inputs/ArgumentsForCondor2DHisto.txt
 
 
 
- archivo=Make2DHisto.cc
- SizeFile=$(stat -c %s "$archivo")
-echo " File Size $SizeFile"
-
-if [ $SizeFile -lt 1000 ];  
-
-then 
-echo " The file 2DHisto_${number}.root is too small (${SizeFile}) "
-
-fi
-
-
 
 
 rm $Arguments
