@@ -48,4 +48,5 @@ Monitor/build/*
 Make2DHisto
 Merge2DHisto
 
-
+# Keep necessary folders
+!.gitkeep
