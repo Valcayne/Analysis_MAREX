@@ -18,7 +18,7 @@ rm $Arguments
 
 for (( number=$RunMin; number<=$RunMax; number++ )); do
 
-if ! [ -f ${outdir}/Histos01_${number}.root ];
+if  [ -f ${outdir}/Histos01_${number}.root ];
 then 
 echo " exits ${outdir}/Histos01_${number}.root"
 SizeFile=$(stat -c %s "${outdir}/Histos01_${number}.root")
