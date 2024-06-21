@@ -1,6 +1,6 @@
 #!/bin/bash
 RunMin=118816
-RunMax=118910
+RunMax=118890
 
 
 outdir=/eos/home-v/valcayne/nTOFDataProcessing/2024_Er_Cu_U/2DHistos/v03
@@ -11,14 +11,26 @@ Arguments=Condor/Inputs/ArgumentsForCondor2DHisto.txt
 
 
 
+ archivo=Make2DHisto.cc
+ SizeFile=$(stat -c %s "$archivo")
+echo " File Size $SizeFile"
+
+if [ $SizeFile -lt 1000 ];  
+
+then 
+echo " The file 2DHisto_${number}.root is too small (${SizeFile}) "
+
+fi
+
+
 
 
 rm $Arguments
 
 for (( number=$RunMin; number<=$RunMax; number++ )); do
+echo "File  ${outdir}/Histos01_${number}.root"
 
-
-if ! [ -f ${outdir}/2DHisto_${number}.root ];
+if ! [ -f ${outdir}/Histos01_${number}.root ];
 then 
 
 if [ -f ${EOSPATH}/run${number}.root ];
@@ -47,7 +59,7 @@ fi
 fi
 done
 echo "condor_submit Condor/ProgramsLaunch/LaunchCondorMake2D.sh"
-condor_submit Condor/ProgramsLaunch/LaunchCondorMake2D.sh
+#condor_submit Condor/ProgramsLaunch/LaunchCondorMake2D.sh
 exit
 
 
