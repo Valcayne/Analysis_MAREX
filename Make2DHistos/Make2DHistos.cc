@@ -19,9 +19,10 @@ int main(int argc, char** argv) {
   char outdir[200] =
       "/eos/home-v/valcayne/nTOFDataProcessing/2024_Er_Cu_U/2DHistos/v03";
 
-  char EOSPATH[200] =
-      "/eos/home-v/valcayne/nTOFDataProcessing/2024_Er_Cu_U/RootFiles/v02/"
-      "done/";
+  // char EOSPATH[200] =
+  //     "/eos/home-v/valcayne/nTOFDataProcessing/2024_Er_Cu_U/RootFiles/v02/"
+  //     "done/";
+  char EOSPATH[200] = "/eos/experiment/ntof/processing/official/done/";
 
   char CalibDirName[200] =
       "/eos/home-v/valcayne/nTOFDataProcessing/2024_Er_Cu_U/Calibration/"

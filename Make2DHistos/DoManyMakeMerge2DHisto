@@ -14,9 +14,25 @@ echo "Cs">>${Arguments}
 echo "Background">>${Arguments}
 echo "Empty_Er">>${Arguments}
 echo "C_2_6000">>${Arguments}
+
+echo "AmBe_1">>${Arguments}
+echo "Cs_1">>${Arguments}
+echo "Co_1">>${Arguments}
+echo "Eu_1">>${Arguments}
+echo "Bi_1">>${Arguments}
+echo "Mn_1">>${Arguments}
+echo "CmC_1">>${Arguments}
+echo "Ba_1">>${Arguments}
+echo "Co57_1">>${Arguments}
+echo "Background_1">>${Arguments}
+
+
 echo "Au_13_100">>${Arguments}
 echo "Au_40_200">>${Arguments}
 echo "Er167_13">>${Arguments}
+
+
+
 
 
 
