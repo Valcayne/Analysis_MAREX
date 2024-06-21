@@ -40,7 +40,7 @@ echo "There is not run${number}.root so we do not launch"
 fi
 done
 echo "condor_submit Condor/ProgramsLaunch/LaunchCondorMake2D.sh"
-#condor_submit Condor/ProgramsLaunch/LaunchCondorMake2D.sh
+condor_submit Condor/ProgramsLaunch/LaunchCondorMake2D.sh
 exit
 
 
