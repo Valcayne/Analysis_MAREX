@@ -1,5 +1,5 @@
-#ifndef PLOTFUNCTIONS_HH
-#define PLOTFUNCTIONS_HH 1
+#ifndef PLOTFUNCTIONS_VICTOR_HH
+#define PLOTFUNCTIONS_VICTOR_HH 1
 
 #include "GeneralFunctions.hh"
 
@@ -334,12 +334,13 @@ TH1D* Project2DHisto(string fname, string NameDetector, string NameHisto,
   //
   string NameHisto1D = "1D" + NameHisto2D;
   TH1D* h3;
+
   if (PulseType == 3) {
     // Checks to see if the h2 Histo for Y axis include a time similar to
     // TimeMeasurement_ns
-    double TimeHighLimit = EtoTOF(h2->GetYaxis()->GetBinLowEdge(1), TOFD);
+    double TimeHighLimit = EtoTOF(h2->GetXaxis()->GetBinLowEdge(1), TOFD);
     double TimeLowLimit =
-        EtoTOF(h2->GetYaxis()->GetBinUpEdge(h2->GetNbinsY()), TOFD);
+        EtoTOF(h2->GetXaxis()->GetBinUpEdge(h2->GetNbinsX()), TOFD);
     if (TimeHighLimit < TimeMeasurement_ns) {
       cout << "TimeHighLimit (" << TimeHighLimit
            << ") is smaller than TimeMeasurement_ns  (" << TimeMeasurement_ns
@@ -361,15 +362,15 @@ TH1D* Project2DHisto(string fname, string NameDetector, string NameHisto,
     cout << "Type 3 pulse lowlimit= " << TimeLowLimit
          << "  TimeHighLimit= " << TimeHighLimit << endl;
     if (IfEnOrEdep) {
-      int minbin = h2->GetXaxis()->FindBin(EnOrEdepMin);
-      int maxbin = h2->GetXaxis()->FindBin(EnOrEdepMax);
+      int minbin = h2->GetYaxis()->FindBin(EnOrEdepMin);
+      int maxbin = h2->GetYaxis()->FindBin(EnOrEdepMax);
       cout << endl
            << " Taking En type 3 spectrum  from " << fname << " between "
            << h2->GetYaxis()->GetBinLowEdge(minbin) << "(" << EnOrEdepMin
            << ") and " << h2->GetYaxis()->GetBinLowEdge(maxbin + 1) << "("
            << EnOrEdepMax << ")   ......" << endl;
 
-      h3 = h2->ProjectionY(NameHisto1D.c_str(), minbin, maxbin, "e");
+      h3 = h2->ProjectionX(NameHisto1D.c_str(), minbin, maxbin, "e");
       // h3->Sumw2();
 
       double Emin, Emax, ErrorTotalCounts;
@@ -387,14 +388,14 @@ TH1D* Project2DHisto(string fname, string NameDetector, string NameHisto,
                                TimeMeasurement_ns);
       }
     } else {
-      int minbin = h2->GetYaxis()->FindBin(EnOrEdepMin);
-      int maxbin = h2->GetYaxis()->FindBin(EnOrEdepMax);
+      int minbin = h2->GetXaxis()->FindBin(EnOrEdepMin);
+      int maxbin = h2->GetXaxis()->FindBin(EnOrEdepMax);
       cout << endl
            << " Taking Edep type 3 for spectrum from " << fname << " between "
-           << h2->GetYaxis()->GetBinLowEdge(minbin) << "(" << EnOrEdepMin
-           << ") and " << h2->GetYaxis()->GetBinLowEdge(maxbin + 1) << "("
+           << h2->GetXaxis()->GetBinLowEdge(minbin) << "(" << EnOrEdepMin
+           << ") and " << h2->GetXaxis()->GetBinLowEdge(maxbin + 1) << "("
            << EnOrEdepMax << ")   ......" << endl;
-      h3 = h2->ProjectionX(NameHisto1D.c_str(), 0, h2->GetNbinsY(), "e");
+      h3 = h2->ProjectionY(NameHisto1D.c_str(), 0, h2->GetNbinsY(), "e");
       // h3->Sumw2();
 
       double scalefactor = DeltaEnergyToTime(EnOrEdepMin, EnOrEdepMax, TOFD) /
@@ -410,25 +411,25 @@ TH1D* Project2DHisto(string fname, string NameDetector, string NameHisto,
   ////No pulse 3
   else {
     if (IfEnOrEdep) {
-      int minbin = h2->GetXaxis()->FindBin(EnOrEdepMin);
-      int maxbin = h2->GetXaxis()->FindBin(EnOrEdepMax);
-      cout << endl
-           << " Taking En spectrum from " << fname << " between "
-           << h2->GetXaxis()->GetBinLowEdge(minbin) << "(" << EnOrEdepMin
-           << ") and " << h2->GetXaxis()->GetBinLowEdge(maxbin + 1) << "("
-           << EnOrEdepMax << ")   ......" << endl;
-      h3 = h2->ProjectionY(NameHisto1D.c_str(), minbin, maxbin, "e");
-      // h3->Sumw2();
-
-    } else {
       int minbin = h2->GetYaxis()->FindBin(EnOrEdepMin);
       int maxbin = h2->GetYaxis()->FindBin(EnOrEdepMax);
       cout << endl
-           << " Taking Edep spectrum from " << fname << " between "
+           << " Taking En spectrum from " << fname << " between "
            << h2->GetYaxis()->GetBinLowEdge(minbin) << "(" << EnOrEdepMin
            << ") and " << h2->GetYaxis()->GetBinLowEdge(maxbin + 1) << "("
            << EnOrEdepMax << ")   ......" << endl;
       h3 = h2->ProjectionX(NameHisto1D.c_str(), minbin, maxbin, "e");
+      // h3->Sumw2();
+
+    } else {
+      int minbin = h2->GetXaxis()->FindBin(EnOrEdepMin);
+      int maxbin = h2->GetXaxis()->FindBin(EnOrEdepMax);
+      cout << endl
+           << " Taking Edep spectrum from " << fname << " between "
+           << h2->GetXaxis()->GetBinLowEdge(minbin) << "(" << EnOrEdepMin
+           << ") and " << h2->GetXaxis()->GetBinLowEdge(maxbin + 1) << "("
+           << EnOrEdepMax << ")   ......" << endl;
+      h3 = h2->ProjectionY(NameHisto1D.c_str(), minbin, maxbin, "e");
       // h3->Sumw2();
     }
   }
@@ -438,15 +439,15 @@ TH1D* Project2DHisto(string fname, string NameDetector, string NameHisto,
   double MaximunDiferenceAllowedInPercent = 3;
 
   double EnOrEdepMinUsed =
-      h2->GetXaxis()->GetBinLowEdge(h2->GetXaxis()->FindBin(EnOrEdepMin));
+      h2->GetYaxis()->GetBinLowEdge(h2->GetYaxis()->FindBin(EnOrEdepMin));
   double EnOrEdepMaxUsed =
-      h2->GetXaxis()->GetBinLowEdge(h2->GetXaxis()->FindBin(EnOrEdepMax) + 1);
+      h2->GetYaxis()->GetBinLowEdge(h2->GetYaxis()->FindBin(EnOrEdepMax) + 1);
 
   if (!IfEnOrEdep) {
     EnOrEdepMinUsed =
-        h2->GetYaxis()->GetBinLowEdge(h2->GetYaxis()->FindBin(EnOrEdepMin));
+        h2->GetXaxis()->GetBinLowEdge(h2->GetXaxis()->FindBin(EnOrEdepMin));
     EnOrEdepMaxUsed =
-        h2->GetYaxis()->GetBinLowEdge(h2->GetYaxis()->FindBin(EnOrEdepMax) + 1);
+        h2->GetXaxis()->GetBinLowEdge(h2->GetXaxis()->FindBin(EnOrEdepMax) + 1);
   }
   if ((EnOrEdepMinUsed <
        (EnOrEdepMin * (100 - MaximunDiferenceAllowedInPercent) / 100)) ||

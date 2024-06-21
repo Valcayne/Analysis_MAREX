@@ -17,7 +17,8 @@ int main(int argc, char** argv) {
   char DirName[200] =
       "/eos/home-v/valcayne/nTOFDataProcessing/2024_Er_Cu_U/2DHistos/v03";
   char RunListFname[200] =
-      "/afs/cern.ch/user/e/emendoza/Er-2024/RunLists/RunList2024_01.txt";
+      "/afs/cern.ch/work/v/valcayne/2024_Er_U_ProgramsC6D6/Analysis_nTOF_v01/"
+      "RunLists/RunList2024_02.txt";
   char StartFname[100] = "Histo01";
   //========================================================================
 
