@@ -4,6 +4,7 @@
 #include <Detector.h>
 #include <TAxis.h>
 #include <TFile.h>
+#include <TGraphErrors.h>
 #include <TMath.h>
 
 #include <memory>
@@ -34,11 +35,10 @@ class Pulse {
   std::vector<double> protons;
   std::vector<double> pkup_areas;
 
-  std::vector<TGraphErrors *> graphs;
+  std::vector<TCanvas *> graphs;
 
-  TGraphErrors *CreateGraph(const std::string name,
-                            const std::vector<double> ratios,
-                            const std::vector<double> uncertainties,
-                            const std::string ratios_title);
+  TCanvas *CreateGraph(const std::string name, const std::vector<double> ratios,
+                       const std::vector<double> uncertainties,
+                       const std::string ratios_title);
 };
 #endif

@@ -1,7 +1,7 @@
 #ifndef DETECTOR_H
 #define DETECTOR_H
 
-#include <TGraphErrors.h>
+#include <TCanvas.h>
 
 #include <map>
 #include <string>
@@ -22,12 +22,12 @@ class Detector {
   void AppendCounts(const int id, const double c);
   std::map<int, std::vector<double>> GetCounts();
 
-  void AppendGraph(TGraphErrors *graph);
-  std::vector<TGraphErrors *> GetGraphs();
+  void AppendGraph(TCanvas *graph);
+  std::vector<TCanvas *> GetGraphs();
 
  private:
   std::map<int, std::vector<double>> counts;
 
-  std::vector<TGraphErrors *> graphs;
+  std::vector<TCanvas *> graphs;
 };
 #endif

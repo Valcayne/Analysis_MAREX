@@ -71,14 +71,18 @@ void Pulse::WriteGraphsToFile(const std::string filename) {
   file->Close();
 }
 
-TGraphErrors *Pulse::CreateGraph(const std::string name,
-                                 const std::vector<double> ratios,
-                                 const std::vector<double> uncertainties,
-                                 const std::string ratios_title) {
+TCanvas *Pulse::CreateGraph(const std::string name,
+                            const std::vector<double> ratios,
+                            const std::vector<double> uncertainties,
+                            const std::string ratios_title) {
+  const auto c =
+      new TCanvas((name + std::to_string(type)).c_str(), name.c_str());
+  c->SetGrid();
+
   const auto g = new TGraphErrors(runs.size(), runs.data(), ratios.data(),
                                   nullptr, uncertainties.data());
-  g->SetName(name.c_str());
-  g->SetTitle(g->GetName());
+  g->SetName(c->GetName());
+  g->SetTitle(c->GetTitle());
 
   const auto y_axis = g->GetYaxis();
   y_axis->SetTitle(ratios_title.c_str());
@@ -87,7 +91,7 @@ TGraphErrors *Pulse::CreateGraph(const std::string name,
   x_axis->SetTitle("Run");
   x_axis->SetNoExponent();
 
-  g->SetDrawOption("AP");
+  g->Draw("AP");
 
-  return g;
+  return c;
 }
