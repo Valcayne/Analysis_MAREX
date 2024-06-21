@@ -1,0 +1,27 @@
+{
+    "folders": [
+      {
+        "path": "../Monitor"
+      }
+    ],
+    "settings": {
+      "C_Cpp.clang_format_style": "Google",
+      "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools",
+      "cmake.configureOnOpen": true,
+      "diffEditor.ignoreTrimWhitespace": false,
+      "editor.detectIndentation": false,
+      "editor.formatOnSave": true,
+      "editor.tabSize": 2,
+      "files.eol": "\n",
+      "files.insertFinalNewline": true
+    },
+    "extensions": {
+      "recommendations": [
+        "albertopdrf.root-file-viewer",
+        "ms-vscode.cmake-tools",
+        "ms-vscode.cpptools",
+        "twxs.cmake"
+      ]
+    }
+  }
+  

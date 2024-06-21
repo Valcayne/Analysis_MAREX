@@ -41,12 +41,12 @@
 ResultPlot2D/*
 ResultPlot2D/
 DataPlot/*
+Monitor/bin/*
+Monitor/build/*
 
 #Compiled files
 Make2DHisto
 Merge2DHisto
 
-
-
-
-
+# Keep necessary folders
+!.gitkeep
