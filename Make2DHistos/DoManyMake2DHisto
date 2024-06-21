@@ -21,7 +21,7 @@ if  [ -f ${outdir}/Histos01_${number}.root ];
 then 
 SizeFile=$(stat -c %s "${outdir}/Histos01_${number}.root")
 
-echo " exits ${outdir}/Histos01_${number}.root SizeFile $SizeFile"
+#echo " exits ${outdir}/Histos01_${number}.root SizeFile $SizeFile"
 elif [ $SizeFile -lt 1000 ];  
 then 
 echo " The file Histos01_${number}.root is too small (${SizeFile}) I delete it and launch again"
