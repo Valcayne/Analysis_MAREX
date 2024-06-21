@@ -18,15 +18,15 @@ rm $Arguments
 
 for (( number=$RunMin; number<=$RunMax; number++ )); do
 
-if ! [ -f ${outdir}/2DHisto_${number}.root ];
+if ! [ -f ${outdir}/Histos01_${number}.root ];
 then 
-echo " exits ${outdir}/2DHisto_${number}.root"
-SizeFile=$(stat -c %s "${outdir}/2DHisto_${number}.root")
+echo " exits ${outdir}/Histos01_${number}.root"
+SizeFile=$(stat -c %s "${outdir}/Histos01_${number}.root")
 
 elif [ $SizeFile -lt 1000 ];  
 then 
-echo " The file 2DHisto_${number}.root is too small (${SizeFile}) I delete it and launch again"
-rm ${outdir}/2DHisto_${number}.root
+echo " The file Histos01_${number}.root is too small (${SizeFile}) I delete it and launch again"
+rm ${outdir}/Histos01_${number}.root
 echo "$number">>${Arguments}
 
 
@@ -87,7 +87,7 @@ echo sale
 
 
 #for (( number=$RunMin; number<=$RunMax; number++ )); do
-SizeFile= stat -c %s ${outdir}/2DHisto_${number}.root
+SizeFile= stat -c %s ${outdir}/Histos01_${number}.root
 
 
 if  [$SizeFile < 1000]
@@ -100,7 +100,7 @@ SizeFile= stat -c %s ${EOSPATH}/run${number}.root
 #done
 
 #else
-echo "File 2DHisto_${number}.root exits "
+echo "File Histos01_${number}.root exits "
 
 done
 #done
