@@ -35,7 +35,6 @@ elif [ -f ${EOSPATH}/run${number}.root ];
  then
 echo "We launch run $number"
 echo "$number">>${Arguments}
-#DoManyMake2DHisto $number
 else
 echo "There is not run${number}.root so we do not launch"
 
