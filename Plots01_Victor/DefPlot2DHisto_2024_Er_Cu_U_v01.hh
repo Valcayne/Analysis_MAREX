@@ -49,22 +49,19 @@ string DirectionSave2DHisto =
 
 double TOFD = 184;
 // For subtract backgroudnS
-vector<string> MeasPredefined = {"Predefined", "Au_2_Si",  "C_Si",
-                                 "Au_1_Si",    "Au_YDetO", "117936"};
-vector<string> BackgroundMeasPredefined = {"Background",    "Background_Si",
-                                           "Background_Si", "Background_Si",
-                                           "Background",    "Background"};
-vector<string> DummyPredefined = {"Empty_Er", "Empty_Si", "Empty_Si",
-                                  "Empty_Si", "Au",       "Au"};
-vector<string> BackgroundDummyPredefined = {"Background",    "Background_Si",
-                                            "Background_Si", "Background_Si",
-                                            "Background",    "Background"};
+vector<string> MeasPredefined = {"Predefined", "Au_2_Si"};
+vector<string> BackgroundMeasPredefined = {"Background", "Background_Si"};
+vector<string> DummyPredefined = {"Empty_Er", "Empty_Si"};
+vector<string> BackgroundDummyPredefined = {
+    "Background",
+    "Background_Si",
+};
 
 /// For GetSimul
-vector<string> NameSimulArray = {"Au_13_100", "Au_2_Si", "Au_1_Si"};
+vector<string> NameSimulArray = {"Au_13_100", "Au_40_200", "Er167_13"};
 vector<string> NameSimulRootfile = {"DataPlot/Yield_Au_2_100",
-                                    "DataPlot/Yield_Au_2_100",
-                                    "DataPlot/Yield_Au_2_100"};
+                                    "DataPlot/Yield_Au_2_200",
+                                    "DataPlot/Yield_TC_Er167_13mm_ENDF8"};
 
 vector<double> Activity_kBq = {274, 274};
 
@@ -79,8 +76,8 @@ vector<double> ResolParameter2 = {0.00838911, 0.00181082, 0.00139247};
 // double NormalizeMinEn = 100;
 // double NormalizeMaxEn = 500;
 
-double NormalizeMinEn = 0.02;
-double NormalizeMaxEn = 1.0e6;
+double NormalizeMinEn = 0.4;
+double NormalizeMaxEn = 0.6;
 
 // En or the xaxis plot
 double ForPlotEminEn = 0.02;
