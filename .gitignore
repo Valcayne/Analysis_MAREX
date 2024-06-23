@@ -1,6 +1,6 @@
 # Prerequisites
 *.d
-
+*.pcm
 # Compiled Object files
 *.slo
 *.lo
@@ -40,7 +40,7 @@
 #Folders
 ResultPlot2D/*
 ResultPlot2D/
-DataPlot/*
+Plots01_Victor/DataPlot/*
 Monitor/bin/*
 Monitor/build/*
 
