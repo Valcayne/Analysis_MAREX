@@ -26,8 +26,6 @@ class Monitor {
 
   std::vector<double> monitored_runs;
   std::vector<Pulse *> pulses;
-  std::vector<int> silis;
-  std::vector<int> c6d6s;
 
   std::string output_filename;
 };

@@ -48,6 +48,7 @@ void Monitor::Start() {
     if (!run_file || !run_file->IsOpen() || run_file->IsZombie()) continue;
 
     std::string h_name;
+    bool run_with_protons = false;
     for (const auto pulse : pulses) {
       const auto pulse_type = std::to_string(pulse->type);
 
@@ -56,7 +57,8 @@ void Monitor::Start() {
       std::unique_ptr<TH1D> h_pulse_intensity(
           run_file->Get<TH1D>(h_name.c_str()));
       pulse->AppendNumbers(h_pulse_intensity->GetBinContent(2));
-      pulse->AppendProtons(h_pulse_intensity->GetBinContent(1) / 8e12);
+      const auto protons = h_pulse_intensity->GetBinContent(1) / 8e12;
+      pulse->AppendProtons(protons);
       pulse->AppendPkupAreas(h_pulse_intensity->GetBinContent(4));
 
       // Get detectors' data for the current run.
@@ -83,8 +85,9 @@ void Monitor::Start() {
           detector.AppendCounts(detector_id, counts);
         }
       }
+      if (!run_with_protons && protons > 0.1) run_with_protons = true;
     }
-    if (pulses.front()->HasProtons()) monitored_runs.push_back(run);
+    if (run_with_protons) monitored_runs.push_back(run);
   }
 
   Pulse::runs = monitored_runs;

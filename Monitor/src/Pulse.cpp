@@ -77,8 +77,8 @@ TCanvas *Pulse::CreateGraph(const std::string name,
                             const std::vector<double> ratios,
                             const std::vector<double> uncertainties,
                             const std::string ratios_title) {
-  const auto c =
-      new TCanvas((name + std::to_string(type)).c_str(), name.c_str());
+  const auto c = new TCanvas((name + " (" + std::to_string(type) + ")").c_str(),
+                             name.c_str());
   c->SetGrid();
 
   const auto g = new TGraphErrors(runs.size(), runs.data(), ratios.data(),
