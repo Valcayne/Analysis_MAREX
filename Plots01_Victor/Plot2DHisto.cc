@@ -48,6 +48,8 @@ void plot01(string NameHisto, std::vector<string> MeasurementType,
   int n = 0;
   string fname;
   TH1D* hSimul;
+  TH1D* hSimul2;
+
   bool SubtractBackground = false;
   double Used_PType[NumberOfHisto];
   double Used_EnOrEdepMin[NumberOfHisto];
@@ -152,6 +154,8 @@ void plot01(string NameHisto, std::vector<string> MeasurementType,
   }
 
   hSimul = (TH1D*)h1[0]->Clone();
+  hSimul2 = (TH1D*)h1[0]->Clone();
+
   if (CompareWithSimul) {
     if (MeasurementTypeSize != 1) {
       cout << " ########### Error in " << __FILE__ << ", line " << __LINE__
@@ -167,12 +171,17 @@ void plot01(string NameHisto, std::vector<string> MeasurementType,
            << endl;
       hSimul = GetSimul(h1[0], MeasurementType[0], NameSimulArray,
                         NameSimulRootfile, TypeOfPlot);
+      hSimul2 = GetSimul(h1[0], MeasurementType[0], NameSimulArray,
+                         NameSimulRootfile2, TypeOfPlot);
     }
     hSimul->SetLineColor(10009);
+    hSimul2->SetLineColor(kOrange);
   }
   hSimul->Rebin(rebin);
   hSimul->Scale(1.0 / (double)rebin);
 
+  hSimul2->Rebin(rebin);
+  hSimul2->Scale(1.0 / (double)rebin);
   /// We define  the title of the histo
   TitleHisto = TitleHisto + NameDetector;
   if (MeasurementTypeSize == 1) {
@@ -383,6 +392,8 @@ void plot01(string NameHisto, std::vector<string> MeasurementType,
   if (CompareWithSimul) {
     hSimul->Draw("histo E same");
     legend->AddEntry(hSimul, "Eval", "l");
+    hSimul2->Draw("histo E same");
+    legend->AddEntry(hSimul2, "Eval2", "l");
   }
   legend->SetTextSize(0.06);
   legend->SetBorderSize(0);

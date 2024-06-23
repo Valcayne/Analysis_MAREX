@@ -39,9 +39,12 @@ string NameDetector = "C6D6";
 //   "/media/victor93/Elements/Valcayne/ExperimentData_Outputs/2024_Test_L6D6/"
 //  "2DHisto/v07/2DHisto_";
 
+// string Direction2DHisto =
+//     "/media/victor93/Elements/Valcayne/ExperimentData_Outputs/2024_Er_Cu_U/"
+//     "2DHistos/v03/Histos01_";
+
 string Direction2DHisto =
-    "/media/victor93/Elements/Valcayne/ExperimentData_Outputs/2024_Er_Cu_U/"
-    "2DHistos/v03/Histos01_";
+    " /home/victor93/ExperimentData_Outputs/2024_Er_U/2Dhistos/v03/Histos01_";
 
 string DirectionSave2DHisto =
     "/media/victor93/Elements/Valcayne/ExperimentData_Outputs/2024_Er_Cu_U/"
@@ -62,6 +65,10 @@ vector<string> NameSimulArray = {"Au_13_100", "Au_40_200", "Er167_13"};
 vector<string> NameSimulRootfile = {"DataPlot/Yield_Au_2_100",
                                     "DataPlot/Yield_Au_2_200",
                                     "DataPlot/Yield_TC_Er167_13mm_ENDF8"};
+
+vector<string> NameSimulRootfile2 = {"DataPlot/Yield_Au_2_100",
+                                     "DataPlot/Yield_Au_2_200",
+                                     "DataPlot/Yield_TC_Er167_13mm_ENDF8_BKG"};
 
 vector<double> Activity_kBq = {274, 274};
 
