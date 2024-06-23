@@ -56,8 +56,11 @@ void Monitor::Start() {
       h_name = "hPulIntens_" + pulse_type;
       std::unique_ptr<TH1D> h_pulse_intensity(
           run_file->Get<TH1D>(h_name.c_str()));
-      pulse->AppendNumbers(h_pulse_intensity->GetBinContent(2));
       const auto protons = h_pulse_intensity->GetBinContent(1) / 8e12;
+      if (!run_with_protons && protons > 0.1) run_with_protons = true;
+      if (!run_with_protons) break;
+
+      pulse->AppendNumbers(h_pulse_intensity->GetBinContent(2));
       pulse->AppendProtons(protons);
       pulse->AppendPkupAreas(h_pulse_intensity->GetBinContent(4));
 
@@ -85,7 +88,6 @@ void Monitor::Start() {
           detector.AppendCounts(detector_id, counts);
         }
       }
-      if (!run_with_protons && protons > 0.1) run_with_protons = true;
     }
     if (run_with_protons) monitored_runs.push_back(run);
   }
