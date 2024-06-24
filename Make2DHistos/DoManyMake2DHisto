@@ -23,13 +23,21 @@ SizeFile=$(stat -c %s "${outdir}/Histos01_${number}.root")
  if [ $SizeFile -lt 1000 ];  
  then 
  echo " The file Histos01_${number}.root is too small (${SizeFile}) I delete it"
- rm ${outdir}/Histos01_${number}.root
+ #rm ${outdir}/Histos01_${number}.root
  fi
 
 
 
 elif [ -f ${EOSPATH}/run${number}.root ];
  then
+ SizeRootFile=$(stat -c %s "${EOSPATH}/run${number}.root")
+if [ $SizeRootFile -lt 1000 ];  
+ then 
+ echo " The file run${number}.root is too small (${SizeRootFile}) "
+ else
+ echo "We launch run $number"
+echo "$number">>${Arguments}
+ fi
 echo "We launch run $number"
 echo "$number">>${Arguments}
 else
