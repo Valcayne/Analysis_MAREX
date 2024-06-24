@@ -40,7 +40,7 @@ int main(int argc, char** argv) {
       "OutputMakeEnergyCalibration_v01";
 
   // Information calibration sources
-  string BackgroundType = "Background_01";
+  string BackgroundType = "Background_1";
   std::vector<string> Source = {"Cs", "Bi1", "Bi2", "AmBe", "Y1",
                                 "Y2", "Co",  "Ba",  "CmC",  "Mn"};
   std::vector<string> SourceType = {"Cs_1", "Bi_1", "Bi_1", "AmBe_1", "Y_1",
