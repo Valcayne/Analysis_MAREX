@@ -33,7 +33,7 @@ elif [ -f ${EOSPATH}/run${number}.root ];
  SizeRootFile=$(stat -c %s "${EOSPATH}/run${number}.root")
 if [ $SizeRootFile -lt 1000 ];  
  then 
- echo " The file run${number}.root is too small (${SizeRootFile}) "
+ echo " The file run${number}.root is too small (${SizeRootFile}) we do not launch "
  else
  echo "We launch run $number"
 echo "$number">>${Arguments}
@@ -45,7 +45,7 @@ echo "There is not run${number}.root so we do not launch"
 fi
 done
 echo "condor_submit Condor/ProgramsLaunch/LaunchCondorMake2D.sh"
-#condor_submit Condor/ProgramsLaunch/LaunchCondorMake2D.sh
+condor_submit Condor/ProgramsLaunch/LaunchCondorMake2D.sh
 exit
 
 
