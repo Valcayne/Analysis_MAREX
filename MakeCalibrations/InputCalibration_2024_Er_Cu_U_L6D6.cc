@@ -9,7 +9,7 @@ int main(int argc, char** argv) {
 
   // Sources and detectors calibrated
 
-  std::vector<string> SourcesCalibrated = {"Y1_1", "Y2", "Cs"};
+  std::vector<string> SourcesCalibrated = {"Y1", "Y2", "Cs"};
   std::vector<int> DetectorsCalibrated = {1};
 
   // Information MC
@@ -43,8 +43,8 @@ int main(int argc, char** argv) {
   string BackgroundType = "Background_01";
   std::vector<string> Source = {"Cs", "Bi1", "Bi2", "AmBe", "Y1",
                                 "Y2", "Co",  "Ba",  "CmC",  "Mn"};
-  std::vector<string> SourceType = {"Cs", "Bi", "Bi", "AmBe", "Y",
-                                    "Y",  "Co", "Ba", "CmC",  "Mn"};
+  std::vector<string> SourceType = {"Cs_1", "Bi_1", "Bi_1", "AmBe_1", "Y_1",
+                                    "Y_1",  "Co_1", "Ba_1", "CmC_1",  "Mn_1"};
   std::vector<double> Percen = {30, 25, 20, 25, 20, 20, 30, 30, 25, 30};
   std::vector<double> GammaEnergy = {0.661657, 0.569698, 1.063656, 4.438,
                                      0.89804,  1.836063, 1.173,    0.356012,
