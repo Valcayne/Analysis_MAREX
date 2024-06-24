@@ -47,8 +47,7 @@ string Direction2DHisto =
     " /home/victor93/ExperimentData_Outputs/2024_Er_U/2Dhistos/v03/Histos01_";
 
 string DirectionSave2DHisto =
-    "/media/victor93/Elements/Valcayne/ExperimentData_Outputs/2024_Er_Cu_U/"
-    "ResultsPlot2DHisto/v03/";
+    "/home/victor93/ExperimentData_Outputs/2024_Er_U/ResultsPlot2DHisto/v03/";
 
 double TOFD = 184;
 // For subtract backgroudnS
@@ -64,7 +63,7 @@ vector<string> BackgroundDummyPredefined = {
 vector<string> NameSimulArray = {"Au_13_100", "Au_40_200", "Er167_13"};
 vector<string> NameSimulRootfile = {"DataPlot/Yield_Au_2_100",
                                     "DataPlot/Yield_Au_2_200",
-                                    "DataPlot/Yield_TC_Er167_13mm_ENDF8"};
+                                    "DataPlot/Yield_SAMMY_Er167_13mm"};
 
 vector<string> NameSimulRootfile2 = {"DataPlot/Yield_Au_2_100",
                                      "DataPlot/Yield_Au_2_200",

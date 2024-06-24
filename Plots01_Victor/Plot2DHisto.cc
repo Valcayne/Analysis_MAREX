@@ -175,6 +175,7 @@ void plot01(string NameHisto, std::vector<string> MeasurementType,
                          NameSimulRootfile2, TypeOfPlot);
     }
     hSimul->SetLineColor(10009);
+    hSimul2->SetLineColor(kOrange);
   }
   hSimul->Rebin(rebin);
   hSimul->Scale(1.0 / (double)rebin);
@@ -391,6 +392,8 @@ void plot01(string NameHisto, std::vector<string> MeasurementType,
   if (CompareWithSimul) {
     hSimul->Draw("histo E same");
     legend->AddEntry(hSimul, "Eval", "l");
+    hSimul2->Draw("histo E same");
+    legend->AddEntry(hSimul2, "Eval_Contaminants", "l");
   }
   legend->SetTextSize(0.06);
   legend->SetBorderSize(0);
