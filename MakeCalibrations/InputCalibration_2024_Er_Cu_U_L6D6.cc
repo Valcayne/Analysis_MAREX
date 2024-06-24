@@ -45,6 +45,8 @@ int main(int argc, char** argv) {
                                 "Y2", "Co",  "Ba",  "CmC",  "Mn"};
   std::vector<string> SourceType = {"Cs_1", "Bi_1", "Bi_1", "AmBe_1", "Y_1",
                                     "Y_1",  "Co_1", "Ba_1", "CmC_1",  "Mn_1"};
+  std::vector<string> SourceTypeSimulation = {"Cs", "Bi", "Bi", "AmBe", "Y",
+                                              "Y",  "Co", "Ba", "CmC",  "Mn"};
   std::vector<double> Percen = {30, 25, 20, 25, 20, 20, 30, 30, 25, 30};
   std::vector<double> GammaEnergy = {0.661657, 0.569698, 1.063656, 4.438,
                                      0.89804,  1.836063, 1.173,    0.356012,
@@ -70,7 +72,8 @@ int main(int argc, char** argv) {
   double PERCalib = 40;  // Percentage variation calibratio. The range tested is
                          // [Calib-Calib*PERCalib, Calib+Calib*PERCalib]
 
-  if (((int)Source.size() == (int)SourceType.size() == (int)Percen.size() ==
+  if (((int)Source.size() == (int)SourceType.size() ==
+       (int)SourceTypeSimulation.size() == (int)Percen.size() ==
        (int)GammaEnergy.size())) {
     cout << (int)Source.size() << " " << (int)SourceType.size() << " "
          << (int)Percen.size() << " " << (int)GammaEnergy.size() << endl;
@@ -101,8 +104,9 @@ int main(int argc, char** argv) {
       if (!FileExists(NameoutputFile)) {
         // cout << NameoutputFile << " exists" << endl;
         LaunchFitPoints = false;
-        MCfname =
-            MCFolder + SourceType[PositionArraySourceThatMatch] + MCEndFile;
+        MCfname = MCFolder +
+                  SourceTypeSimulation[PositionArraySourceThatMatch] +
+                  MCEndFile;
         Expfname = DataFolder + "/Amp_Det" + to_string(DetectorsCalibrated[j]) +
                    "_" + SourceType[PositionArraySourceThatMatch] + ".root";
         ExpfnameBackground = DataFolder + "/Amp_Det" +
