@@ -11,7 +11,7 @@ int main(int argc, char** argv) {
 
   std::vector<string> SourcesCalibrated = {"Cs", "Bi1", "Bi2", "AmBe", "Y1",
                                            "Y2", "Co",  "Ba",  "CmC",  "Mn"};
-  std::vector<int> DetectorsCalibrated = {1};
+  std::vector<int> DetectorsCalibrated = {1, 2, 3, 4};
 
   // Information MC
   string MCFolder =
@@ -31,7 +31,7 @@ int main(int argc, char** argv) {
   int PositionArraySourceThatMatch = -1;
   string Expfname;
   string ExpfnameBackground;
-  int NumberBinsExpfname = 1e4;
+  int NumberBinsExpfname = 2e4;
   double EMaxExpfname = 1e5;
 
   // Information outputfolder
@@ -52,17 +52,17 @@ int main(int argc, char** argv) {
   std::vector<double> GammaEnergy = {0.661657, 0.569698, 1.063656, 4.438,
                                      0.89804,  1.836063, 1.173,    0.356012,
                                      6.130,    0.834848};
-  std::vector<int> Rebin = {1, 1, 1, 4, 1, 2, 1, 1, 8, 1};
+  std::vector<int> Rebin = {2, 2, 2, 8, 2, 4, 4, 1, 16, 4};
 
   bool LaunchFitPoints = true;
   // Parameters for fitting
   int GeneralRebin = 1;
   string NameoutputFile;
-  int npRes = 50;      // Number points resolution
+  int npRes = 100;     // Number points resolution
   double Res = 0.2;    // Resolution value
   double PERRes = 70;  // Percentage variation resolution. The range tested is
                        //   [Res-Res*PERRes, Res+Res*PERRes]
-  int npCalib = 50;    // Number of points calibration
+  int npCalib = 100;   // Number of points calibration
 
   double Calib[(int)DetectorsCalibrated.size()] = {
       0.00043,
