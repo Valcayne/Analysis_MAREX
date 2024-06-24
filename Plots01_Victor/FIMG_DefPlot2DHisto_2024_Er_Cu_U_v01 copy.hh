@@ -26,7 +26,7 @@
 using namespace std;
 
 double TimeMeasurement_ns = 1e8;
-string NameDetector = "C6D6";
+string NameDetector = "FIMG";
 
 // string Direction2DHisto =
 //     "/afs/cern.ch/user/v/valcayne/LinkEOS/nTOFDataProcessing/2024_Test_L6D6/"
@@ -90,16 +90,16 @@ double ForPlotEminEn = 0.02;
 double ForPlotEmaxEn = 1.0e7;
 
 // Edep for integrals normalize
-double NormalizeMinEdep = 0.2;
-double NormalizeMaxEdep = 2.5;
+double NormalizeMinEdep = 3e3;
+double NormalizeMaxEdep = 6e3;
 
 // Edep for the xaxis plot
-double ForPlotEminEdep = 0.2;
-double ForPlotEmaxEdep = 3;
+double ForPlotEminEdep = 10;
+double ForPlotEmaxEdep = 6e3;
 
 // For the Y axis of compare
-double MaxYForCompare = 2;
-double MinYForCompare = 0.5;
+double MaxYForCompare = 3e3;
+double MinYForCompare = 6e3;
 
 // For calculating gain shifts
 

@@ -1,9 +1,10 @@
 
 #include "../GeneralFun/PlotFunctions_Victor.hh"
-#include "DefPlot2DHisto_2024_Er_Cu_U_v01.hh"
-// #include "DefPlot2DHisto_2024_Test_L6D6.hh"
+// #include "FIMG_DefPlot2DHisto_2024_Er_Cu_U_v01.hh"
+// #include "DefPlot2DHisto_2024_Er_Cu_U_v01.hh"
+#include "LIGL_DefPlot2DHisto_2024_Er_Cu_U_v01.hh"
 
-void plot01(string NameHisto, std::vector<string> MeasurementType,
+void plot2D(string NameHisto, std::vector<string> MeasurementType,
             std::vector<int> detN, std::vector<double> EnOrEdepMin,
             std::vector<double> EnOrEdepMax, std::vector<int> PType,
             string TypeOfPlot, int rebin, bool UseBackgroundSubtracted = false,
@@ -20,7 +21,7 @@ void Plot2DHisto() {
   // false);
 }
 
-void plot01(string NameHisto, std::vector<string> MeasurementType,
+void plot2D(string NameHisto, std::vector<string> MeasurementType,
             std::vector<int> detN, std::vector<double> EnOrEdepMin,
             std::vector<double> EnOrEdepMax, std::vector<int> PType,
             string TypeOfPlot, int rebin, bool UseBackgroundSubtracted,
@@ -310,6 +311,8 @@ void plot01(string NameHisto, std::vector<string> MeasurementType,
                                           NormalizeMaxEdep, NumberIterations,
                                           MinShift, MaxShift);
       shiftArray[i] = shift;
+      TitleLegend[i] =
+          TitleLegend[i] + " Sh=" + doubleToDecimalString(shiftArray[i], 3);
       cout << TitleLegend[i] << " Shift= " << shiftArray[i] << endl;
     }
   }
@@ -453,4 +456,31 @@ void plot01(string NameHisto, std::vector<string> MeasurementType,
   }
 
   SaveRootEpsPngTxtFunction(c1, SaveName.c_str());
+}
+
+void plot2DVariousCompareWithOneRun() {
+  int rebin = 1;
+  int detN = 2;
+  for (int i = 118881; i <= 118920; i++) {
+    //  for (int i = 118866; i <= 118920; i++) {
+
+    vector<string> RunString;
+    RunString.push_back(to_string(118881));
+
+    RunString.push_back(to_string(i));
+    plot2D("Edep", RunString, {1}, {0.01}, {100}, {1}, "CP", rebin, false,
+           true);
+  }
+}
+
+void plot2DVariousCompareWithRunType() {
+  int rebin = 100;
+  int detN = 2;
+  for (int i = 118880; i <= 118930; i++) {
+    vector<string> RunString;
+    RunString.push_back(to_string(i));
+    RunString.push_back(TakeRunType("../RunLists/RunList2024_02.txt", i));
+    plot2D("En", RunString, {0}, {0.12}, {10}, {1}, "CP", rebin, false, false,
+           false, true);
+  }
 }

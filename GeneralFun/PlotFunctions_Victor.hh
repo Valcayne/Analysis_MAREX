@@ -623,4 +623,36 @@ TH1D* CalculateBestShift(double& shift, TH1D* h1, TH1D* h2, double EminFit,
   return h3;
 }
 
+// Coje el tipo de run de un RunNumber
+string TakeRunType(const char* fname, int RunNumber) {
+  char word[1000];
+  string RunType = {"NoRun"};
+  ifstream in(fname);
+  while (in >> word) {
+    // cout<<word<<endl;
+    if (!strcmp(word, "RUNLIST")) {
+      break;
+    }
+  }
+  if (!in.good()) {
+    cout << " ###### Error in " << __FILE__ << ", line " << __LINE__
+         << " ######" << endl;
+    exit(1);
+  }
+
+  int runmin, runmax;
+  while (in >> runmin >> runmax >> word) {
+    // cout<<"Runmin"<<runmin<<" "<<runmin<<" "<<word<<endl;
+    if (runmin <= RunNumber && runmax >= RunNumber) {
+      //      sprintf( RunType,"%s",str2);
+      RunType = word;
+      break;
+    }
+  }
+  in.close();
+  // cout<<"RunNumber"<<RunNumber<<"RunType= "<<RunType<<endl;
+
+  return RunType;
+}
+
 #endif

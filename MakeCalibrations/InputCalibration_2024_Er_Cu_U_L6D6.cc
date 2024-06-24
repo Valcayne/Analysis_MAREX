@@ -1,0 +1,176 @@
+
+#include "../GeneralFun/MakeCalibrationFunctions.hh"
+// int main(int argc, char** argv);
+// void MakeEnergyCalibration_2024_Test_L6D6() {
+int main(int argc, char** argv) {
+  //  int Plot(){
+
+  cout << "starting" << endl;
+
+  // Sources and detectors calibrated
+
+  std::vector<string> SourcesCalibrated = {"Y1_1", "Y2", "Cs"};
+  std::vector<int> DetectorsCalibrated = {1};
+
+  // Information MC
+  string MCFolder =
+      "/eos/home-v/valcayne/nTOFDataProcessing/2024_Er_Cu_U/Simulations/"
+      "2024_Er_Cu_U_v01_";
+  string MCEndFile = "_1e7.root";
+  string MCfname;
+
+  // Information experimental data
+  string DataFolder =
+      "/eos/home-v/valcayne/nTOFDataProcessing/2024_Er_Cu_U/Calibration/"
+      "HistoAmp_v01";
+  string RunList =
+      "/afs/cern.ch/work/v/valcayne/2024_Er_U_ProgramsC6D6/Analysis_nTOF_v01/"
+      "RunLists/RunList2024_02.txt";
+  string FolderRootFiles = "/eos/experiment/ntof/processing/official/done/";
+  int PositionArraySourceThatMatch = -1;
+  string Expfname;
+  string ExpfnameBackground;
+  int NumberBinsExpfname = 1e4;
+  double EMaxExpfname = 1e5;
+
+  // Information outputfolder
+  string ArgumentsCondor = "Condor/Inputs/ArgumentsForCondor.txt";
+  string outFolder =
+      "/eos/home-v/valcayne/nTOFDataProcessing/2024_Er_Cu_U/Calibration/"
+      "OutputMakeEnergyCalibration_v01";
+
+  // Information calibration sources
+  string BackgroundType = "Background_01";
+  std::vector<string> Source = {"Cs", "Bi1", "Bi2", "AmBe", "Y1",
+                                "Y2", "Co",  "Ba",  "CmC",  "Mn"};
+  std::vector<string> SourceType = {"Cs", "Bi", "Bi", "AmBe", "Y",
+                                    "Y",  "Co", "Ba", "CmC",  "Mn"};
+  std::vector<double> Percen = {30, 25, 20, 25, 20, 20, 30, 30, 25, 30};
+  std::vector<double> GammaEnergy = {0.661657, 0.569698, 1.063656, 4.438,
+                                     0.89804,  1.836063, 1.173,    0.356012,
+                                     6.130,    0.834848};
+  std::vector<int> Rebin = {1, 1, 1, 4, 1, 2, 1, 1, 8, 1};
+
+  bool LaunchFitPoints = true;
+  // Parameters for fitting
+  int GeneralRebin = 1;
+  string NameoutputFile;
+  int npRes = 100;     // Number points resolution
+  double Res = 0.2;    // Resolution value
+  double PERRes = 70;  // Percentage variation resolution. The range tested is
+                       //   [Res-Res*PERRes, Res+Res*PERRes]
+  int npCalib = 100;   // Number of points calibration
+
+  double Calib[(int)DetectorsCalibrated.size()] = {
+      0.00043,
+      0.00040,
+      0.0004,
+      0.00044,
+  };  // Calibration value
+  double PERCalib = 40;  // Percentage variation calibratio. The range tested is
+                         // [Calib-Calib*PERCalib, Calib+Calib*PERCalib]
+
+  if (((int)Source.size() == (int)SourceType.size() == (int)Percen.size() ==
+       (int)GammaEnergy.size())) {
+    cout << (int)Source.size() << " " << (int)SourceType.size() << " "
+         << (int)Percen.size() << " " << (int)GammaEnergy.size() << endl;
+    cout << " ######## Error in " << __FILE__ << ", line " << __LINE__
+         << " ########" << endl;
+    exit(1);
+  }
+
+  cout << "start for" << endl;
+  ofstream outdata(ArgumentsCondor);
+  for (int j = 0; j < (int)DetectorsCalibrated.size(); j++) {
+    for (int i = 0; i < (int)SourcesCalibrated.size(); i++) {
+      for (size_t k = 0; k < Source.size(); ++k) {
+        // cout << Source[k] << " " << SourcesCalibrated[i] << endl;
+        if (Source[k] == SourcesCalibrated[i]) {
+          PositionArraySourceThatMatch = k;
+          break;
+        }
+      }
+      if (PositionArraySourceThatMatch == -1) {
+        cout << " ######## Error in " << __FILE__ << ", line " << __LINE__
+             << " ########" << endl;
+        exit(1);
+      }
+      NameoutputFile = outFolder + "/Calibration_Det" +
+                       to_string(DetectorsCalibrated[j]) + "_" +
+                       SourcesCalibrated[i] + ".root";
+      if (!FileExists(NameoutputFile)) {
+        // cout << NameoutputFile << " exists" << endl;
+        LaunchFitPoints = false;
+        MCfname =
+            MCFolder + SourceType[PositionArraySourceThatMatch] + MCEndFile;
+        Expfname = DataFolder + "/Amp_Det" + to_string(DetectorsCalibrated[j]) +
+                   "_" + SourceType[PositionArraySourceThatMatch] + ".root";
+        ExpfnameBackground = DataFolder + "/Amp_Det" +
+                             to_string(DetectorsCalibrated[j]) + "_" +
+                             BackgroundType + ".root";
+        outdata << SourcesCalibrated[i] << " " << DetectorsCalibrated[j] << "  "
+                << SourceType[PositionArraySourceThatMatch] << "  "
+                << DataFolder << "  " << RunList << "  " << FolderRootFiles
+                << "  " << Expfname << "  " << ExpfnameBackground << "  "
+                << BackgroundType << "  " << NumberBinsExpfname << "  "
+                << EMaxExpfname << "  " << MCfname << "  " << outFolder << "  "
+                << GammaEnergy[PositionArraySourceThatMatch] << "  "
+                << Rebin[PositionArraySourceThatMatch] << "  "
+                << Percen[PositionArraySourceThatMatch] << "  " << npRes << "  "
+                << Res << "  " << PERRes << "  " << npCalib << "  " << Calib[j]
+                << "  " << PERCalib << endl;
+        cout << endl
+             << "Launch " << SourcesCalibrated[i] << " "
+             << DetectorsCalibrated[j] << "  " << endl;
+
+        cout << "MakeEnergyCalibration " << SourcesCalibrated[i] << " "
+             << DetectorsCalibrated[j] << "  "
+             << SourceType[PositionArraySourceThatMatch] << "  " << DataFolder
+             << "  " << RunList << "  " << FolderRootFiles << "  " << Expfname
+             << "  " << ExpfnameBackground << "  " << BackgroundType << "  "
+             << NumberBinsExpfname << "  " << EMaxExpfname << "  " << MCfname
+             << "  " << outFolder << "  "
+             << GammaEnergy[PositionArraySourceThatMatch] << "  "
+             << Rebin[PositionArraySourceThatMatch] << "  "
+             << Percen[PositionArraySourceThatMatch] << "  " << npRes << "  "
+             << Res << "  " << PERRes << "  " << npCalib << "  " << Calib[j]
+             << "  " << PERCalib << endl;
+
+        // cout << SourceType[PositionArraySourceThatMatch] << "  " <<
+        // DataFolder
+        //    << "  " << RunList << "  " << FolderRootFiles << "  " << Expfname
+        //  << "  " << ExpfnameBackground << "  " << BackgroundType << "  "
+        // << NumberBinsExpfname << "  " << EMaxExpfname << "  " << MCfname
+        //<< "  " << outFolder << "  "
+        //<< GammaEnergy[PositionArraySourceThatMatch] << "  "
+        //<< Rebin[PositionArraySourceThatMatch] << "  "
+        //<< Percen[PositionArraySourceThatMatch] << "  " << npRes << "  "
+        //<< Res << "  " << PERRes << "  " << npCalib << "  " << Calib
+        //<< "  " << PERCalib << endl;
+      }
+    }
+
+    if (LaunchFitPoints) {
+      NameoutputFile =
+          outFolder + "/DataDet" + to_string(DetectorsCalibrated[j]) + ".out";
+      if (!FileExists(NameoutputFile)) {
+        cout << "FitPoints for " << DetectorsCalibrated[j] << endl;
+
+        outdata << DetectorsCalibrated[j] << " " << outFolder << "  " << endl;
+        cout << "Launch " << DetectorsCalibrated[j] << " " << outFolder << "  "
+             << endl;
+        cout << "MakeEnergyCalibration " << DetectorsCalibrated[j] << " "
+             << outFolder << "  " << endl;
+
+      } else {
+        cout << "File " << NameoutputFile
+             << " exits so the calibration is finished" << endl;
+      }
+    }
+  }
+  outdata.close();
+
+  system(
+      "condor_submit "
+      "Condor/ProgramsLaunch/LaunchCondorMakeEnergyCalibration.sh");
+}
