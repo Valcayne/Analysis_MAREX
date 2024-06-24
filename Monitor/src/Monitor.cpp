@@ -9,7 +9,7 @@ Monitor::Monitor(const char* ini_filename) {
   const auto detectors = {
       Detector("SILI", {0, 1, 2, 3, 4}, {0.02, 1e6}, {0, 6e4}),
       Detector("C6D6", {0, 1, 2, 3, 4}, {0.02, 1e6}, {0.150, 20}),
-      Detector("FIMG", {0, 1, 2}, {0.02, 1e5}, {2700, 4000}),
+      Detector("FIMG", {0, 1, 2}, {0.02, 1e5}, {2900, 5000}),
       Detector("LIGL", {1}, {0.02, 3e4}, {1e3, 3e3})};
   pulses = {
       new Pulse(0, "All", detectors), new Pulse(1, "Dedicated", detectors),
