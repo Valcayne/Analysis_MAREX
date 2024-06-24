@@ -10,7 +10,6 @@ EOSPATH=/eos/experiment/ntof/processing/official/done
 Arguments=Condor/Inputs/ArgumentsForCondor2DHisto.txt
 
 
-#echo "File  ${outdir}/Histos01_${number}.root"
 
 
 rm $Arguments
@@ -21,12 +20,11 @@ if  [ -f ${outdir}/Histos01_${number}.root ];
 then 
 SizeFile=$(stat -c %s "${outdir}/Histos01_${number}.root")
 
-#echo " exits ${outdir}/Histos01_${number}.root SizeFile $SizeFile"
-elif [ $SizeFile -lt 1000 ];  
-then 
-echo " The file Histos01_${number}.root is too small (${SizeFile}) I delete it and launch again"
-rm ${outdir}/Histos01_${number}.root
-echo "$number">>${Arguments}
+ if [ $SizeFile -lt 1000 ];  
+ then 
+ echo " The file Histos01_${number}.root is too small (${SizeFile}) I delete it"
+ rm ${outdir}/Histos01_${number}.root
+ fi
 
 
 
@@ -40,7 +38,7 @@ echo "There is not run${number}.root so we do not launch"
 fi
 done
 echo "condor_submit Condor/ProgramsLaunch/LaunchCondorMake2D.sh"
-condor_submit Condor/ProgramsLaunch/LaunchCondorMake2D.sh
+#condor_submit Condor/ProgramsLaunch/LaunchCondorMake2D.sh
 exit
 
 

@@ -26,7 +26,7 @@
 using namespace std;
 
 double TimeMeasurement_ns = 1e8;
-string NameDetector = "C6D6";
+string NameDetector = "LIGL";
 
 // string Direction2DHisto =
 //     "/afs/cern.ch/user/v/valcayne/LinkEOS/nTOFDataProcessing/2024_Test_L6D6/"
