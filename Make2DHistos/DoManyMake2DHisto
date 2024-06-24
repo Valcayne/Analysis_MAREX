@@ -23,7 +23,7 @@ SizeFile=$(stat -c %s "${outdir}/Histos01_${number}.root")
  if [ $SizeFile -lt 1000 ];  
  then 
  echo " The file Histos01_${number}.root is too small (${SizeFile}) I delete it"
- #rm ${outdir}/Histos01_${number}.root
+ rm ${outdir}/Histos01_${number}.root
  fi
 
 
@@ -38,8 +38,7 @@ if [ $SizeRootFile -lt 1000 ];
  echo "We launch run $number"
 echo "$number">>${Arguments}
  fi
-echo "We launch run $number"
-echo "$number">>${Arguments}
+
 else
 echo "There is not run${number}.root so we do not launch"
 
