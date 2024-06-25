@@ -8,9 +8,9 @@ int main(int argc, char** argv) {
   cout << "starting" << endl;
 
   // Sources and detectors calibrated
-
-  std::vector<string> SourcesCalibrated = {"Cs", "Bi1", "Bi2", "AmBe", "Y1",
-                                           "Y2", "Co",  "Ba",  "CmC",  "Mn"};
+  std::vector<string> SourcesCalibrated = {"AmBe"};
+  // std::vector<string> SourcesCalibrated = {"Cs", "Bi1", "Bi2", "AmBe", "Y1",
+  //                    "Y2", "Co",  "Ba",  "CmC",  "Mn"};
   std::vector<int> DetectorsCalibrated = {1, 2, 3, 4};
 
   // Information MC
@@ -48,7 +48,7 @@ int main(int argc, char** argv) {
                                     "Y_1",  "Co_1", "Ba_1", "CmC_1",  "Mn_1"};
   std::vector<string> SourceTypeSimulation = {"Cs", "Bi", "Bi", "AmBe", "Y",
                                               "Y",  "Co", "Ba", "CmC",  "Mn"};
-  std::vector<double> Percen = {30, 25, 20, 25, 20, 20, 30, 30, 25, 30};
+  std::vector<double> Percen = {30, 25, 20, 15, 20, 20, 30, 30, 25, 30};
   std::vector<double> GammaEnergy = {0.661657, 0.569698, 1.063656, 4.438,
                                      0.89804,  1.836063, 1.173,    0.356012,
                                      6.130,    0.834848};
@@ -162,11 +162,10 @@ int main(int argc, char** argv) {
         cout << "FitPoints for " << DetectorsCalibrated[j] << endl;
 
         outdata << DetectorsCalibrated[j] << " " << outFolder << "  " << endl;
-        cout << "Launch " << DetectorsCalibrated[j] << " " << outFolder << "  "
-             << endl;
-        cout << "MakeEnergyCalibration " << DetectorsCalibrated[j] << " "
-             << outFolder << "  " << endl;
-
+        string LaunchFits = "MakeEnergyCalibration " +
+                            to_string(DetectorsCalibrated[j]) + " " + outFolder;
+        cout << LaunchFits << endl;
+        system(LaunchFits.c_str());
       } else {
         cout << "File " << NameoutputFile
              << " exits so the calibration is finished" << endl;
