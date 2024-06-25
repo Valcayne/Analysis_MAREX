@@ -505,6 +505,27 @@ void FitEnergy(string outfolder, int detn) {
   TGraph* gr = new TGraph(np, Amp, E);
   TCanvas* c1 = new TCanvas("c1", "c1", 800, 600);
   TH2D* h2 = new TH2D("", "", 1000, -10, 40000, 1000, -0.1, 7);
+  TPad* pad1;
+  TPad* pad2;
+  pad1 = new TPad("pad1", "Pad", 0.0, 0.33, 1., 1., 10);
+  pad2 = new TPad("pad2", "Pad", 0.0, 0.02, 1., 0.33, 10);
+
+  pad1->Draw();
+  pad2->Draw();
+  pad1->SetGridx();
+  pad1->SetGridy();
+  pad1->SetTopMargin(0.11);      // para que no se vea el eje
+  pad1->SetBottomMargin(0.033);  // para que no se vea el eje
+  // pad1_6->SetBottomMargin(0.2);//
+
+  pad2->SetTopMargin(0.07);    // para que no se vea el eje
+  pad2->SetBottomMargin(0.4);  // para que se vea el eje
+
+  pad1->SetLeftMargin(0.15);  // para que no se vea el eje
+  pad2->SetLeftMargin(0.15);  // para que no se vea el eje
+  pad2->SetGridy();
+
+  pad1->cd();
   h2->Draw();
 
   cout << "Fitting pol1 " << endl;
@@ -572,17 +593,15 @@ void FitEnergy(string outfolder, int detn) {
        << R2Lin << endl;
   cout << "SSresPol= " << SSresLin << " SStotLin= " << SStotLin << " R2Pol "
        << R2Pol << endl;
+  double PointCheckLinear[100], PointCheckParabola[100];
 
-  TGraph* CheckLinear = (TGraph*)gr->Clone();
-  TGraph* CheckParabola = (TGraph*)gr->Clone();
   /// Checking Results
   for (int j = 0; j < np; j++) {
-    CheckLinear->SetPoint(j, E[j],
-                          100 * (p0pol1 + Amp[j] * p1pol1 - E[j]) / E[j]);
-    CheckParabola->SetPoint(
-        j, E[j],
-        100 * (p0pol2 + Amp[j] * p1pol2 + Amp[j] * Amp[j] * p2pol2 - E[j]) /
-            E[j]);
+    PointCheckLinear[j] = (p0pol1 + Amp[j] * p1pol1) / E[j];
+    PointCheckParabola[j] =
+        (p0pol2 + Amp[j] * p1pol2 + Amp[j] * Amp[j] * p2pol2) / E[j];
+    cout << "TEST " << j << " " << E[j] << " "
+         << (p0pol1 + Amp[j] * p1pol1) / E[j] << endl;
 
     cout << "Pol1 energy Real E " << E[j] << " using "
          << p0pol1 + Amp[j] * p1pol1 << " Diferance % "
@@ -607,10 +626,16 @@ void FitEnergy(string outfolder, int detn) {
     out << endl << endl;
   }
 
+  h2->GetXaxis()->SetTitleSize(0.090);
+  h2->GetXaxis()->SetLabelSize(0.090);
+  h2->GetXaxis()->SetLabelOffset(0.02);
+
+  h2->GetYaxis()->SetTitleSize(0.090);
+  h2->GetYaxis()->SetLabelSize(0.090);
+  h2->GetYaxis()->SetTitleOffset(0.85);
   gr->SetMarkerStyle(20);
   gr->SetMarkerColor(4);
 
-  // TH2D* h2=new TH2D("","",1000,-10,Amp[np-1]*1.1,1000,-0.1,E[np-1]*1.1);
   h2->GetXaxis()->SetTitle("Amp(channels)");
   h2->GetYaxis()->SetTitle("Energy (MeV)");
   gr->Draw("P same");
@@ -629,25 +654,42 @@ void FitEnergy(string outfolder, int detn) {
   legend1->SetFillColor(0);
   legend1->Draw();
 
-  TCanvas* c2 = new TCanvas("c2", "c2", 800, 600);
-  TH2D* h3 = (TH2D*)h2->Clone();
+  pad2->cd();
+  TH2D* h3 = new TH2D("", "", 1000, -10, 40000, 100, 0, 2);
+  TGraph* CheckParabola = new TGraph(np, Amp, PointCheckParabola);
+  TGraph* CheckLinear = new TGraph(np, Amp, PointCheckLinear);
+  TLine* l4 = new TLine(0, 1, maximumAmp * 1.1, 1);
+  h3->GetXaxis()->SetRangeUser(0, maximumAmp * 1.1);
+
+  l4->SetLineColor(kBlack);
+  l4->SetLineWidth(2);
+
+  h3->SetMarkerStyle(20);
+  h3->SetMarkerColor(2);
+  h3->SetMarkerSize(0.7);
+  h3->GetYaxis()->SetTitle("Ratio");
+  h3->GetYaxis()->CenterTitle();
+  h3->GetYaxis()->SetTitleOffset(0.35);
+  h3->GetYaxis()->SetTitleSize(0.14);
+  h3->GetYaxis()->SetLabelSize(0.2);
+  h3->GetXaxis()->SetTitleSize(0.18);
+  h3->GetYaxis()->SetTitleSize(0.18);
+  h3->GetXaxis()->SetLabelSize(0.2);
+  h3->GetYaxis()->SetNdivisions(5, 5, 0);
+  h3->GetXaxis()->SetNdivisions(8, 5, 0);
+  h3->GetXaxis()->SetLabelOffset(0.006);
+  h3->GetXaxis()->SetTitle("Amp(channels)");
 
   CheckParabola->SetMarkerStyle(20);
-  CheckParabola->SetMarkerColor(4);
+  CheckParabola->SetMarkerColor(kRed);
   CheckLinear->SetMarkerStyle(20);
-  CheckLinear->SetMarkerColor(4);
-  h3->GetXaxis()->SetRangeUser(0.6, 1.4);
+  CheckLinear->SetMarkerColor(kBlack);
+  h3->GetYaxis()->SetRangeUser(0.9, 1.1);
+  h3->Draw();
+  l4->Draw();
 
-  CheckParabola->Draw("PL same");
-  CheckLinear->Draw("PL same");
-
-  TLegend* legend2 = new TLegend(0.15, 0.6, 0.6, 0.85, "");  // tamaño
-  legend2->AddEntry(CheckLinear, "Pol 1st degree", "l");
-  legend2->AddEntry(CheckParabola, "Pol 2nd degree", "l");
-  legend2->SetBorderSize(1);
-
-  legend2->SetFillColor(0);
-  legend2->Draw();
+  CheckParabola->Draw("P same");
+  CheckLinear->Draw("P same");
 
   cout << "FisrtDegree" << endl << p0pol1 << "  " << p1pol1 << endl << endl;
   cout << "SecondDegree" << endl
@@ -659,9 +701,6 @@ void FitEnergy(string outfolder, int detn) {
 
   string OutNameDetRoot = outfolder + "/EnergyFitDet" + to_string(detn);
   SaveRootEpsPngTxtFunction(c1, OutNameDetRoot.c_str());
-
-  OutNameDetRoot = outfolder + "/EnergyFitDetCheck" + to_string(detn);
-  SaveRootEpsPngTxtFunction(c2, OutNameDetRoot.c_str());
 
   ofstream outAllDet(OutName, ios::out | ios::app | ios::binary);
 
