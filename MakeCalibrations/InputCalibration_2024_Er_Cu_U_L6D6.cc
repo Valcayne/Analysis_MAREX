@@ -10,7 +10,7 @@ int main(int argc, char** argv) {
   // Sources and detectors calibrated
   std::vector<string> SourcesCalibrated = {"AmBe"};
   // std::vector<string> SourcesCalibrated = {"Cs", "Bi1", "Bi2", "AmBe", "Y1",
-  //                    "Y2", "Co",  "Ba",  "CmC",  "Mn"};
+  //                    "Y2", "Co",  "Ba",  "CmC"};
   std::vector<int> DetectorsCalibrated = {1, 2, 3, 4};
 
   // Information MC
@@ -48,7 +48,7 @@ int main(int argc, char** argv) {
                                     "Y_1",  "Co_1", "Ba_1", "CmC_1",  "Mn_1"};
   std::vector<string> SourceTypeSimulation = {"Cs", "Bi", "Bi", "AmBe", "Y",
                                               "Y",  "Co", "Ba", "CmC",  "Mn"};
-  std::vector<double> Percen = {30, 25, 20, 15, 20, 20, 30, 30, 25, 30};
+  std::vector<double> Percen = {30, 25, 20, 13, 20, 20, 30, 30, 25, 30};
   std::vector<double> GammaEnergy = {0.661657, 0.569698, 1.063656, 4.438,
                                      0.89804,  1.836063, 1.173,    0.356012,
                                      6.130,    0.834848};
@@ -60,17 +60,17 @@ int main(int argc, char** argv) {
   string NameoutputFile;
   int npRes = 10;      // Number points resolution
   double Res = 0.2;    // Resolution value
-  double PERRes = 70;  // Percentage variation resolution. The range tested is
+  double PERRes = 60;  // Percentage variation resolution. The range tested is
                        //   [Res-Res*PERRes, Res+Res*PERRes]
   int npCalib = 10;    // Number of points calibration
 
   double Calib[(int)DetectorsCalibrated.size()] = {
       0.00043,
-      0.00040,
+      0.00042,
       0.0004,
-      0.00044,
+      0.0004,
   };  // Calibration value
-  double PERCalib = 40;  // Percentage variation calibratio. The range tested is
+  double PERCalib = 20;  // Percentage variation calibratio. The range tested is
                          // [Calib-Calib*PERCalib, Calib+Calib*PERCalib]
 
   if (((int)Source.size() == (int)SourceType.size() ==
@@ -165,7 +165,7 @@ int main(int argc, char** argv) {
         string LaunchFits = "MakeEnergyCalibration " +
                             to_string(DetectorsCalibrated[j]) + " " + outFolder;
         cout << LaunchFits << endl;
-        system(LaunchFits.c_str());
+        // system(LaunchFits.c_str());
       } else {
         cout << "File " << NameoutputFile
              << " exits so the calibration is finished" << endl;
@@ -174,7 +174,7 @@ int main(int argc, char** argv) {
   }
   outdata.close();
 
-  // system(
-  //     "condor_submit "
-  //     "Condor/ProgramsLaunch/LaunchCondorMakeEnergyCalibration.sh");
+  system(
+      "condor_submit "
+      "Condor/ProgramsLaunch/LaunchCondorMakeEnergyCalibration.sh");
 }
