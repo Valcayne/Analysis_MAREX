@@ -12,9 +12,9 @@ transfer_output_files   = ""
 requirements = (OpSysAndVer =?= "AlmaLinux9")
 #requirements = (OpSysAndVer =?= "CentOS7")
 
-#+JobFlavour = "workday"
++JobFlavour = "workday"
 #+JobFlavour = "espresso"
-+JobFlavour = "microcentury"
+#+JobFlavour = "microcentury"
 
 
 queue Source,DetectorsCalibrated,SourceType, DataFolder, RunList, FolderRootFiles, Expfname,ExpfnameBackground,  SourceTypeBakground, NumberBinsExpfname, EMaxExpfname,    MCfname, outFolder, GammaEnergy, rebin, Percen, npRes, Res, PERRes, npCalib, Calib, PERCalib from /afs/cern.ch/user/v/valcayne/Workspace/2024_Er_U_ProgramsC6D6/Analysis_nTOF_v01/MakeCalibrations/Condor/Inputs/ArgumentsForCondor.txt
