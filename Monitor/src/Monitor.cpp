@@ -42,6 +42,9 @@ void Monitor::Start() {
 
   // Get data for every run.
   for (const auto run : runs) {
+    if (0 == (run % 10)) {
+      std::cout << "Doing run " << run << std::endl;
+    }
     std::unique_ptr<TFile> run_file(new TFile(
         (root_files_dir + "/Histos01_" + std::to_string(run) + ".root").c_str(),
         "READ"));
