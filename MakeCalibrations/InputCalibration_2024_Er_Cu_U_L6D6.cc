@@ -38,7 +38,7 @@ int main(int argc, char** argv) {
   string ArgumentsCondor = "Condor/Inputs/ArgumentsForCondor.txt";
   string outFolder =
       "/eos/home-v/valcayne/nTOFDataProcessing/2024_Er_Cu_U/Calibration/"
-      "OutputMakeEnergyCalibration_v01";
+      "OutputMakeEnergyCalibration_v02";
 
   // Information calibration sources
   string BackgroundType = "Background_1";
@@ -58,11 +58,11 @@ int main(int argc, char** argv) {
   // Parameters for fitting
   int GeneralRebin = 1;
   string NameoutputFile;
-  int npRes = 100;     // Number points resolution
+  int npRes = 10;      // Number points resolution
   double Res = 0.2;    // Resolution value
   double PERRes = 70;  // Percentage variation resolution. The range tested is
                        //   [Res-Res*PERRes, Res+Res*PERRes]
-  int npCalib = 100;   // Number of points calibration
+  int npCalib = 10;    // Number of points calibration
 
   double Calib[(int)DetectorsCalibrated.size()] = {
       0.00043,
@@ -174,7 +174,7 @@ int main(int argc, char** argv) {
   }
   outdata.close();
 
-  system(
-      "condor_submit "
-      "Condor/ProgramsLaunch/LaunchCondorMakeEnergyCalibration.sh");
+  // system(
+  //     "condor_submit "
+  //     "Condor/ProgramsLaunch/LaunchCondorMakeEnergyCalibration.sh");
 }
