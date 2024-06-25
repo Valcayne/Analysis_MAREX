@@ -573,8 +573,17 @@ void FitEnergy(string outfolder, int detn) {
   cout << "SSresPol= " << SSresLin << " SStotLin= " << SStotLin << " R2Pol "
        << R2Pol << endl;
 
+  TGraph* CheckLinear = (TGraph*)gr->Clone();
+  TGraph* CheckParabola = (TGraph*)gr->Clone();
   /// Checking Results
   for (int j = 0; j < np; j++) {
+    CheckLinear->SetPoint(j, E[j],
+                          100 * (p0pol1 + Amp[j] * p1pol1 - E[j]) / E[j]);
+    CheckParabola->SetPoint(
+        j, E[j],
+        100 * (p0pol2 + Amp[j] * p1pol2 + Amp[j] * Amp[j] * p2pol2 - E[j]) /
+            E[j]);
+
     cout << "Pol1 energy Real E " << E[j] << " using "
          << p0pol1 + Amp[j] * p1pol1 << " Diferance % "
          << 100 * (p0pol1 + Amp[j] * p1pol1 - E[j]) / E[j] << endl;
@@ -620,6 +629,26 @@ void FitEnergy(string outfolder, int detn) {
   legend1->SetFillColor(0);
   legend1->Draw();
 
+  TCanvas* c2 = new TCanvas("c2", "c2", 800, 600);
+  TH2D* h3 = (TH2D*)h2->Clone();
+
+  CheckParabola->SetMarkerStyle(20);
+  CheckParabola->SetMarkerColor(4);
+  CheckLinear->SetMarkerStyle(20);
+  CheckLinear->SetMarkerColor(4);
+  h3->GetXaxis()->SetRangeUser(0.6, 1.4);
+
+  CheckParabola->Draw("PL same");
+  CheckLinear->Draw("PL same");
+
+  TLegend* legend2 = new TLegend(0.15, 0.6, 0.6, 0.85, "");  // tamaño
+  legend2->AddEntry(CheckLinear, "Pol 1st degree", "l");
+  legend2->AddEntry(CheckParabola, "Pol 2nd degree", "l");
+  legend2->SetBorderSize(1);
+
+  legend2->SetFillColor(0);
+  legend2->Draw();
+
   cout << "FisrtDegree" << endl << p0pol1 << "  " << p1pol1 << endl << endl;
   cout << "SecondDegree" << endl
        << p0pol2 << "  " << p1pol2 << " " << p2pol2 << endl;
@@ -629,8 +658,10 @@ void FitEnergy(string outfolder, int detn) {
       << p0pol2 << "  " << p1pol2 << " " << p2pol2 << endl;
 
   string OutNameDetRoot = outfolder + "/EnergyFitDet" + to_string(detn);
-
   SaveRootEpsPngTxtFunction(c1, OutNameDetRoot.c_str());
+
+  OutNameDetRoot = outfolder + "/EnergyFitDetCheck" + to_string(detn);
+  SaveRootEpsPngTxtFunction(c2, OutNameDetRoot.c_str());
 
   ofstream outAllDet(OutName, ios::out | ios::app | ios::binary);
 
