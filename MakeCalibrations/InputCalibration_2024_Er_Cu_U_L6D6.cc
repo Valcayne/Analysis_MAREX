@@ -8,9 +8,8 @@ int main(int argc, char** argv) {
   cout << "starting" << endl;
 
   // Sources and detectors calibrated
-  std::vector<string> SourcesCalibrated = {"AmBe"};
-  // std::vector<string> SourcesCalibrated = {"Cs", "Bi1", "Bi2", "AmBe", "Y1",
-  //                    "Y2", "Co",  "Ba",  "CmC"};
+  std::vector<string> SourcesCalibrated = {"Cs", "Bi1", "Bi2", "AmBe", "Y1",
+                                           "Y2", "Co",  "Ba",  "CmC"};
   std::vector<int> DetectorsCalibrated = {1, 2, 3, 4};
 
   // Information MC
