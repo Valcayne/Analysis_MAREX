@@ -745,10 +745,32 @@ void FitRes(string outfolder, int detn) {
   TGraph* gr = new TGraph(np, E, Res);
   gr->SetMarkerStyle(20);
   gr->SetMarkerColor(2);
+  TCanvas* c1 = new TCanvas("c1", "c1", 800, 600);
 
   TH2D* h2 =
       new TH2D("", "Energy resolution", 1000, 0, E[np - 1] * 50, 1000, 0, 0.6);
+  TPad* pad1;
+  TPad* pad2;
+  pad1 = new TPad("pad1", "Pad", 0.0, 0.33, 1., 1., 10);
+  pad2 = new TPad("pad2", "Pad", 0.0, 0.02, 1., 0.33, 10);
 
+  pad1->Draw();
+  pad2->Draw();
+  pad1->SetGridx();
+  pad1->SetGridy();
+  pad1->SetTopMargin(0.11);      // para que no se vea el eje
+  pad1->SetBottomMargin(0.033);  // para que no se vea el eje
+  // pad1_6->SetBottomMargin(0.2);//
+
+  pad2->SetTopMargin(0.07);    // para que no se vea el eje
+  pad2->SetBottomMargin(0.4);  // para que se vea el eje
+
+  pad1->SetLeftMargin(0.15);  // para que no se vea el eje
+  pad2->SetLeftMargin(0.15);  // para que no se vea el eje
+  pad2->SetGridy();
+
+  pad1->cd();
+  h2->Draw();
   h2->GetXaxis()->SetTitle("Energy (MeV)");
   h2->GetYaxis()->SetTitle("Resolution");
   h2->GetYaxis()->SetTitleOffset(1.2);
@@ -756,7 +778,6 @@ void FitRes(string outfolder, int detn) {
   h2->GetXaxis()->SetRangeUser(0, 6);
   h2->GetYaxis()->SetRangeUser(0, 0.5);
 
-  TCanvas* c2 = new TCanvas("c2", "c2", 800, 600);
   gStyle->SetOptStat(0);
 
   h2->Draw();
@@ -774,12 +795,14 @@ void FitRes(string outfolder, int detn) {
 
   Double_t par[2], par1[2];
   f1->GetParameters(&par[0]);
-  c2->Update();
+  // c1->Update();
   double par0v = par[0];
   double par1v = par[1];
   // f1->Draw("L same");
-
+  double PointCheck[100];
   for (int j = 0; j < np; j++) {
+    PointCheck[j] = ResFunNormal(E[j], par0v, par1v) / Res[j];
+
     cout << "energy Real E " << E[j] << " Res " << Res[j] << " using resfun "
          << ResFunNormal(E[j], par0v, par1v) << " Diferance % "
          << 100 * (ResFunNormal(E[j], par0v, par1v) - Res[j]) / Res[j] << endl;
@@ -787,16 +810,60 @@ void FitRes(string outfolder, int detn) {
         << ResFunNormal(E[j], par0v, par1v) << " Diferance % "
         << 100 * (ResFunNormal(E[j], par0v, par1v) - Res[j]) / Res[j] << endl;
   }
+  h2->GetXaxis()->SetTitleSize(0.090);
+  h2->GetXaxis()->SetLabelSize(0.090);
+  h2->GetXaxis()->SetLabelOffset(0.02);
+
+  h2->GetYaxis()->SetTitleSize(0.090);
+  h2->GetYaxis()->SetLabelSize(0.090);
+  h2->GetYaxis()->SetTitleOffset(0.85);
+  gr->SetMarkerStyle(20);
+  gr->SetMarkerColor(4);
+
+  h2->GetXaxis()->SetTitle("Amp(channels)");
+  h2->GetYaxis()->SetTitle("Energy (MeV)");
+  gr->Draw("P same");
 
   // sig=sqrt(a*E+b*E*E)
   // Res=2.35*sigma/E=2.35*sqrt(a*E+b*E*E)/E;
+  pad2->cd();
+  TH2D* h3 = new TH2D("", "", 1000, -0, 6, 100, 0, 2);
+  TGraph* Check = new TGraph(np, E, PointCheck);
+  TLine* l4 = new TLine(0, 1, 6, 1);
 
+  l4->SetLineColor(kBlack);
+  l4->SetLineWidth(2);
+
+  h3->SetMarkerStyle(20);
+  h3->SetMarkerColor(2);
+  h3->SetMarkerSize(0.7);
+  h3->GetYaxis()->SetTitle("Ratio");
+  h3->GetYaxis()->CenterTitle();
+  h3->GetYaxis()->SetTitleOffset(0.35);
+  h3->GetYaxis()->SetTitleSize(0.14);
+  h3->GetYaxis()->SetLabelSize(0.2);
+  h3->GetXaxis()->SetTitleSize(0.18);
+  h3->GetYaxis()->SetTitleSize(0.18);
+  h3->GetXaxis()->SetLabelSize(0.2);
+  h3->GetYaxis()->SetNdivisions(5, 5, 0);
+  h3->GetXaxis()->SetNdivisions(8, 5, 0);
+  h3->GetXaxis()->SetLabelOffset(0.006);
+  h3->GetXaxis()->SetTitle("Amp(channels)");
+
+  Check->SetMarkerStyle(20);
+  Check->SetMarkerColor(kRed);
+
+  h3->GetYaxis()->SetRangeUser(0.5, 1.5);
+  h3->Draw();
+  l4->Draw();
+
+  Check->Draw("P same");
   cout << "Energy resolution " << endl << par0v << " " << par1v << endl;
   out << "Energy resolution " << endl << par0v << " " << par1v << endl;
 
   string OutNameroot = outfolder + "/ResolFitDet" + to_string(detn);
 
-  SaveRootEpsPngTxtFunction(c2, OutNameroot.c_str());
+  SaveRootEpsPngTxtFunction(c1, OutNameroot.c_str());
 
   ofstream outAllDet(OutName, ios::out | ios::app | ios::binary);
 
