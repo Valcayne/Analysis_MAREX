@@ -38,7 +38,7 @@ int main(int argc, char** argv) {
   HistoInfoC6D6->HistoTitle.push_back("Edep");
   HistoInfoC6D6->HistoType.push_back(1);
   HistoInfoC6D6->Xaxis.push_back({1000, 1.e-3, 1.e7});
-  HistoInfoC6D6->Yaxis.push_back({2000, 0, 20});
+  HistoInfoC6D6->Yaxis.push_back({2e4, 0, 20});
 
   HistoInfoC6D6->HistoName.push_back("En");
   HistoInfoC6D6->HistoTitle.push_back("En");
