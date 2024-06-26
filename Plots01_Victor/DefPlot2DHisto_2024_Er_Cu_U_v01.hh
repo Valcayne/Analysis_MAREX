@@ -52,7 +52,7 @@ string DirectionSave2DHisto =
 double TOFD = 184;
 // For subtract backgroudnS
 vector<string> MeasPredefined = {"Predefined", "Au_2_Si"};
-vector<string> BackgroundMeasPredefined = {"Background_1", "Background_Si"};
+vector<string> BackgroundMeasPredefined = {"118940", "Background_Si"};
 vector<string> DummyPredefined = {"Empty_Er", "Empty_Si"};
 vector<string> BackgroundDummyPredefined = {
     "Background_1",

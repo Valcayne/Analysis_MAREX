@@ -127,13 +127,14 @@ TH1D* Project2DHistoSubtractBackground(
   if ((PulseType == 3) && (NameHisto == "Edep")) {
     cout << "##################" << endl;
     cout << "hMeas " << NameMeasurement << endl;
-    cout << "hDummy " << DummyPredefined[PositionBackgrounds] << endl;
+    cout << "BackgroundMeasPredefined "
+         << BackgroundMeasPredefined[PositionBackgrounds] << endl;
     cout << "##################" << endl;
-    fnameMeas = fname + DummyPredefined[PositionBackgrounds] + ".root";
+    fnameMeas = fname + BackgroundMeasPredefined[PositionBackgrounds] + ".root";
 
     TH1D* hDummy =
         Project2DHisto(fnameMeas, NameDetector, NameHisto,
-                       DummyPredefined[PositionBackgrounds], PulseType,
+                       BackgroundMeasPredefined[PositionBackgrounds], PulseType,
                        NumberDetector, IfEnOrEdep, npulses[1], nprotons[1],
                        TOFD, EnOrEdepMin, EnOrEdepMax, TimeMeasurement_ns);
 
