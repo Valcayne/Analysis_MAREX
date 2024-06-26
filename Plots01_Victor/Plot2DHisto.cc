@@ -301,19 +301,20 @@ void plot2D(string NameHisto, std::vector<string> MeasurementType,
     cout << "Beforenoramlize" << endl;
 
     Normalize(h1, n, hSimul, NormalizeMinEdep, NormalizeMaxEdep);
+    if (!CompareWithSimul) {
+      cout << "StartGAinsShift" << endl;
 
-    cout << "StartGAinsShift" << endl;
-
-    double shiftArray[NumberOfHisto];
-    double shift;
-    for (auto i = 0; i < NumberOfHisto; i++) {
-      h1GainShift[i] = CalculateBestShift(shift, h1[0], h1[i], NormalizeMinEdep,
-                                          NormalizeMaxEdep, NumberIterations,
-                                          MinShift, MaxShift);
-      shiftArray[i] = shift;
-      TitleLegend[i] =
-          TitleLegend[i] + " Sh=" + doubleToDecimalString(shiftArray[i], 3);
-      cout << TitleLegend[i] << " Shift= " << shiftArray[i] << endl;
+      double shiftArray[NumberOfHisto];
+      double shift;
+      for (auto i = 0; i < NumberOfHisto; i++) {
+        h1GainShift[i] = CalculateBestShift(
+            shift, h1[0], h1[i], NormalizeMinEdep, NormalizeMaxEdep,
+            NumberIterations, MinShift, MaxShift);
+        shiftArray[i] = shift;
+        TitleLegend[i] =
+            TitleLegend[i] + " Sh=" + doubleToDecimalString(shiftArray[i], 3);
+        cout << TitleLegend[i] << " Shift= " << shiftArray[i] << endl;
+      }
     }
   }
   TCanvas* c1 = new TCanvas("c1", "c1", 800, 600);
@@ -395,8 +396,8 @@ void plot2D(string NameHisto, std::vector<string> MeasurementType,
   if (CompareWithSimul) {
     hSimul->Draw("histo E same");
     legend->AddEntry(hSimul, "Eval", "l");
-    hSimul2->Draw("histo E same");
-    legend->AddEntry(hSimul2, "Eval_Contaminants", "l");
+    // hSimul2->Draw("histo E same");
+    // legend->AddEntry(hSimul2, "Eval_Contaminants", "l");
   }
   legend->SetTextSize(0.06);
   legend->SetBorderSize(0);
