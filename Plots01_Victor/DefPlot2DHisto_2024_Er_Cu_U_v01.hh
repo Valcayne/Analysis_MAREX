@@ -60,75 +60,79 @@ vector<string> BackgroundDummyPredefined = {
 };
 
 /// For GetSimul
-// vector<string> NameSimulArray = {"Au_13_100", "Au_40_200", "Er167_13"};
-// vector<string> NameSimulRootfile = {"DataPlot/Yield_Au_2_100",
-//                                     "DataPlot/Yield_Au_2_200",
-//                                     "DataPlot/Yield_SAMMY_Er167_13mm"};
+vector<string> NameSimulArray = {"Au_13_100", "Au_40_200", "Er167_13"};
+vector<string> NameSimulRootfile = {"DataPlot/Yield_Au_2_100",
+                                    "DataPlot/Yield_Au_2_200",
+                                    "DataPlot/Yield_SAMMY_Er167_13mm"};
 
-// vector<string> NameSimulRootfile2 = {"DataPlot/Yield_Au_2_100",
-//                                      "DataPlot/Yield_Au_2_200",
-//                                      "DataPlot/Yield_TC_Er167_13mm_ENDF8_BKG"};
+vector<string> NameSimulRootfile2 = {"DataPlot/Yield_Au_2_100",
+                                     "DataPlot/Yield_Au_2_200",
+                                     "DataPlot/Yield_TC_Er167_13mm_ENDF8_BKG"};
 
-vector<string> NameSimulArray = {"Cs_1", "Co_1",   "Mn_1",  "Co57_1", "Bi_1",
-                                 "Ba_1", "AmBe_1", "CmC_1", "Eu_1",   "Y_1"};
-vector<string> NameSimulRootfile = {
-    "/media/victor93/Elements/Valcayne/ExperimentData_Outputs/2024_Er_Cu_U/"
-    "Simulations/v01/2024_Er_Cu_U_v01_Cs_1e7.root",
-    "/media/victor93/Elements/Valcayne/ExperimentData_Outputs/2024_Er_Cu_U/"
-    "Simulations/v01/2024_Er_Cu_U_v01_Co_1e7.root",
-    "/media/victor93/Elements/Valcayne/ExperimentData_Outputs/2024_Er_Cu_U/"
-    "Simulations/v01/2024_Er_Cu_U_v01_Mn_1e7.root",
-    "/media/victor93/Elements/Valcayne/ExperimentData_Outputs/2024_Er_Cu_U/"
-    "Simulations/v01/2024_Er_Cu_U_v01_Co57_1e7.root",
-    "/media/victor93/Elements/Valcayne/ExperimentData_Outputs/2024_Er_Cu_U/"
-    "Simulations/v01/2024_Er_Cu_U_v01_Bi_1e7.root",
-    "/media/victor93/Elements/Valcayne/ExperimentData_Outputs/2024_Er_Cu_U/"
-    "Simulations/v01/2024_Er_Cu_U_v01_Ba_1e7.root",
-    "/media/victor93/Elements/Valcayne/ExperimentData_Outputs/2024_Er_Cu_U/"
-    "Simulations/v01/2024_Er_Cu_U_v01_AmBe_1e7.root",
-    "/media/victor93/Elements/Valcayne/ExperimentData_Outputs/2024_Er_Cu_U/"
-    "Simulations/v01/2024_Er_Cu_U_v01_CmC_1e7.root",
-    "/media/victor93/Elements/Valcayne/ExperimentData_Outputs/2024_Er_Cu_U/"
-    "Simulations/v01/2024_Er_Cu_U_v01_Eu_1e7.root",
-    "/media/victor93/Elements/Valcayne/ExperimentData_Outputs/2024_Er_Cu_U/"
-    "Simulations/v01/2024_Er_Cu_U_v01_Y_1e7.root"};
-vector<string> NameSimulRootfile2 = {
-    "/media/victor93/Elements/Valcayne/ExperimentData_Outputs/2024_Er_Cu_U/"
-    "Simulations/v01/2024_Er_Cu_U_v01_Cs_1e7.root",
-    "/media/victor93/Elements/Valcayne/ExperimentData_Outputs/2024_Er_Cu_U/"
-    "Simulations/v01/2024_Er_Cu_U_v01_Co_1e7.root",
-    "/media/victor93/Elements/Valcayne/ExperimentData_Outputs/2024_Er_Cu_U/"
-    "Simulations/v01/2024_Er_Cu_U_v01_Mn_1e7.root",
-    "/media/victor93/Elements/Valcayne/ExperimentData_Outputs/2024_Er_Cu_U/"
-    "Simulations/v01/2024_Er_Cu_U_v01_Co57_1e7.root",
-    "/media/victor93/Elements/Valcayne/ExperimentData_Outputs/2024_Er_Cu_U/"
-    "Simulations/v01/2024_Er_Cu_U_v01_Bi_1e7.root",
-    "/media/victor93/Elements/Valcayne/ExperimentData_Outputs/2024_Er_Cu_U/"
-    "Simulations/v01/2024_Er_Cu_U_v01_Ba_1e7.root",
-    "/media/victor93/Elements/Valcayne/ExperimentData_Outputs/2024_Er_Cu_U/"
-    "Simulations/v01/2024_Er_Cu_U_v01_AmBe_1e7.root",
-    "/media/victor93/Elements/Valcayne/ExperimentData_Outputs/2024_Er_Cu_U/"
-    "Simulations/v01/2024_Er_Cu_U_v01_CmC_1e7.root",
-    "/media/victor93/Elements/Valcayne/ExperimentData_Outputs/2024_Er_Cu_U/"
-    "Simulations/v01/2024_Er_Cu_U_v01_Eu_1e7.root",
-    "/media/victor93/Elements/Valcayne/ExperimentData_Outputs/2024_Er_Cu_U/"
-    "Simulations/v01/2024_Er_Cu_U_v01_Y_1e7.root"};
+// vector<string> NameSimulArray = {"Cs_1", "Co_1",   "Mn_1",  "Co57_1", "Bi_1",
+//                                  "Ba_1", "AmBe_1", "CmC_1", "Eu_1",   "Y_1"};
+// vector<string> NameSimulRootfile = {
+//     "/media/victor93/Elements/Valcayne/ExperimentData_Outputs/2024_Er_Cu_U/"
+//     "Simulations/v01/2024_Er_Cu_U_v01_Cs_1e7.root",
+//     "/media/victor93/Elements/Valcayne/ExperimentData_Outputs/2024_Er_Cu_U/"
+//     "Simulations/v01/2024_Er_Cu_U_v01_Co_1e7.root",
+//     "/media/victor93/Elements/Valcayne/ExperimentData_Outputs/2024_Er_Cu_U/"
+//     "Simulations/v01/2024_Er_Cu_U_v01_Mn_1e7.root",
+//     "/media/victor93/Elements/Valcayne/ExperimentData_Outputs/2024_Er_Cu_U/"
+//     "Simulations/v01/2024_Er_Cu_U_v01_Co57_1e7.root",
+//     "/media/victor93/Elements/Valcayne/ExperimentData_Outputs/2024_Er_Cu_U/"
+//     "Simulations/v01/2024_Er_Cu_U_v01_Bi_1e7.root",
+//     "/media/victor93/Elements/Valcayne/ExperimentData_Outputs/2024_Er_Cu_U/"
+//     "Simulations/v01/2024_Er_Cu_U_v01_Ba_1e7.root",
+//     "/media/victor93/Elements/Valcayne/ExperimentData_Outputs/2024_Er_Cu_U/"
+//     "Simulations/v01/2024_Er_Cu_U_v01_AmBe_1e7.root",
+//     "/media/victor93/Elements/Valcayne/ExperimentData_Outputs/2024_Er_Cu_U/"
+//     "Simulations/v01/2024_Er_Cu_U_v01_CmC_1e7.root",
+//     "/media/victor93/Elements/Valcayne/ExperimentData_Outputs/2024_Er_Cu_U/"
+//     "Simulations/v01/2024_Er_Cu_U_v01_Eu_1e7.root",
+//     "/media/victor93/Elements/Valcayne/ExperimentData_Outputs/2024_Er_Cu_U/"
+//     "Simulations/v01/2024_Er_Cu_U_v01_Y_1e7.root"};
+// vector<string> NameSimulRootfile2 = {
+//     "/media/victor93/Elements/Valcayne/ExperimentData_Outputs/2024_Er_Cu_U/"
+//     "Simulations/v01/2024_Er_Cu_U_v01_Cs_1e7.root",
+//     "/media/victor93/Elements/Valcayne/ExperimentData_Outputs/2024_Er_Cu_U/"
+//     "Simulations/v01/2024_Er_Cu_U_v01_Co_1e7.root",
+//     "/media/victor93/Elements/Valcayne/ExperimentData_Outputs/2024_Er_Cu_U/"
+//     "Simulations/v01/2024_Er_Cu_U_v01_Mn_1e7.root",
+//     "/media/victor93/Elements/Valcayne/ExperimentData_Outputs/2024_Er_Cu_U/"
+//     "Simulations/v01/2024_Er_Cu_U_v01_Co57_1e7.root",
+//     "/media/victor93/Elements/Valcayne/ExperimentData_Outputs/2024_Er_Cu_U/"
+//     "Simulations/v01/2024_Er_Cu_U_v01_Bi_1e7.root",
+//     "/media/victor93/Elements/Valcayne/ExperimentData_Outputs/2024_Er_Cu_U/"
+//     "Simulations/v01/2024_Er_Cu_U_v01_Ba_1e7.root",
+//     "/media/victor93/Elements/Valcayne/ExperimentData_Outputs/2024_Er_Cu_U/"
+//     "Simulations/v01/2024_Er_Cu_U_v01_AmBe_1e7.root",
+//     "/media/victor93/Elements/Valcayne/ExperimentData_Outputs/2024_Er_Cu_U/"
+//     "Simulations/v01/2024_Er_Cu_U_v01_CmC_1e7.root",
+//     "/media/victor93/Elements/Valcayne/ExperimentData_Outputs/2024_Er_Cu_U/"
+//     "Simulations/v01/2024_Er_Cu_U_v01_Eu_1e7.root",
+//     "/media/victor93/Elements/Valcayne/ExperimentData_Outputs/2024_Er_Cu_U/"
+//     "Simulations/v01/2024_Er_Cu_U_v01_Y_1e7.root"};
 
 vector<double> Activity_kBq = {274, 274, 1, 1, 1, 1, 1, 1, 1, 1};
 
-vector<int> ResolNumberDetector = {1, 2, 3};
+vector<int> ResolNumberDetector = {1, 2, 3, 4};
 // vector<double> ResolParameter1 = {0.00152035, 0.00134748, 0.00018827};
 // vector<double> ResolParameter2 = {0.0100738, 0.0034685, 0.00467216};
 
-vector<double> ResolParameter1 = {0.00193404, 0.00187058, 0.00256307};
-vector<double> ResolParameter2 = {0.00838911, 0.00181082, 0.00139247};
+// vector<double> ResolParameter1 = {0.00193404, 0.00187058, 0.00256307};
+// vector<double> ResolParameter2 = {0.00838911, 0.00181082, 0.00139247};
+
+vector<double> ResolParameter1 = {0.00329717, 0.00285433, 0.00136088,
+                                  0.00211402};
+vector<double> ResolParameter2 = {0.00215909, 0.0030931, 0.00293019, 0.0105527};
 
 // En for integrals normalize
 // double NormalizeMinEn = 100;
 // double NormalizeMaxEn = 500;
 
-double NormalizeMinEn = 0.4;
-double NormalizeMaxEn = 1.0e3;
+double NormalizeMinEn = 3;
+double NormalizeMaxEn = 5;
 
 // En or the xaxis plot
 double ForPlotEminEn = 0.02;
