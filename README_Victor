@@ -20,8 +20,8 @@ RunMin=118816
 RunMax=119100 
 PathCalibrations=/afs/cern.ch/user/v/valcayne/LinkEOS/nTOFDataProcessing/2024_Er_Cu_U/Calibration/CalibrationRunByRun
 for (( number=$RunMin; number<=$RunMax; number++ )); do
-echo " cp ${PathCalibrations}/Calib_Er_Cu_U_v01.dat  ${PathCalibrations}/Calib_${number}.dat "
- cp ${PathCalibrations}/Calib_Er_Cu_U_v01.dat  ${PathCalibrations}/Calib_${number}.dat
+echo " cp ${PathCalibrations}/Calib_Er_Cu_U_v02.dat  ${PathCalibrations}/Calib_${number}.dat "
+ cp ${PathCalibrations}/Calib_Er_Cu_U_v02.dat  ${PathCalibrations}/Calib_${number}.dat
 done
 ######################################################################################################################################################
 ###########################################################################################################################################################

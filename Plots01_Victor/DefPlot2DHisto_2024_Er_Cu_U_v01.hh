@@ -123,9 +123,13 @@ vector<int> ResolNumberDetector = {1, 2, 3, 4};
 // vector<double> ResolParameter1 = {0.00193404, 0.00187058, 0.00256307};
 // vector<double> ResolParameter2 = {0.00838911, 0.00181082, 0.00139247};
 
-vector<double> ResolParameter1 = {0.00329717, 0.00285433, 0.00136088,
-                                  0.00211402};
-vector<double> ResolParameter2 = {0.00215909, 0.0030931, 0.00293019, 0.0105527};
+// vector<double> ResolParameter1 = {0.00329717, 0.00285433,
+// 0.00136088,0.00211402}; vector<double> ResolParameter2 = {0.00215909,
+// 0.0030931, 0.00293019, 0.0105527};
+
+vector<double> ResolParameter1 = {0.00258232, 0.00227249, 0.00167079,
+                                  0.00371062};
+vector<double> ResolParameter2 = {0.00233583, 0.00225643, 0.00221157, 0.008693};
 
 // En for integrals normalize
 // double NormalizeMinEn = 100;
