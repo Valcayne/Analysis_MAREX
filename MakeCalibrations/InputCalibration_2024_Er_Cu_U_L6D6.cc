@@ -22,7 +22,7 @@ int main(int argc, char** argv) {
   // Information experimental data
   string DataFolder =
       "/eos/home-v/valcayne/nTOFDataProcessing/2024_Er_Cu_U/Calibration/"
-      "HistoAmp_v01";
+      "HistoAmp_v03";
   string RunList =
       "/afs/cern.ch/work/v/valcayne/2024_Er_U_ProgramsC6D6/Analysis_nTOF_v01/"
       "RunLists/RunList2024_02.txt";
@@ -37,7 +37,7 @@ int main(int argc, char** argv) {
   string ArgumentsCondor = "Condor/Inputs/ArgumentsForCondor.txt";
   string outFolder =
       "/eos/home-v/valcayne/nTOFDataProcessing/2024_Er_Cu_U/Calibration/"
-      "OutputMakeEnergyCalibration_v02";
+      "OutputMakeEnergyCalibration_v03";
 
   // Information calibration sources
   string BackgroundType = "Background_1";
@@ -57,11 +57,11 @@ int main(int argc, char** argv) {
   // Parameters for fitting
   int GeneralRebin = 1;
   string NameoutputFile;
-  int npRes = 10;      // Number points resolution
+  int npRes = 50;      // Number points resolution
   double Res = 0.2;    // Resolution value
   double PERRes = 60;  // Percentage variation resolution. The range tested is
                        //   [Res-Res*PERRes, Res+Res*PERRes]
-  int npCalib = 10;    // Number of points calibration
+  int npCalib = 50;    // Number of points calibration
 
   double Calib[(int)DetectorsCalibrated.size()] = {
       0.00043,

@@ -131,11 +131,11 @@ vector<double> ResolParameter2 = {0.00215909, 0.0030931, 0.00293019, 0.0105527};
 // double NormalizeMinEn = 100;
 // double NormalizeMaxEn = 500;
 
-double NormalizeMinEn = 3;
-double NormalizeMaxEn = 5;
+double NormalizeMinEn = 0.1;
+double NormalizeMaxEn = 1;
 
 // En or the xaxis plot
-double ForPlotEminEn = 0.02;
+double ForPlotEminEn = 0.1;
 double ForPlotEmaxEn = 1.0e7;
 
 // Edep for integrals normalize
