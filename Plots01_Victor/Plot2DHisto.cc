@@ -396,8 +396,8 @@ void plot2D(string NameHisto, std::vector<string> MeasurementType,
   if (CompareWithSimul) {
     hSimul->Draw("histo E same");
     legend->AddEntry(hSimul, "Eval", "l");
-    // hSimul2->Draw("histo E same");
-    // legend->AddEntry(hSimul2, "Eval_Contaminants", "l");
+    hSimul2->Draw("histo E same");
+    legend->AddEntry(hSimul2, "Eval_Contaminants", "l");
   }
   legend->SetTextSize(0.06);
   legend->SetBorderSize(0);
