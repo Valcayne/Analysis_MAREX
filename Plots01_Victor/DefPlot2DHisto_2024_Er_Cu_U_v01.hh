@@ -64,12 +64,12 @@ vector<string> NameSimulArray = {"Au_13_100", "Au_40_200", "Er167_13",
                                  "Er166_13"};
 vector<string> NameSimulRootfile = {
     "DataPlot/Yield_Au_2_100", "DataPlot/Yield_Au_2_200",
-    "DataPlot/Yield_SAMMY_Er167_13mm", "DataPlot/Yield_TC_Er166_13mm_ENDF8"};
+    "DataPlot/Yield_SAMMY_Er167_13mm", "DataPlot/Yield_SAMMY_Er166_13mm"};
 
 vector<string> NameSimulRootfile2 = {"DataPlot/Yield_Au_2_100",
                                      "DataPlot/Yield_Au_2_200",
                                      "DataPlot/Yield_TC_Er167_13mm_ENDF8_BKG",
-                                     "DataPlot/Yield_TC_Er166_13mm_ENDF8_BKG"};
+                                     "DataPlot/Yield_TC_Er166_13mm_ENDF8"};
 
 // vector<string> NameSimulArray = {"Cs_1", "Co_1",   "Mn_1",  "Co57_1", "Bi_1",
 //                                  "Ba_1", "AmBe_1", "CmC_1", "Eu_1",   "Y_1"};
