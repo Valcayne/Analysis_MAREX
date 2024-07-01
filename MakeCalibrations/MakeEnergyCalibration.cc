@@ -529,7 +529,7 @@ void FitEnergy(string outfolder, int detn) {
   h2->Draw();
 
   cout << "Fitting pol1 " << endl;
-  TF1* myfitpol1 = new TF1("myfitpol1", "pol1", 0.1, 30000);  // pol1
+  TF1* myfitpol1 = new TF1("myfitpol1", "[0] + [1]*x", 0.1, 30000);  // pol1
   myfitpol1->SetParLimits(1, 0.01, 0.02);
 
   gr->Fit("myfitpol1", "R0");
