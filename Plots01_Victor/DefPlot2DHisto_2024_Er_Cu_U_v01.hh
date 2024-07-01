@@ -61,10 +61,10 @@ vector<string> BackgroundDummyPredefined = {
 
 /// For GetSimul
 vector<string> NameSimulArray = {"Au_13_100", "Au_40_200", "Er167_13",
-                                 "118969"};
+                                 "Er166_13"};
 vector<string> NameSimulRootfile = {
     "DataPlot/Yield_Au_2_100", "DataPlot/Yield_Au_2_200",
-    "DataPlot/Yield_SAMMY_Er167_13mm", "DataPlot/Yield_SAMMY_Er166_13mm"};
+    "DataPlot/Yield_SAMMY_Er167_13mm", "DataPlot/Yield_TC_Er166_13mm_ENDF8"};
 
 vector<string> NameSimulRootfile2 = {"DataPlot/Yield_Au_2_100",
                                      "DataPlot/Yield_Au_2_200",
