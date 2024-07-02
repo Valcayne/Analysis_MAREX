@@ -1,6 +1,6 @@
 #!/bin/bash
 RunMin=118816
-RunMax=119000
+RunMax=119100
 
 
 outdir=/eos/home-v/valcayne/nTOFDataProcessing/2024_Er_Cu_U/2DHistos/v03

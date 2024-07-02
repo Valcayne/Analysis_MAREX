@@ -158,11 +158,7 @@ void plot2D(string NameHisto, std::vector<string> MeasurementType,
   hSimul2 = (TH1D*)h1[0]->Clone();
 
   if (CompareWithSimul) {
-    if (MeasurementTypeSize != 1) {
-      cout << " ########### Error in " << __FILE__ << ", line " << __LINE__
-           << " ###########" << endl;
-      exit(1);
-    } else if (NameHisto == "Edep" && PType[0] == 3) {
+    if (NameHisto == "Edep" && PType[0] == 3) {
       cout << "Start with GetSimulMC" << endl;
       hSimul = GetSimulMC(h1[0], detN[0], MeasurementType[0], NameSimulArray,
                           NameSimulRootfile, Activity_kBq, ResolNumberDetector,
@@ -173,7 +169,7 @@ void plot2D(string NameHisto, std::vector<string> MeasurementType,
       hSimul = GetSimul(h1[0], MeasurementType[0], NameSimulArray,
                         NameSimulRootfile, TypeOfPlot);
       hSimul2 = GetSimul(h1[0], MeasurementType[0], NameSimulArray,
-                         NameSimulRootfile2, TypeOfPlot);
+                         NameSimulRootfile, TypeOfPlot);
     }
     hSimul->SetLineColor(10009);
     hSimul2->SetLineColor(kOrange);
@@ -396,8 +392,8 @@ void plot2D(string NameHisto, std::vector<string> MeasurementType,
   if (CompareWithSimul) {
     hSimul->Draw("histo E same");
     legend->AddEntry(hSimul, "Eval", "l");
-    hSimul2->Draw("histo E same");
-    legend->AddEntry(hSimul2, "Eval_Contaminants", "l");
+    // hSimul2->Draw("histo E same");
+    // legend->AddEntry(hSimul2, "Eval_Contaminants", "l");
   }
   legend->SetTextSize(0.06);
   legend->SetBorderSize(0);

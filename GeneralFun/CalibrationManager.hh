@@ -32,6 +32,9 @@ using namespace std;
 
 Copiado de TACCalibrationManager
 2024_07 Updated by Victor to include calibration with 2 parabolas
+#  The energy calibration has 7 terms to use two parabolic curves a+bx+cxx and
+e+fx+gxx. The point of separation is "d". The order for the input is a b c d e f
+g. If d=0 only the second parabola is used.
 */
 
 struct CalibParams {
