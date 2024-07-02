@@ -573,7 +573,7 @@ void FitEnergy(string outfolder, int detn) {
   myfitpol3->SetLineStyle(2);
 
   Double_t par3[4];
-  myfitpol3->GetParameters(&par2[0]);
+  myfitpol3->GetParameters(&par3[0]);
   c1->Update();
   double p0pol12 = par3[0];
   double p1pol12 = par3[1];
