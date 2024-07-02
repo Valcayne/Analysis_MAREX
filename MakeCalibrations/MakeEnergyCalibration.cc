@@ -727,7 +727,7 @@ void FitEnergy(string outfolder, int detn) {
   CheckLinear->SetMarkerStyle(20);
   CheckLinear->SetMarkerColor(kBlack);
   CheckPol12->SetMarkerStyle(20);
-  CheckPol12->SetMarkerColor(10);
+  CheckPol12->SetMarkerColor(8);
   h3->GetYaxis()->SetRangeUser(0.9, 1.1);
   h3->Draw();
   l4->Draw();
@@ -739,6 +739,9 @@ void FitEnergy(string outfolder, int detn) {
   cout << "FisrtDegree" << endl << p0pol1 << "  " << p1pol1 << endl << endl;
   cout << "SecondDegree" << endl
        << p0pol2 << "  " << p1pol2 << " " << p2pol2 << endl;
+  cout << "Pol12" << endl
+       << p0pol12 << "  " << p1pol12 << " " << p2pol12 << " " << p3pol12
+       << endl;
 
   out << "FisrtDegree" << endl << p0pol1 << "  " << p1pol1 << endl << endl;
   out << "SecondDegree" << endl
