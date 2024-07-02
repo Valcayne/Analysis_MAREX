@@ -565,14 +565,14 @@ void FitEnergy(string outfolder, int detn) {
   cout << "Fitting pol3 " << endl;
 
   TF1* myfitpol3 = new TF1("myfitpol3", FunPol2andPol1, 0.1, 30000);  // pol2
-  myfitpol3->SetParLimits(0, 0.001, 0.03);
+  // myfitpol3->SetParLimits(0, 0.001, 0.03);
 
   gr->Fit("myfitpol2", "R0");
   myfitpol3->Draw("same");
   myfitpol3->SetLineColor(8);
   myfitpol3->SetLineStyle(2);
 
-  Double_t par3[3];
+  Double_t par3[4];
   myfitpol3->GetParameters(&par2[0]);
   c1->Update();
   double p0pol12 = par3[0];
