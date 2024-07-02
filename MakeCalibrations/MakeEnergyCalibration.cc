@@ -709,17 +709,19 @@ void FitEnergy(string outfolder, int detn) {
   legend1->SetFillColor(0);
   legend1->Draw();
 
+  TLine* l3 = new TLine(p3pol12, 0, p3pol12, 6);
+  h3->GetXaxis()->SetRangeUser(0, maximumAmp * 1.1);
+
+  l3->SetLineColor(8);
+  l3->SetLineWidth(2);
+  l3->Draw();
+
   pad2->cd();
   TH2D* h3 = new TH2D("", "", 1000, -10, 40000, 100, 0, 2);
   TGraph* CheckParabola = new TGraph(np, Amp, PointCheckParabola);
   TGraph* CheckLinear = new TGraph(np, Amp, PointCheckLinear);
   TGraph* CheckPol12 = new TGraph(np, Amp, PointCheckPol12);
 
-  TLine* l3 = new TLine(p3pol12, 0, p3pol12, 6);
-  h3->GetXaxis()->SetRangeUser(0, maximumAmp * 1.1);
-
-  l3->SetLineColor(8);
-  l3->SetLineWidth(2);
   legend1->AddEntry(l3, "Line to separate pols ", "l");
 
   TLine* l4 = new TLine(0, 1, maximumAmp * 1.1, 1);
