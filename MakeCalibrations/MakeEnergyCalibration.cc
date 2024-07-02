@@ -572,13 +572,13 @@ void FitEnergy(string outfolder, int detn) {
   myfitpol3->SetLineColor(8);
   myfitpol3->SetLineStyle(2);
 
-  Double_t par2[3];
+  Double_t par3[3];
   myfitpol3->GetParameters(&par2[0]);
   c1->Update();
-  double p0pol12 = par2[0];
-  double p1pol12 = par2[1];
-  double p2pol12 = par2[2];
-  double p3pol12 = par2[3];
+  double p0pol12 = par3[0];
+  double p1pol12 = par3[1];
+  double p2pol12 = par3[2];
+  double p3pol12 = par3[3];
 
   double x, y;
   gr->GetPoint(np - 1, x, y);
