@@ -790,9 +790,9 @@ void FitEnergy(string outfolder, int detn) {
 
   // outAllDet << detn << " 0 0 0 0  " << p0pol2 << "  " << p1pol2 << " " <<
   // p2pol2  << endl;
-  outAllDet << p0pol12 << "  " << p1pol12 << " " << p2pol12 << " " << p3pol12
-            << " " << -p2pol12 * p3pol12 * p3pol12 + p0pol12 << " "
-            << 2 * p2pol12 * p3pol12 + p1pol12 << "  0  " << endl;
+  outAllDet << detn << " " << p0pol12 << "  " << p1pol12 << " " << p2pol12
+            << " " << p3pol12 << " " << -p2pol12 * p3pol12 * p3pol12 + p0pol12
+            << " " << 2 * p2pol12 * p3pol12 + p1pol12 << "  0  " << endl;
   outAllDet.close();
 
   out.close();
