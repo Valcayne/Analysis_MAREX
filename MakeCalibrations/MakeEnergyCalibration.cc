@@ -590,10 +590,10 @@ void FitEnergy(string outfolder, int detn) {
 
   myfitpol3->GetParameters(&par3[0]);
   c1->Update();
-  double p0pol12 = par3[0];
-  double p1pol12 = par3[1];
-  double p2pol12 = par3[2];
-  double p3pol12 = par3[3];
+  p0pol12 = par3[0];
+  p1pol12 = par3[1];
+  p2pol12 = par3[2];
+  p3pol12 = par3[3];
 
   double x, y;
   gr->GetPoint(np - 1, x, y);
