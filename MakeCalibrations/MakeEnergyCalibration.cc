@@ -580,7 +580,7 @@ void FitEnergy(string outfolder, int detn) {
   double p3pol12 = par3[3];
   myfitpol3->SetParLimits(0, 0.000, 0.005);
   myfitpol3->SetParLimits(1, p1pol12 * 0.9999, p1pol12 * 1.0001);
-  myfitpol3->SetParLimits(2, p2pol12 * 0.1, p2pol12 * 1.9);
+  myfitpol3->SetParLimits(2, p2pol12 * 0.01, p2pol12 * 100);
 
   myfitpol3->SetParLimits(3, 3000, 10000);
 
