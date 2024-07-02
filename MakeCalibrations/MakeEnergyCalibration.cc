@@ -34,7 +34,7 @@ int main(int argc, char** argv) {
     int detn = atoi(argv[1]);
     string outfolder = argv[2];
     FitEnergy(outfolder, detn);
-    // FitRes(outfolder, detn);
+    FitRes(outfolder, detn);
 
   }
 
@@ -566,11 +566,11 @@ void FitEnergy(string outfolder, int detn) {
 
   TF1* myfitpol3 = new TF1("myfitpol3", FunPol2andPol1, 0.1, 3000, 4);  // pol3
   myfitpol3->SetParLimits(0, 0.000, 0.01);
-  // myfitpol3->SetParLimits(1, p1pol2 * 0.99, p1pol2 * 1.01);
-  //  myfitpol3->SetParLimits(2, 3000, 10000);
   myfitpol3->SetParLimits(3, 3000, 10000);
 
+  // First we adjusted only the low energy par
   gr->Fit("myfitpol3", "R0");
+
   Double_t par3[4];
   myfitpol3->GetParameters(&par3[0]);
   c1->Update();
@@ -583,8 +583,9 @@ void FitEnergy(string outfolder, int detn) {
   // myfitpol3->SetParLimits(2, p2pol12 * 0.01, p2pol12 * 100);
 
   myfitpol3->SetParLimits(3, 2000, 100000);
-
   myfitpol3->SetRange(0.1, 30000);
+  // Second we adjusted all the range with some limits from the previous fit
+
   gr->Fit("myfitpol3", "R0");
 
   myfitpol3->Draw("same");
@@ -766,23 +767,32 @@ void FitEnergy(string outfolder, int detn) {
   CheckLinear->Draw("P same");
   CheckPol12->Draw("P same");
 
-  cout << "FisrtDegree" << endl << p0pol1 << "  " << p1pol1 << endl << endl;
+  cout << "FisrtDegree" << endl << p0pol1 << "  " << p1pol1 << endl;
+  cout << " 0 0 0 0   " << p0pol1 << "  " << p1pol1 << " 0  " << endl << endl;
+
   cout << "SecondDegree" << endl
        << p0pol2 << "  " << p1pol2 << " " << p2pol2 << endl;
+  cout << " 0 0 0 0  " << p0pol2 << "  " << p1pol2 << " " << p2pol2 << endl
+       << endl;
+
   cout << "Pol12" << endl
        << p0pol12 << "  " << p1pol12 << " " << p2pol12 << " " << p3pol12
        << endl;
-
-  out << "FisrtDegree" << endl << p0pol1 << "  " << p1pol1 << endl << endl;
-  out << "SecondDegree" << endl
-      << p0pol2 << "  " << p1pol2 << " " << p2pol2 << endl;
+  cout << p0pol12 << "  " << p1pol12 << " " << p2pol12 << " " << p3pol12 << " "
+       << -p2pol12 * p3pol12 * p3pol12 + p0pol12 << " "
+       << 2 * p2pol12 * p3pol12 + p1pol12 << "  0  " << endl
+       << endl;
 
   string OutNameDetRoot = outfolder + "/EnergyFitDet" + to_string(detn);
   SaveRootEpsPngTxtFunction(c1, OutNameDetRoot.c_str());
 
   ofstream outAllDet(OutName, ios::out | ios::app | ios::binary);
 
-  outAllDet << detn << " " << p0pol2 << "  " << p1pol2 << " " << p2pol2 << endl;
+  // outAllDet << detn << " 0 0 0 0  " << p0pol2 << "  " << p1pol2 << " " <<
+  // p2pol2  << endl;
+  outAllDet << p0pol12 << "  " << p1pol12 << " " << p2pol12 << " " << p3pol12
+            << " " << -p2pol12 * p3pol12 * p3pol12 + p0pol12 << " "
+            << 2 * p2pol12 * p3pol12 + p1pol12 << "  0  " << endl;
   outAllDet.close();
 
   out.close();
