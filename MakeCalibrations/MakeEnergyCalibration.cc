@@ -564,21 +564,30 @@ void FitEnergy(string outfolder, int detn) {
 
   cout << "Fitting pol3 " << endl;
 
-  TF1* myfitpol3 = new TF1("myfitpol3", FunPol2andPol1, 0.1, 30000, 4);  // pol3
+  TF1* myfitpol3 = new TF1("myfitpol3", FunPol2andPol1, 0.1, 3000, 4);  // pol3
   myfitpol3->SetParLimits(0, 0.001, 0.01);
-  myfitpol3->SetParLimits(1, p1pol2 * 0.99, p1pol2 * 1.01);
-  // myfitpol3->SetParLimits(2, 3000, 10000);
+  // myfitpol3->SetParLimits(1, p1pol2 * 0.99, p1pol2 * 1.01);
+  //  myfitpol3->SetParLimits(2, 3000, 10000);
   myfitpol3->SetParLimits(3, 2000, 10000);
 
   gr->Fit("myfitpol3", "R0");
+  myfitpol3->SetParLimits(1, p1pol2 * 0.99, p1pol2 * 1.01);
+  Double_t par3[4];
+  myfitpol3->GetParameters(&par3[0]);
+  c1->Update();
+  double p0pol12 = par3[0];
+  double p1pol12 = par3[1];
+  double p2pol12 = par3[2];
+  double p3pol12 = par3[3];
+  myfitpol3->SetParLimits(1, p1pol12 * 0.99, p1pol12 * 1.01);
 
+  myfitpol3->SetRange(0.1, 30000);
   gr->Fit("myfitpol3", "R0");
 
   myfitpol3->Draw("same");
   myfitpol3->SetLineColor(8);
   myfitpol3->SetLineStyle(2);
 
-  Double_t par3[4];
   myfitpol3->GetParameters(&par3[0]);
   c1->Update();
   double p0pol12 = par3[0];
