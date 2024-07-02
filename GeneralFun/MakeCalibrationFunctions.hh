@@ -131,28 +131,14 @@ bool FileExists(string filename) {
 
 double FunPol2andPol1(double* x,
                       double* par) {  //
-  // cout<<" x[0]"<< x[0]<<" par[3] "<<par[3]<<endl;
   if (x[0] < par[3]) {
-    //  cout<<"x[0]<par[3] because (x[0]"<< x[0]<<endl;
-
     return par[2] * x[0] * x[0] + par[1] * x[0] + par[0];
   }
   if (x[0] >= par[3]) {
-    //  return par[2]*x[0]*x[0]+par[1]*x[0]+par[0];
-
     return (2 * par[2] * par[3] + par[1]) * x[0] - par[2] * par[3] * par[3] +
            par[0];
   }
-  cout << "ERROOR" << endl
-       << endl
-       << endl
-       << endl
-       << endl
-       << endl
-       << endl
-       << endl
-       << endl
-       << endl;
+  cout << "ERROOR";
   return -100000;
 }
 
