@@ -571,6 +571,9 @@ void FitEnergy(string outfolder, int detn) {
   myfitpol3->SetParLimits(3, 2000, 10000);
 
   gr->Fit("myfitpol3", "R0");
+
+  gr->Fit("myfitpol3", "R0");
+
   myfitpol3->Draw("same");
   myfitpol3->SetLineColor(8);
   myfitpol3->SetLineStyle(2);
