@@ -548,7 +548,7 @@ void FitEnergy(string outfolder, int detn) {
 
   TF1* myfitpol2 =
       new TF1("myfitpol2", "[0] + [1]*x + [2]*x*x", 0.1, 30000);  // pol2
-  myfitpol2->SetParLimits(0, 0.001, 0.01);
+  // myfitpol2->SetParLimits(0, 0.001, 0.01);
 
   gr->Fit("myfitpol2", "R0");
   myfitpol2->Draw("same");
