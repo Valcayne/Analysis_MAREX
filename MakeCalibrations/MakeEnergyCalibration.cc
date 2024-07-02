@@ -710,7 +710,6 @@ void FitEnergy(string outfolder, int detn) {
   legend1->Draw();
 
   TLine* l3 = new TLine(p3pol12, 0, p3pol12, 6);
-  h3->GetXaxis()->SetRangeUser(0, maximumAmp * 1.1);
 
   l3->SetLineColor(8);
   l3->SetLineWidth(2);
