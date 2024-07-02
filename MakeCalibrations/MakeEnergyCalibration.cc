@@ -722,7 +722,7 @@ void FitEnergy(string outfolder, int detn) {
 
   TLine* l2 = new TLine(p3pol12, 0.9, p3pol12, 1.1);
 
-  l2->SetLineColor(kBlack);
+  l2->SetLineColor(8);
   l2->SetLineWidth(2);
 
   TLine* l3 = new TLine(0, 1, maximumAmp * 1.1, 1);
