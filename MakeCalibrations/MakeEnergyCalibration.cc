@@ -720,7 +720,6 @@ void FitEnergy(string outfolder, int detn) {
   TGraph* CheckLinear = new TGraph(np, Amp, PointCheckLinear);
   TGraph* CheckPol12 = new TGraph(np, Amp, PointCheckPol12);
 
-  TLine* l2 = new TLine(0, 1, maximumAmp * 1.1, 1);
   TLine* l2 = new TLine(p3pol12, 0.9, p3pol12, 1.1);
 
   l2->SetLineColor(kBlack);
