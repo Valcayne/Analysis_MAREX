@@ -567,7 +567,7 @@ void FitEnergy(string outfolder, int detn) {
   TF1* myfitpol3 = new TF1("myfitpol3", FunPol2andPol1, 0.1, 30000);  // pol2
   // myfitpol3->SetParLimits(0, 0.001, 0.03);
 
-  gr->Fit("myfitpol2", "R0");
+  gr->Fit("myfitpol3", "R0");
   myfitpol3->Draw("same");
   myfitpol3->SetLineColor(8);
   myfitpol3->SetLineStyle(2);
