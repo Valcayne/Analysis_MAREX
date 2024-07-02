@@ -593,33 +593,43 @@ void FitEnergy(string outfolder, int detn) {
 
   /// Calculation R2 from Wikipedia
   /// https://en.wikipedia.org/wiki/Coefficient_of_determination
-  double SSresLin = 0;
-  double SStotLin = 0;
+  double SStot = 0;
 
+  double SSresLin = 0;
   double SSresPol = 0;
+  double SSresPol12 = 0;
 
   for (int j = 0; j < np; j++) {
+    SStot += (E[j] - Average) * (E[j] - Average);
+
     SSresLin +=
         (p0pol1 + Amp[j] * p1pol1 - E[j]) * (p0pol1 + Amp[j] * p1pol1 - E[j]);
-    SStotLin += (E[j] - Average) * (E[j] - Average);
 
     SSresPol += (p0pol2 + Amp[j] * p1pol2 + Amp[j] * Amp[j] * p2pol2 - E[j]) *
                 (p0pol2 + Amp[j] * p1pol2 + Amp[j] * Amp[j] * p2pol2 - E[j]);
+    SSresPol12 +=
+        (myfitpol3->Eval(Amp[j]) - E[j]) * (myfitpol3->Eval(Amp[j]) - E[j]);
   }
 
-  double R2Lin = 1 - SSresLin / SStotLin;
-  double R2Pol = 1 - SSresPol / SStotLin;
-  cout << "SSresLin= " << SSresLin << " SStotLin= " << SStotLin << " R2Lin "
+  double R2Lin = 1 - SSresLin / SStot;
+  double R2Pol = 1 - SSresPol / SStot;
+  double R2Pol12 = 1 - SSresPol12 / SStot;
+
+  cout << "SSresLin= " << SSresLin << " SStotLin= " << SStot << " R2Lin "
        << R2Lin << endl;
-  cout << "SSresPol= " << SSresLin << " SStotLin= " << SStotLin << " R2Pol "
+  cout << "SSresPol= " << SSresPol << " SStotLin= " << SStot << " R2Pol "
        << R2Pol << endl;
-  double PointCheckLinear[100], PointCheckParabola[100];
+  cout << "SSresPol12= " << SSresPol12 << " SStotLin= " << SStot << " R2Pol "
+       << R2Pol12 << endl;
+
+  double PointCheckLinear[100], PointCheckParabola[100], PointCheckPol12[100];
 
   /// Checking Results
   for (int j = 0; j < np; j++) {
     PointCheckLinear[j] = (p0pol1 + Amp[j] * p1pol1) / E[j];
     PointCheckParabola[j] =
         (p0pol2 + Amp[j] * p1pol2 + Amp[j] * Amp[j] * p2pol2) / E[j];
+    PointCheckPol12[j] = myfitpol3->Eval(Amp[j]) / E[j];
     cout << "TEST " << j << " " << E[j] << " "
          << (p0pol1 + Amp[j] * p1pol1) / E[j] << endl;
 
@@ -632,6 +642,10 @@ void FitEnergy(string outfolder, int detn) {
          << 100 * (p0pol2 + Amp[j] * p1pol2 + Amp[j] * Amp[j] * p2pol2 - E[j]) /
                 E[j]
          << endl;
+
+    cout << "Pol12 energy Real E " << E[j] << " using "
+         << myfitpol3->Eval(Amp[j]) << " Diferance % "
+         << 100 * (myfitpol3->Eval(Amp[j]) - E[j]) / E[j] << endl;
     cout << endl << endl;
 
     out << "Pol1 energy Real E " << E[j] << " using "
@@ -643,6 +657,10 @@ void FitEnergy(string outfolder, int detn) {
         << 100 * (p0pol2 + Amp[j] * p1pol2 + Amp[j] * Amp[j] * p2pol2 - E[j]) /
                E[j]
         << endl;
+    out << "Pol12 energy Real E " << E[j] << " using "
+        << myfitpol3->Eval(Amp[j]) << " Diferance % "
+        << 100 * (myfitpol3->Eval(Amp[j]) - E[j]) / E[j] << endl;
+    cout << endl << endl;
     out << endl << endl;
   }
 
@@ -669,6 +687,8 @@ void FitEnergy(string outfolder, int detn) {
   legend1->AddEntry(gr, "Exp points", "p");
   legend1->AddEntry(myfitpol1, "Pol 1st degree", "l");
   legend1->AddEntry(myfitpol2, "Pol 2nd degree", "l");
+  legend1->AddEntry(myfitpol3, "Pol 2nd+1st degree", "l");
+
   legend1->SetBorderSize(1);
 
   legend1->SetFillColor(0);
@@ -678,6 +698,8 @@ void FitEnergy(string outfolder, int detn) {
   TH2D* h3 = new TH2D("", "", 1000, -10, 40000, 100, 0, 2);
   TGraph* CheckParabola = new TGraph(np, Amp, PointCheckParabola);
   TGraph* CheckLinear = new TGraph(np, Amp, PointCheckLinear);
+  TGraph* CheckPol12 = new TGraph(np, Amp, PointCheckPol12);
+
   TLine* l4 = new TLine(0, 1, maximumAmp * 1.1, 1);
   h3->GetXaxis()->SetRangeUser(0, maximumAmp * 1.1);
 
@@ -704,12 +726,15 @@ void FitEnergy(string outfolder, int detn) {
   CheckParabola->SetMarkerColor(kRed);
   CheckLinear->SetMarkerStyle(20);
   CheckLinear->SetMarkerColor(kBlack);
+  CheckPol12->SetMarkerStyle(20);
+  CheckPol12->SetMarkerColor(10);
   h3->GetYaxis()->SetRangeUser(0.9, 1.1);
   h3->Draw();
   l4->Draw();
 
   CheckParabola->Draw("P same");
   CheckLinear->Draw("P same");
+  CheckPol12->Draw("P same");
 
   cout << "FisrtDegree" << endl << p0pol1 << "  " << p1pol1 << endl << endl;
   cout << "SecondDegree" << endl
