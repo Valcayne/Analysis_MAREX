@@ -32,8 +32,8 @@ int GetEnIntEmaxEmin(int RunNumber,int EnInt,double &Emin,double& Emax,string Fn
 int GetEnIntEmaxEmin(string RunType,int EnInt,double &Emin,double& Emax,string FnameBase="Monitoring01");
 int GetEnTOFCuts(const char* fnamebase,double& Emin,double& Emax);
 TH1D* MakeRatio(TH1D* h1,TH1D* h2,int Opt);
-double TakeBestShiftFactor(TH1D* h1,TH1D* h2,double Xmin,double Xmax,double ShiftMin,double ShiftMax,int NSteps,bool NORM=true);
-double TakeBestShiftFactor(TH1D* h1,TH1D* h2,double Xmin,double Xmax,TH1D* hComp,bool NORM=true);
+double TakeBestShiftFactor(TH1D* h1,TH1D* h2,double Xmin,double Xmax,double ShiftMin,double ShiftMax,int NSteps,bool NORM=true,int HalfNPToFitParabolic=25);
+double TakeBestShiftFactor(TH1D* h1,TH1D* h2,double Xmin,double Xmax,TH1D* hComp,bool NORM=true,int HalfNPToFitParabolic=25);
 double GetChi2(TH1D* h1,TH1D* h2,double Xmin,double Xmax,bool NORM=true);
 //====================================================================================
 
@@ -64,17 +64,17 @@ double GetChi2(TH1D* h1,TH1D* h2,double Xmin,double Xmax,bool NORM){
 }
 
 //Returns the best shift-factor so that h2 transformed with shift-factor mathches h1 between Xmin and Xmax
-double TakeBestShiftFactor(TH1D* h1,TH1D* h2,double Xmin,double Xmax,double ShiftMin,double ShiftMax,int NSteps,bool NORM){
+double TakeBestShiftFactor(TH1D* h1,TH1D* h2,double Xmin,double Xmax,double ShiftMin,double ShiftMax,int NSteps,bool NORM,int HalfNPToFitParabolic){
 
   TH1D* hComp=new TH1D("hComp","hComp",NSteps,ShiftMin,ShiftMax);
-  double ShifFactor=TakeBestShiftFactor(h1,h2,Xmin,Xmax,hComp,NORM);
+  double ShifFactor=TakeBestShiftFactor(h1,h2,Xmin,Xmax,hComp,NORM,HalfNPToFitParabolic);
   delete hComp;
   return ShifFactor;
   
 }
 
 //Returns the best shift-factor so that h2 transformed with shift-factor mathches h1 between Xmin and Xmax
-double TakeBestShiftFactor(TH1D* h1,TH1D* h2,double Xmin,double Xmax,TH1D* hComp,bool NORM){
+double TakeBestShiftFactor(TH1D* h1,TH1D* h2,double Xmin,double Xmax,TH1D* hComp,bool NORM,int HalfNPToFitParabolic){
 
 
   int NSteps=hComp->GetNbinsX();
@@ -97,8 +97,9 @@ double TakeBestShiftFactor(TH1D* h1,TH1D* h2,double Xmin,double Xmax,TH1D* hComp
   //option 1 (just take the min. val):
   //double result=hComp->GetBinCenter(minbin);
   //option 2 (parabolic fit):
-  int fitstart=minbin-5;if(fitstart<1){fitstart=1;}
-  int fitend=minbin+5;if(fitend>NSteps){fitend=NSteps;}
+  //int HalfNPToFitParabolic=25;
+  int fitstart=minbin-HalfNPToFitParabolic;if(fitstart<1){fitstart=1;}
+  int fitend=minbin+HalfNPToFitParabolic;if(fitend>NSteps){fitend=NSteps;}
   int fitnp=fitend-fitstart+1;
   double* data_x=new double[fitnp];
   double* data_y=new double[fitnp];
