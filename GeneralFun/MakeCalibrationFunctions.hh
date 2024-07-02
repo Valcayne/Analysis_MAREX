@@ -120,5 +120,40 @@ bool FileExists(string filename) {
   return FileExist;
 }
 //=======================================================================
+// Es una funcion compuesta de una parabola y una recta. La función es continua
+// y derivable. Así que la recta queda fijada con estas condiciones
+// c=par[0],b=par[1],a=par[2],z=par[3];
+// Parabola =a*x*x+b*x+c
+// Recta   dx+e=x(2az+b)-azz+c
+// z es el punto donde cambian las rectas
+// d=(2az+b)=2 * par[2] * par[3] + par[1]
+// e=-azz+c= - par[2] * par[3] * par[3] + par[0]
+
+double FunPol2andPol1(double* x,
+                      double* par) {  //
+  // cout<<" x[0]"<< x[0]<<" par[3] "<<par[3]<<endl;
+  if (x[0] < par[3]) {
+    //  cout<<"x[0]<par[3] because (x[0]"<< x[0]<<endl;
+
+    return par[2] * x[0] * x[0] + par[1] * x[0] + par[0];
+  }
+  if (x[0] >= par[3]) {
+    //  return par[2]*x[0]*x[0]+par[1]*x[0]+par[0];
+
+    return (2 * par[2] * par[3] + par[1]) * x[0] - par[2] * par[3] * par[3] +
+           par[0];
+  }
+  cout << "ERROOR" << endl
+       << endl
+       << endl
+       << endl
+       << endl
+       << endl
+       << endl
+       << endl
+       << endl
+       << endl;
+  return -100000;
+}
 
 #endif
