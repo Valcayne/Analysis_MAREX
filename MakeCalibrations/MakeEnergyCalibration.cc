@@ -571,7 +571,7 @@ void FitEnergy(string outfolder, int detn) {
   myfitpol3->SetParLimits(3, 2000, 10000);
 
   gr->Fit("myfitpol3", "R0");
-  myfitpol3->SetParLimits(1, p1pol2 * 0.99, p1pol2 * 1.01);
+  // myfitpol3->SetParLimits(1, p1pol2 * 0.99, p1pol2 * 1.01);
   Double_t par3[4];
   myfitpol3->GetParameters(&par3[0]);
   c1->Update();
