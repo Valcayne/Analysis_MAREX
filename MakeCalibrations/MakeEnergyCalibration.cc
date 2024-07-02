@@ -720,7 +720,7 @@ void FitEnergy(string outfolder, int detn) {
 
   l3->SetLineColor(8);
   l3->SetLineWidth(2);
-  legend1->AddEntry(l3, "Line to separate pols", "l");
+  legend1->AddEntry(l3, "Line to separate pols ", "l");
 
   TLine* l4 = new TLine(0, 1, maximumAmp * 1.1, 1);
   h3->GetXaxis()->SetRangeUser(0, maximumAmp * 1.1);
