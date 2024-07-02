@@ -731,7 +731,7 @@ void FitEnergy(string outfolder, int detn) {
   CheckLinear->SetMarkerColor(kBlack);
   CheckPol12->SetMarkerStyle(20);
   CheckPol12->SetMarkerColor(8);
-  h3->GetYaxis()->SetRangeUser(0.9, 1.1);
+  h3->GetYaxis()->SetRangeUser(0.7, 1.3);
   h3->Draw();
   l4->Draw();
 
