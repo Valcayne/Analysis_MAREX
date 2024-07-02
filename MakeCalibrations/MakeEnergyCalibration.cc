@@ -715,6 +715,13 @@ void FitEnergy(string outfolder, int detn) {
   TGraph* CheckLinear = new TGraph(np, Amp, PointCheckLinear);
   TGraph* CheckPol12 = new TGraph(np, Amp, PointCheckPol12);
 
+  TLine* l3 = new TLine(p3pol12, 0, p3pol12, 6);
+  h3->GetXaxis()->SetRangeUser(0, maximumAmp * 1.1);
+
+  l3->SetLineColor(8);
+  l3->SetLineWidth(2);
+  legend1->AddEntry(l3, "Line to separate pols", "l");
+
   TLine* l4 = new TLine(0, 1, maximumAmp * 1.1, 1);
   h3->GetXaxis()->SetRangeUser(0, maximumAmp * 1.1);
 
