@@ -34,7 +34,7 @@ int main(int argc, char** argv) {
     int detn = atoi(argv[1]);
     string outfolder = argv[2];
     FitEnergy(outfolder, detn);
-    FitRes(outfolder, detn);
+    // FitRes(outfolder, detn);
 
   }
 
