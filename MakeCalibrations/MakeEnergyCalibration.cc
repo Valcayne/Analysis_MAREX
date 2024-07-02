@@ -697,23 +697,22 @@ void FitEnergy(string outfolder, int detn) {
 
   h2->GetXaxis()->SetRangeUser(0, maximumAmp * 1.1);
   h2->GetYaxis()->SetRangeUser(0, 6);
+  TLine* l1 = new TLine(p3pol12, 0, p3pol12, 6);
 
+  l1->SetLineColor(8);
+  l1->SetLineWidth(2);
+  l1->Draw();
   TLegend* legend1 = new TLegend(0.15, 0.6, 0.6, 0.85, "");  // tamaño
   legend1->AddEntry(gr, "Exp points", "p");
   legend1->AddEntry(myfitpol1, "Pol 1st degree", "l");
   legend1->AddEntry(myfitpol2, "Pol 2nd degree", "l");
   legend1->AddEntry(myfitpol3, "Pol 2nd+1st degree", "l");
+  legend1->AddEntry(l1, "Line to separate pols ", "l");
 
   legend1->SetBorderSize(1);
 
   legend1->SetFillColor(0);
   legend1->Draw();
-
-  TLine* l3 = new TLine(p3pol12, 0, p3pol12, 6);
-
-  l3->SetLineColor(8);
-  l3->SetLineWidth(2);
-  l3->Draw();
 
   pad2->cd();
   TH2D* h3 = new TH2D("", "", 1000, -10, 40000, 100, 0, 2);
@@ -721,13 +720,18 @@ void FitEnergy(string outfolder, int detn) {
   TGraph* CheckLinear = new TGraph(np, Amp, PointCheckLinear);
   TGraph* CheckPol12 = new TGraph(np, Amp, PointCheckPol12);
 
-  legend1->AddEntry(l3, "Line to separate pols ", "l");
+  TLine* l2 = new TLine(0, 1, maximumAmp * 1.1, 1);
+  TLine* l2 = new TLine(p3pol12, 0.9, p3pol12, 1.1);
 
-  TLine* l4 = new TLine(0, 1, maximumAmp * 1.1, 1);
+  l2->SetLineColor(kBlack);
+  l2->SetLineWidth(2);
+
+  TLine* l3 = new TLine(0, 1, maximumAmp * 1.1, 1);
+
+  l3->SetLineColor(kBlack);
+  l3->SetLineWidth(2);
+
   h3->GetXaxis()->SetRangeUser(0, maximumAmp * 1.1);
-
-  l4->SetLineColor(kBlack);
-  l4->SetLineWidth(2);
 
   h3->SetMarkerStyle(20);
   h3->SetMarkerColor(2);
@@ -751,9 +755,10 @@ void FitEnergy(string outfolder, int detn) {
   CheckLinear->SetMarkerColor(kBlack);
   CheckPol12->SetMarkerStyle(20);
   CheckPol12->SetMarkerColor(8);
-  h3->GetYaxis()->SetRangeUser(0.7, 1.3);
+  h3->GetYaxis()->SetRangeUser(0.9, 1.1);
   h3->Draw();
-  l4->Draw();
+  l2->Draw();
+  l3->Draw();
 
   CheckParabola->Draw("P same");
   CheckLinear->Draw("P same");
