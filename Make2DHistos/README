@@ -1,22 +1,21 @@
+#!/bin/bash
 
-Junio de 2024
 
-Make2DHistos 118828
-Make2DHistos 118831
-Make2DHistos 118852
-Make2DHistos 118853
-Make2DHistos 118854
 
-Para lanzar en condor:
-condor_submit inputs_condor/ejecutar01.sh
 
-Para hacer Merge:
+Hay dos formas de correr los programas DoMany
 
-Merge2DHisto Y88-Si-01
-Merge2DHisto Cs137-Si-01
-Merge2DHisto Empty-Si
+Forma uno primero correr
+DoManyMake2DHisto
 
-Merge2DHisto Y88-01
-Merge2DHisto Cs137-01
-Merge2DHisto Empty01_NoBeam
-Merge2DHisto Empty01
+../GainMonitoring/GainMonitoring01 AllBeamRuns 118885 inputs/GainMon01/inp01.inp
+
+
+
+../GainMonitoring/CreateCalibFiles01 /eos/home-v/valcayne/nTOFDataProcessing/2024_Er_Cu_U/Calibration/CalibrationRunByRunGainCorrected/ /eos/home-v/valcayne/nTOFDataProcessing/2024_Er_Cu_U/Calibration/CalibrationRunByRunGainCorrected// /eos/home-v/valcayne/nTOFDataProcessing/2024_Er_Cu_U/GainMonitoring/v03 SILI 1 AllBeamRuns 118885 
+../GainMonitoring/CreateCalibFiles01 /eos/home-v/valcayne/nTOFDataProcessing/2024_Er_Cu_U/Calibration/CalibrationRunByRunGainCorrected/ /eos/home-v/valcayne/nTOFDataProcessing/2024_Er_Cu_U/Calibration/CalibrationRunByRunGainCorrected// /eos/home-v/valcayne/nTOFDataProcessing/2024_Er_Cu_U/GainMonitoring/v03 SILI 2 AllBeamRuns 118885 
+../GainMonitoring/CreateCalibFiles01 /eos/home-v/valcayne/nTOFDataProcessing/2024_Er_Cu_U/Calibration/CalibrationRunByRunGainCorrected/ /eos/home-v/valcayne/nTOFDataProcessing/2024_Er_Cu_U/Calibration/CalibrationRunByRunGainCorrected// /eos/home-v/valcayne/nTOFDataProcessing/2024_Er_Cu_U/GainMonitoring/v03 SILI 3 AllBeamRuns 118885 
+../GainMonitoring/CreateCalibFiles01 /eos/home-v/valcayne/nTOFDataProcessing/2024_Er_Cu_U/Calibration/CalibrationRunByRunGainCorrected/ /eos/home-v/valcayne/nTOFDataProcessing/2024_Er_Cu_U/Calibration/CalibrationRunByRunGainCorrected// /eos/home-v/valcayne/nTOFDataProcessing/2024_Er_Cu_U/GainMonitoring/v03 SILI 4 AllBeamRuns 118885 
+../GainMonitoring/CreateCalibFiles01 /eos/home-v/valcayne/nTOFDataProcessing/2024_Er_Cu_U/Calibration/CalibrationRunByRunGainCorrected/ /eos/home-v/valcayne/nTOFDataProcessing/2024_Er_Cu_U/Calibration/CalibrationRunByRunGainCorrected// /eos/home-v/valcayne/nTOFDataProcessing/2024_Er_Cu_U/GainMonitoring/v03 FIMG 1 AllBeamRuns 118885 
+../GainMonitoring/CreateCalibFiles01 /eos/home-v/valcayne/nTOFDataProcessing/2024_Er_Cu_U/Calibration/CalibrationRunByRunGainCorrected/ /eos/home-v/valcayne/nTOFDataProcessing/2024_Er_Cu_U/Calibration/CalibrationRunByRunGainCorrected// /eos/home-v/valcayne/nTOFDataProcessing/2024_Er_Cu_U/GainMonitoring/v03 FIMG 2 AllBeamRuns 118885 
+../GainMonitoring/CreateCalibFiles01 /eos/home-v/valcayne/nTOFDataProcessing/2024_Er_Cu_U/Calibration/CalibrationRunByRunGainCorrected/ /eos/home-v/valcayne/nTOFDataProcessing/2024_Er_Cu_U/Calibration/CalibrationRunByRunGainCorrected// /eos/home-v/valcayne/nTOFDataProcessing/2024_Er_Cu_U/GainMonitoring/v03 LIGL 1 AllBeamRuns 118885 

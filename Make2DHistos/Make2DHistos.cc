@@ -26,7 +26,7 @@ int main(int argc, char** argv) {
 
   char CalibDirName[200] =
       "/eos/home-v/valcayne/nTOFDataProcessing/2024_Er_Cu_U/Calibration/"
-      "CalibrationRunByRun";
+      "CalibrationRunByRunGainCorrected";
   //==================================================================================
 
   HistoInfo* HistoInfoC6D6 = new HistoInfo();
