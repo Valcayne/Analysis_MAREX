@@ -68,7 +68,10 @@ vector<string> NameSimulRootfile = {"DataPlot/Yield_Au_2_100",
 vector<string> NameSimulRootfile2 = {"DataPlot/Yield_Au_2_100",
                                      "DataPlot/Yield_Au_2_200",
                                      "DataPlot/Yield_TC_Er167_13mm_ENDF8_BKG"};
-
+vector<string> NameSimulArrayEdep = {"Cs_1"};
+vector<string> NameSimulRootfileEdep = {
+    "/media/victor93/Elements/Valcayne/ExperimentData_Outputs/2024_Er_Cu_U/"
+    "Simulations/v01/2024_Er_Cu_U_v01_Cs_1e7.root"};
 vector<double> Activity_kBq = {274, 274};
 
 vector<int> ResolNumberDetector = {1, 2, 3};
@@ -103,8 +106,8 @@ double MinYForCompare = 6e3;
 
 // For calculating gain shifts
 
-int NumberIterations = 200;
-double MinShift = 0.9;
-double MaxShift = 1.1;
+int NumberIterations = 400;
+double MinShift = 0.8;
+double MaxShift = 1.2;
 
 #endif

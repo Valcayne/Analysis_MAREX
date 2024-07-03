@@ -1,15 +1,15 @@
 
 #include "../GeneralFun/PlotFunctions_Victor.hh"
-// #include "FIMG_DefPlot2DHisto_2024_Er_Cu_U_v01.hh"
-#include "DefPlot2DHisto_2024_Er_Cu_U_v01.hh"
-// #include "LIGL_DefPlot2DHisto_2024_Er_Cu_U_v01.hh"
+#include "FIMG_DefPlot2DHisto_2024_Er_Cu_U_v01.hh"
+// #include "DefPlot2DHisto_2024_Er_Cu_U_v01.hh"
+//   #include "LIGL_DefPlot2DHisto_2024_Er_Cu_U_v01.hh"
 
 void plot2D(string NameHisto, std::vector<string> MeasurementType,
             std::vector<int> detN, std::vector<double> EnOrEdepMin,
             std::vector<double> EnOrEdepMax, std::vector<int> PType,
             string TypeOfPlot, int rebin, bool UseBackgroundSubtracted = false,
             bool IfNormalize = false, bool CompareWithSimul = false,
-            bool CalculateRatio = false);
+            bool CalculateRatio = false, string IfSaveName = "-1");
 
 void Plot2DHisto() {
   // plot01("Edep", {"Au_YDetO"}, {1}, {50, 6, 1, 0.03}, {200, 50, 6, 1}, {1},
@@ -25,7 +25,8 @@ void plot2D(string NameHisto, std::vector<string> MeasurementType,
             std::vector<int> detN, std::vector<double> EnOrEdepMin,
             std::vector<double> EnOrEdepMax, std::vector<int> PType,
             string TypeOfPlot, int rebin, bool UseBackgroundSubtracted,
-            bool IfNormalize, bool CompareWithSimul, bool CalculateRatio) {
+            bool IfNormalize, bool CompareWithSimul, bool CalculateRatio,
+            string IfSaveName) {
   // -------------------------------------------------
 
   int MeasurementTypeSize = MeasurementType.size();
@@ -308,7 +309,7 @@ void plot2D(string NameHisto, std::vector<string> MeasurementType,
             NumberIterations, MinShift, MaxShift);
         shiftArray[i] = shift;
         TitleLegend[i] =
-            TitleLegend[i] + " Sh=" + doubleToDecimalString(shiftArray[i], 3);
+            TitleLegend[i] + " G=" + doubleToDecimalString(shiftArray[i], 3);
         cout << TitleLegend[i] << " Shift= " << shiftArray[i] << endl;
       }
     }
@@ -453,22 +454,27 @@ void plot2D(string NameHisto, std::vector<string> MeasurementType,
 
     // h1Ratio[0]->GetYaxis()->SetRangeUser(-2.01, 2.01);
   }
-
-  SaveRootEpsPngTxtFunction(c1, SaveName.c_str());
+  if (IfSaveName == "-1") {
+    SaveRootEpsPngTxtFunction(c1, SaveName.c_str());
+  } else {
+    SaveRootEpsPngTxtFunction(c1, IfSaveName.c_str());
+  }
 }
 
 void plot2DVariousCompareWithOneRun() {
   int rebin = 1;
-  int detN = 2;
-  for (int i = 118881; i <= 118920; i++) {
-    //  for (int i = 118866; i <= 118920; i++) {
 
+  string NameSave;
+  string PreNameSave = "ResultsPlot/ChangeGainMGAS/ChangeGainMGAS_1_";
+  // for (int i = 118849; i <= 119000; i++) {
+  for (int i = 118866; i <= 119010; i++) {
+    NameSave = PreNameSave + to_string(i);
     vector<string> RunString;
-    RunString.push_back(to_string(118881));
+    RunString.push_back(to_string(118849));
 
     RunString.push_back(to_string(i));
-    plot2D("Edep", RunString, {1}, {0.01}, {100}, {1}, "CP", rebin, false,
-           true);
+    plot2D("Edep", RunString, {1}, {0.01}, {100}, {1}, "CP", rebin, false, true,
+           false, false, NameSave);
   }
 }
 
@@ -482,4 +488,93 @@ void plot2DVariousCompareWithRunType() {
     plot2D("En", RunString, {0}, {0.12}, {10}, {1}, "CP", rebin, false, false,
            false, true);
   }
+}
+void plot2DChangeGainWithSources() {
+  ForPlotEminEdep = 0.1;
+  ForPlotEmaxEdep = 2.5;
+  NormalizeMinEdep = 0.5;
+  NormalizeMaxEdep = 2.5;
+  plot2D("Edep", {"Y", "Y_1", "Y_2", "Y_3"}, {1}, {0.01}, {1e6}, {3}, "CR", 10,
+         false, true, false, false,
+         "ResultsPlot/ChangeGainWithSources/ChangeGainWithSources_Det1_Y");
+  ForPlotEminEdep = 0.1;
+  ForPlotEmaxEdep = 1;
+  NormalizeMinEdep = 0.3;
+  NormalizeMaxEdep = 0.7;
+  plot2D("Edep", {"Cs", "Cs_1", "Cs_2", "Cs_3"}, {1}, {0.01}, {1e6}, {3}, "CR",
+         4, false, true, false, false,
+         "ResultsPlot/ChangeGainWithSources/ChangeGainWithSources_Det1_Cs");
+  ForPlotEminEdep = 2;
+  ForPlotEmaxEdep = 6;
+  NormalizeMinEdep = 3;
+  NormalizeMaxEdep = 5;
+  plot2D("Edep", {"AmBe_1", "AmBe_2", "AmBe_3"}, {1}, {0.01}, {1e6}, {3}, "CR",
+         50, false, true, false, false,
+         "ResultsPlot/ChangeGainWithSources/ChangeGainWithSources_Det1_AmBe");
+
+  ForPlotEminEdep = 0.1;
+  ForPlotEmaxEdep = 2.5;
+  NormalizeMinEdep = 0.5;
+  NormalizeMaxEdep = 2.5;
+  plot2D("Edep", {"Y", "Y_1", "Y_2", "Y_3"}, {2}, {0.01}, {1e6}, {3}, "CR", 10,
+         false, true, false, false,
+         "ResultsPlot/ChangeGainWithSources/ChangeGainWithSources_Det2_Y");
+  ForPlotEminEdep = 0.1;
+  ForPlotEmaxEdep = 1;
+  NormalizeMinEdep = 0.3;
+  NormalizeMaxEdep = 0.7;
+  plot2D("Edep", {"Cs", "Cs_1", "Cs_2", "Cs_3"}, {2}, {0.01}, {1e6}, {3}, "CR",
+         4, false, true, false, false,
+         "ResultsPlot/ChangeGainWithSources/ChangeGainWithSources_Det2_Cs");
+  ForPlotEminEdep = 2;
+  ForPlotEmaxEdep = 6;
+  NormalizeMinEdep = 3;
+  NormalizeMaxEdep = 5;
+  plot2D("Edep", {"AmBe_1", "AmBe_2", "AmBe_3"}, {2}, {0.01}, {1e6}, {3}, "CR",
+         50, false, true, false, false,
+         "ResultsPlot/ChangeGainWithSources/ChangeGainWithSources_Det2_AmBe");
+
+  ForPlotEminEdep = 0.1;
+  ForPlotEmaxEdep = 2.5;
+  NormalizeMinEdep = 0.5;
+  NormalizeMaxEdep = 2.5;
+  plot2D("Edep", {"Y", "Y_1", "Y_2", "Y_3"}, {3}, {0.01}, {1e6}, {3}, "CR", 10,
+         false, true, false, false,
+         "ResultsPlot/ChangeGainWithSources/ChangeGainWithSources_Det3_Y");
+  ForPlotEminEdep = 0.1;
+  ForPlotEmaxEdep = 1;
+  NormalizeMinEdep = 0.3;
+  NormalizeMaxEdep = 0.7;
+  plot2D("Edep", {"Cs", "Cs_1", "Cs_2", "Cs_3"}, {3}, {0.01}, {1e6}, {3}, "CR",
+         4, false, true, false, false,
+         "ResultsPlot/ChangeGainWithSources/ChangeGainWithSources_Det3_Cs");
+  ForPlotEminEdep = 2;
+  ForPlotEmaxEdep = 6;
+  NormalizeMinEdep = 3;
+  NormalizeMaxEdep = 5;
+  plot2D("Edep", {"AmBe_1", "AmBe_2", "AmBe_3"}, {3}, {0.01}, {1e6}, {3}, "CR",
+         50, false, true, false, false,
+         "ResultsPlot/ChangeGainWithSources/ChangeGainWithSources_Det3_AmBe");
+
+  ForPlotEminEdep = 0.1;
+  ForPlotEmaxEdep = 2.5;
+  NormalizeMinEdep = 0.5;
+  NormalizeMaxEdep = 2.5;
+  plot2D("Edep", {"Y", "Y_1", "Y_2", "Y_3"}, {4}, {0.01}, {1e6}, {3}, "CR", 10,
+         false, true, false, false,
+         "ResultsPlot/ChangeGainWithSources/ChangeGainWithSources_Det4_Y");
+  ForPlotEminEdep = 0.1;
+  ForPlotEmaxEdep = 1;
+  NormalizeMinEdep = 0.3;
+  NormalizeMaxEdep = 0.7;
+  plot2D("Edep", {"Cs", "Cs_1", "Cs_2", "Cs_3"}, {4}, {0.01}, {1e6}, {3}, "CR",
+         4, false, true, false, false,
+         "ResultsPlot/ChangeGainWithSources/ChangeGainWithSources_Det4_Cs");
+  ForPlotEminEdep = 2;
+  ForPlotEmaxEdep = 6;
+  NormalizeMinEdep = 3;
+  NormalizeMaxEdep = 5;
+  plot2D("Edep", {"AmBe_1", "AmBe_2", "AmBe_3"}, {4}, {0.01}, {1e6}, {3}, "CR",
+         50, false, true, false, false,
+         "ResultsPlot/ChangeGainWithSources/ChangeGainWithSources_Det4_AmBe");
 }

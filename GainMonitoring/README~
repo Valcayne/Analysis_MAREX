@@ -1,0 +1,106 @@
+
+Junio de 2024
+
+Programs to monitor the gain changes of the detectors.
+
+--------------------------------------------------------------------------------
+The following steps have to be performed:
+ - Step 0:
+    + change the path (#define HISTOS2D_DIR) in GainMonitoring01.hh
+    + change the definitions between "//========" in GainMonitoring01.cc
+ - Step 1: investigate which parameters are the best to set in the input file
+           create the input file
+ - Step 2: Run the GainMonitoring01 program, which calculates the gain shifts
+           for each run and each detector and writes the results into output
+	   files.
+ - Step 3: Check the results obtained in [Step 2]. Correct them, if needed.
+ - Step 4: produce new calibration files
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+--------------------------------------------------------------------------------
+Step 1:
+
+Use the GetGainChange(...) function(s) in GainMonitoring01.hh to choose the best parameters to
+perform the fit.
+
+.L GainMonitoring01.hh+
+
+GetGainChange(118828,118838,"C6D6",1,1,10,1.e0,1.e4,1.0,8.0,true,0.5,1.5,200);
+GetGainChange(118828,118838,"C6D6",1,1,10,1.e0,1.e4,1.0,8.0,true,0.8,1.2,200);
+GetGainChange(118828,118838,"C6D6",1,1,10,1.e0,1.e4,0.2,8.0,true,0.8,1.2,200);
+GetGainChange(118854,118861,"C6D6",1,1,10,1.e0,1.e4,0.2,8.0,true,0.8,1.2,200);
+
+GetGainChange(118828,118838,"SILI",1,1,4,0.02,1.e4,1.0e4,2.6e4,true,0.8,1.2,200);
+GetGainChange(118828,118838,"SILI",2,1,4,0.02,1.e4,1.5e4,3.5e4,true,0.8,1.2,200);
+GetGainChange(118828,118838,"SILI",3,1,4,0.02,1.e4,1.5e4,3.5e4,true,0.8,1.2,200);
+GetGainChange(118828,118838,"SILI",4,1,4,0.02,1.e4,1.5e4,3.5e4,true,0.8,1.2,200);
+
+GetGainChange(118846,118854,"FIMG",1,1,1,0.02,1.e4,1.e3,6.e3,true,0.8,1.2,200);
+GetGainChange(118846,118854,"FIMG",2,1,1,0.02,1.e4,1.e3,6.e3,true,0.8,1.2,200);
+
+GetGainChange(118895,118920,"LIGL",1,1,1,0.02,1.e1,1.e3,6.e3,true,0.8,1.2,200);
+
+GetGainChange(118828,118838,"SILI",1,1,4,0.02,1.e4,1.0e4,2.6e4,true,0.8,1.2,200,1,1.e4,5);
+GetGainChange(118828,118838,"SILI",1,"inputs/GainMon01/inp02.inp");
+
+--------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+Step 2:
+GainMonitoring01 [RunDescriptor] [RefRun] [inputfile] ([RunMin=0]) ([RunMax=1.e20])
+
+doroot GainMonitoring01
+
+# SILI+FIMG+LIGL:
+GainMonitoring01 AllBeam 118896 inputs/GainMon01/inp01.inp
+
+# All (i.e. including C6D6):
+GainMonitoring01 Empty01 118828 inputs/GainMon01/inp02.inp
+GainMonitoring01 Carbon01 118849  inputs/GainMon01/inp02.inp
+GainMonitoring01 Au01 118857 inputs/GainMon01/inp02.inp
+GainMonitoring01 Au02 118892 inputs/GainMon01/inp02.inp
+GainMonitoring01 Er167 118895 inputs/GainMon01/inp02.inp
+
+
+--------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+Step 3:
+
+Check the results with plot01(...) in plot01.hh:
+
+.L plot01.hh+
+
+plot01("Empty01","C6D6",1,2,3,4);
+plot01("Carbon01","C6D6",1,2,3,4);
+plot01("Au01","C6D6",1,2,3,4);
+plot01("Er167","C6D6",1,2,3,4);
+plot01(0,"C6D6",1,2,3,4);
+plot01(0,"SILI",1,2,3,4);
+plot01(0,"FIMG",1,2);
+plot01(0,"LIGL",1);
+plot01("AllBeam","SILI",1,2,3,4);
+plot01("AllBeam","FIMG",1,2);
+plot01("AllBeam","LIGL",1);
+
+If there are "unexpected" gain changes, have a look at them with the
+GetGainChange(...) function(s) in GainMonitoring01.hh (Step 1).
+
+--------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+Step 4:
+ Produce new calibration files. 
+
+Here we have different programs:
+ - CreateCalibFiles01 
+
+--------------------------------------------------------------------------------
