@@ -243,10 +243,10 @@ void plot2D(string NameHisto, std::vector<string> MeasurementType,
             h1[i]->Integral(h1[i]->FindBin(0.15), h1[i]->FindBin(20));
         cout << "CR" << TitleLegend[i] << " threshold 0.15 MeV Det" << detN[i]
              << " " << CRDet << endl;
-
-        TitleLegend[i] = TitleLegend[i] +
-                         " CR=" + doubleToDecimalString(CRDet, 3) + " c/#mus";
-
+        if (!IfNormalize) {
+          TitleLegend[i] = TitleLegend[i] +
+                           " CR=" + doubleToDecimalString(CRDet, 3) + " c/#mus";
+        }
       } else {
         h1[i]->Scale(1.0 / npulses[i]);
         DivideByBinTime(h1[i], TOFD);
@@ -277,7 +277,6 @@ void plot2D(string NameHisto, std::vector<string> MeasurementType,
       }
 
       h1[i]->GetYaxis()->SetTitle("counts/7#upoint10^{12} protons/BinWidth");
-
     } else {
       cout << " ########### Error in " << __FILE__ << ", line " << __LINE__
            << " ###########" << endl;
@@ -303,7 +302,7 @@ void plot2D(string NameHisto, std::vector<string> MeasurementType,
 
       double shiftArray[NumberOfHisto];
       double shift;
-      for (auto i = 0; i < NumberOfHisto; i++) {
+      for (auto i = 1; i < NumberOfHisto; i++) {
         h1GainShift[i] = CalculateBestShift(
             shift, h1[0], h1[i], NormalizeMinEdep, NormalizeMaxEdep,
             NumberIterations, MinShift, MaxShift);

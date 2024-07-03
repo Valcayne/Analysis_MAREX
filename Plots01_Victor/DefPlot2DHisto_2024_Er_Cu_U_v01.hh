@@ -131,10 +131,10 @@ double ForPlotEminEn = 0.1;
 double ForPlotEmaxEn = 1.0e7;
 
 // Edep for integrals normalize
+// double NormalizeMinEdep = 0.1;
+// double NormalizeMaxEdep = 2.5;
 double NormalizeMinEdep = 0.1;
-double NormalizeMaxEdep = 2.5;
-// double NormalizeMinEdep = 4;
-// double NormalizeMaxEdep = 6;
+double NormalizeMaxEdep = 5.5;
 
 // Edep for the xaxis plot
 double ForPlotEminEdep = 0.05;
