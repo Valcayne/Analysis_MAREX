@@ -82,12 +82,22 @@ int main(int argc, char** argv) {
       double GainShift = -1;
       if (thisRun < MinRun_GS) {
         GainShift = GS_min;
+        cout << " Gain shift for run " << thisRun << " is " << GainShift
+             << " take min" << endl;
+
       } else if (thisRun > MaxRun_GS) {
         GainShift = GS_max;
+        cout << " Gain shift for run " << thisRun << " is " << GainShift
+             << " take max" << endl;
+      } else if (ContainsXValue(gr1, thisRun)) {
+        cout << " Gain shift for run " << thisRun << " is " << GainShift
+             << endl;
+
       } else {
         GainShift = gr1->Eval(thisRun);
+        cout << " Gain shift for run " << thisRun << " is " << GainShift
+             << " interpolate " << endl;
       }
-      cout << " Gain shift for run " << thisRun << " is " << GainShift << endl;
       double p0 = p0_ref;
       double p1 = p1_ref / GainShift;
       double p2 = p2_ref / GainShift / GainShift;

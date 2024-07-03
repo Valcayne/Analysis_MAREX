@@ -50,14 +50,25 @@ int FindPositionString(const std::vector<int>& vector, int name);
 string doubleToDecimalString(double num, int decimales);
 void SaveRootEpsPngTxtFunction(TCanvas* c1, const char* name);
 TH1D* Transform(TH1D* histo1, double m);
+bool ContainsXValue(TGraph* graph, double xValue);
 //---------------------------------------------------------------------------------------
 
 //**********************************************************************************************************************
 //**********************************************************************************************************************
 
+bool ContainsXValue(TGraph* graph, double xValue) {
+  int nPoints = graph->GetN();
+  const double* xValues = graph->GetX();
 
-void SetStyle01(){
+  for (int i = 0; i < nPoints; ++i) {
+    if (xValues[i] == xValue) {
+      return true;
+    }
+  }
+  return false;
+}
 
+void SetStyle01() {
   gROOT->SetStyle("Plain");
   gStyle->SetCanvasBorderMode(0);
   gStyle->SetPadBorderMode(0);
@@ -73,17 +84,14 @@ void SetStyle01(){
   gStyle->SetTitleY(0.97);
   gStyle->SetTitleAlign(23);
 
-  gStyle->SetLabelSize(0.05,"xy");
-  gStyle->SetTitleSize(0.05,"xy");
-  gStyle->SetTitleOffset(1.3,"xy");
+  gStyle->SetLabelSize(0.05, "xy");
+  gStyle->SetTitleSize(0.05, "xy");
+  gStyle->SetTitleOffset(1.3, "xy");
   gStyle->SetPadTickX(1);
   gStyle->SetPadTickY(1);
 
   gROOT->ForceStyle();
 }
-
-
-
 
 double CompareHistogramsNoConsideringErrors(TH1D* histo1, TH1D* histo2,
                                             double x1Min, double x1Max);
