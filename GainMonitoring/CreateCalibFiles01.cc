@@ -90,6 +90,8 @@ int main(int argc, char** argv) {
         cout << " Gain shift for run " << thisRun << " is " << GainShift
              << " take max" << endl;
       } else if (ContainsXValue(gr1, thisRun)) {
+        GainShift = gr1->Eval(thisRun);
+
         cout << " Gain shift for run " << thisRun << " is " << GainShift
              << endl;
 
