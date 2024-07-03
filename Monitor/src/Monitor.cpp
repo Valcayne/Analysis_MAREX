@@ -4,7 +4,7 @@ Monitor::Monitor(const char* ini_filename) {
   root_files_dir =
       "/eos/home-v/valcayne/nTOFDataProcessing/2024_Er_Cu_U/2DHistos/v03";
   run_list_filename = "../RunLists/RunList2024_02.txt";
-  run_type = "AllRuns";
+  run_type = "AllBeamRuns";
 
   const auto detectors = {
       Detector("SILI", {0, 1, 2, 3, 4}, {0.02, 1e6}, {0, 6e4}),
