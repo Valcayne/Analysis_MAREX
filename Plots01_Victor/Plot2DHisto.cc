@@ -158,11 +158,12 @@ void plot2D(string NameHisto, std::vector<string> MeasurementType,
   hSimul2 = (TH1D*)h1[0]->Clone();
 
   if (CompareWithSimul) {
-    if (NameHisto == "Edep" && PType[0] == 3) {
+    if (NameHisto == "Edep") {
       cout << "Start with GetSimulMC" << endl;
-      hSimul = GetSimulMC(h1[0], detN[0], MeasurementType[0], NameSimulArray,
-                          NameSimulRootfile, Activity_kBq, ResolNumberDetector,
-                          ResolParameter1, ResolParameter2, TypeOfPlot);
+      hSimul =
+          GetSimulMC(h1[0], detN[0], MeasurementType[0], NameSimulArrayEdep,
+                     NameSimulRootfileEdep, Activity_kBq, ResolNumberDetector,
+                     ResolParameter1, ResolParameter2, TypeOfPlot);
     } else {
       cout << "···············3" << MeasurementType[0] << " " << PType[0]
            << endl;
@@ -392,8 +393,10 @@ void plot2D(string NameHisto, std::vector<string> MeasurementType,
   if (CompareWithSimul) {
     hSimul->Draw("histo E same");
     legend->AddEntry(hSimul, "Eval", "l");
-    // hSimul2->Draw("histo E same");
-    // legend->AddEntry(hSimul2, "Eval_Contaminants", "l");
+    if (IfEnOrEdep) {
+      hSimul2->Draw("histo E same");
+      legend->AddEntry(hSimul2, "Eval_Contaminants", "l");
+    }
   }
   legend->SetTextSize(0.06);
   legend->SetBorderSize(0);

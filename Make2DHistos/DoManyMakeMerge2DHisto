@@ -45,7 +45,10 @@ echo "Er167_13_FilterBi">>${Arguments}
 echo "Er167_13_FilterS">>${Arguments}
 echo "Er166_13">>${Arguments}
 
-
+echo "Y_3">>${Arguments}
+echo "AmBe_3">>${Arguments}
+echo "Cs_3">>${Arguments}
+echo "Background_3">>${Arguments}
 
 
 

@@ -59,42 +59,22 @@ vector<string> BackgroundDummyPredefined = {
     "Background_Si",
 };
 
-/// For GetSimul
-// vector<string> NameSimulArray = {"Au_13_100", "Au_40_200", "Er167_13",
-//                                  "Er166_13"};
-// vector<string> NameSimulRootfile = {
-//     "DataPlot/Yield_Au_2_100", "DataPlot/Yield_Au_2_200",
-//     "DataPlot/Yield_SAMMY_Er167_13mm", "DataPlot/Yield_SAMMY_Er166_13mm"};
-
-// vector<string> NameSimulRootfile2 = {"DataPlot/Yield_Au_2_100",
-//                                      "DataPlot/Yield_Au_2_200",
-//                                      "DataPlot/Yield_TC_Er167_13mm_ENDF8_BKG",
-//                                      "DataPlot/Yield_TC_Er166_13mm_ENDF8"};
-
-vector<string> NameSimulArray = {"Cs_1", "Co_1",   "Mn_1",  "Co57_1", "Bi_1",
-                                 "Ba_1", "AmBe_1", "CmC_1", "Eu_1",   "Y_1"};
+// For GetSimul
+vector<string> NameSimulArray = {"Au_13_100", "Au_40_200", "Er167_13",
+                                 "Er166_13"};
 vector<string> NameSimulRootfile = {
-    "/media/victor93/Elements/Valcayne/ExperimentData_Outputs/2024_Er_Cu_U/"
-    "Simulations/v01/2024_Er_Cu_U_v01_Cs_1e7.root",
-    "/media/victor93/Elements/Valcayne/ExperimentData_Outputs/2024_Er_Cu_U/"
-    "Simulations/v01/2024_Er_Cu_U_v01_Co_1e7.root",
-    "/media/victor93/Elements/Valcayne/ExperimentData_Outputs/2024_Er_Cu_U/"
-    "Simulations/v01/2024_Er_Cu_U_v01_Mn_1e7.root",
-    "/media/victor93/Elements/Valcayne/ExperimentData_Outputs/2024_Er_Cu_U/"
-    "Simulations/v01/2024_Er_Cu_U_v01_Co57_1e7.root",
-    "/media/victor93/Elements/Valcayne/ExperimentData_Outputs/2024_Er_Cu_U/"
-    "Simulations/v01/2024_Er_Cu_U_v01_Bi_1e7.root",
-    "/media/victor93/Elements/Valcayne/ExperimentData_Outputs/2024_Er_Cu_U/"
-    "Simulations/v01/2024_Er_Cu_U_v01_Ba_1e7.root",
-    "/media/victor93/Elements/Valcayne/ExperimentData_Outputs/2024_Er_Cu_U/"
-    "Simulations/v01/2024_Er_Cu_U_v01_AmBe_1e7.root",
-    "/media/victor93/Elements/Valcayne/ExperimentData_Outputs/2024_Er_Cu_U/"
-    "Simulations/v01/2024_Er_Cu_U_v01_CmC_1e7.root",
-    "/media/victor93/Elements/Valcayne/ExperimentData_Outputs/2024_Er_Cu_U/"
-    "Simulations/v01/2024_Er_Cu_U_v01_Eu_1e7.root",
-    "/media/victor93/Elements/Valcayne/ExperimentData_Outputs/2024_Er_Cu_U/"
-    "Simulations/v01/2024_Er_Cu_U_v01_Y_1e7.root"};
-vector<string> NameSimulRootfile2 = {
+    "DataPlot/Yield_Au_2_100", "DataPlot/Yield_Au_2_200",
+    "DataPlot/Yield_SAMMY_Er167_13mm", "DataPlot/Yield_SAMMY_Er166_13mm"};
+
+vector<string> NameSimulRootfile2 = {"DataPlot/Yield_Au_2_100",
+                                     "DataPlot/Yield_Au_2_200",
+                                     "DataPlot/Yield_TC_Er167_13mm_ENDF8_BKG",
+                                     "DataPlot/Yield_TC_Er166_13mm_ENDF8"};
+
+vector<string> NameSimulArrayEdep = {"Cs_1", "Co_1", "Mn_1",   "Co57_Det2_2",
+                                     "Bi_1", "Ba_1", "AmBe_1", "CmC_1",
+                                     "Eu_1", "Y_1"};
+vector<string> NameSimulRootfileEdep = {
     "/media/victor93/Elements/Valcayne/ExperimentData_Outputs/2024_Er_Cu_U/"
     "Simulations/v01/2024_Er_Cu_U_v01_Cs_1e7.root",
     "/media/victor93/Elements/Valcayne/ExperimentData_Outputs/2024_Er_Cu_U/"
@@ -130,9 +110,14 @@ vector<int> ResolNumberDetector = {1, 2, 3, 4};
 // 0.00136088,0.00211402}; vector<double> ResolParameter2 = {0.00215909,
 // 0.0030931, 0.00293019, 0.0105527};
 
-vector<double> ResolParameter1 = {0.00258232, 0.00227249, 0.00167079,
-                                  0.00371062};
-vector<double> ResolParameter2 = {0.00233583, 0.00225643, 0.00221157, 0.008693};
+// vector<double> ResolParameter1 = {0.00258232, 0.00227249, 0.00167079,
+//                                   0.00371062};
+// vector<double> ResolParameter2 = {0.00233583, 0.00225643, 0.00221157,
+// 0.008693};
+
+vector<double> ResolParameter1 = {0.0023038, 0.00258602, 0.0019427, 0.0022343};
+vector<double> ResolParameter2 = {0.00255673, 0.00198803, 0.00200657,
+                                  0.0100319};
 
 // En for integrals normalize
 // double NormalizeMinEn = 100;
@@ -146,16 +131,18 @@ double ForPlotEminEn = 0.1;
 double ForPlotEmaxEn = 1.0e7;
 
 // Edep for integrals normalize
-double NormalizeMinEdep = 0.2;
+double NormalizeMinEdep = 0.1;
 double NormalizeMaxEdep = 2.5;
+// double NormalizeMinEdep = 4;
+// double NormalizeMaxEdep = 6;
 
 // Edep for the xaxis plot
-double ForPlotEminEdep = 0.2;
+double ForPlotEminEdep = 0.05;
 double ForPlotEmaxEdep = 3;
 
 // For the Y axis of compare
+double MinYForCompare = 0.1;
 double MaxYForCompare = 2;
-double MinYForCompare = 0.5;
 
 // For calculating gain shifts
 
