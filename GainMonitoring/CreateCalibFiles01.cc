@@ -123,6 +123,8 @@ void ChangeRefRun(TGraph* gr1, int newRefRun) {
   gr1->GetPoint(0, MinRun_GS, GS_min);
   gr1->GetPoint(np - 1, MaxRun_GS, GS_max);
   if (newRefRun < MinRun_GS || newRefRun > MaxRun_GS) {
+    cout << "MinRun_GS " << MinRun_GS << " newRefRun " << newRefRun
+         << " MaxRun_GS " << MaxRun_GS << endl;
     cout << " ############# ERROR in " << __FILE__ << ", line " << __LINE__
          << " #############" << endl;
     exit(1);
