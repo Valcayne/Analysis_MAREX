@@ -5,12 +5,14 @@
 
 Hay dos formas de correr los programas DoMany
 
-Forma uno primero correr
+Forma uno 
+# Creo los histogramas sin GainCalibrated
 DoManyMake2DHisto
 
+# Calculo el cambio de ganancia
 ../GainMonitoring/GainMonitoring01 AllBeamRuns 118885 inputs/GainMon01/inp01.inp
 
-
+# Creo el fichero de calibracion par cada run
 
 ../GainMonitoring/CreateCalibFiles01 /eos/home-v/valcayne/nTOFDataProcessing/2024_Er_Cu_U/Calibration/CalibrationRunByRunGainCorrected/ /eos/home-v/valcayne/nTOFDataProcessing/2024_Er_Cu_U/Calibration/CalibrationRunByRunGainCorrected// /eos/home-v/valcayne/nTOFDataProcessing/2024_Er_Cu_U/GainMonitoring/v03 SILI 1 AllBeamRuns 118885 
 ../GainMonitoring/CreateCalibFiles01 /eos/home-v/valcayne/nTOFDataProcessing/2024_Er_Cu_U/Calibration/CalibrationRunByRunGainCorrected/ /eos/home-v/valcayne/nTOFDataProcessing/2024_Er_Cu_U/Calibration/CalibrationRunByRunGainCorrected// /eos/home-v/valcayne/nTOFDataProcessing/2024_Er_Cu_U/GainMonitoring/v03 SILI 2 AllBeamRuns 118885 
@@ -19,3 +21,9 @@ DoManyMake2DHisto
 ../GainMonitoring/CreateCalibFiles01 /eos/home-v/valcayne/nTOFDataProcessing/2024_Er_Cu_U/Calibration/CalibrationRunByRunGainCorrected/ /eos/home-v/valcayne/nTOFDataProcessing/2024_Er_Cu_U/Calibration/CalibrationRunByRunGainCorrected// /eos/home-v/valcayne/nTOFDataProcessing/2024_Er_Cu_U/GainMonitoring/v03 FIMG 1 AllBeamRuns 118885 
 ../GainMonitoring/CreateCalibFiles01 /eos/home-v/valcayne/nTOFDataProcessing/2024_Er_Cu_U/Calibration/CalibrationRunByRunGainCorrected/ /eos/home-v/valcayne/nTOFDataProcessing/2024_Er_Cu_U/Calibration/CalibrationRunByRunGainCorrected// /eos/home-v/valcayne/nTOFDataProcessing/2024_Er_Cu_U/GainMonitoring/v03 FIMG 2 AllBeamRuns 118885 
 ../GainMonitoring/CreateCalibFiles01 /eos/home-v/valcayne/nTOFDataProcessing/2024_Er_Cu_U/Calibration/CalibrationRunByRunGainCorrected/ /eos/home-v/valcayne/nTOFDataProcessing/2024_Er_Cu_U/Calibration/CalibrationRunByRunGainCorrected// /eos/home-v/valcayne/nTOFDataProcessing/2024_Er_Cu_U/GainMonitoring/v03 LIGL 1 AllBeamRuns 118885 
+
+# Creo los histogramas con GainCalibrated
+DoManyMake2DHisto Gain
+
+
+

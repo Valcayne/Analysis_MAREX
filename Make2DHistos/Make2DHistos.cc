@@ -2,11 +2,13 @@
 #include "../GeneralFun/FillHistoFunctions.hh"
 
 int main(int argc, char** argv) {
+  bool IfGainCorrected = false;
   if (argc == 3) {
-    cout << " ******* We create the 2DHistos with gain shift "
+    cout << " ******* We create the 2DHistos with GainCorrected "
             "***************"
          << endl;
-    return 1;
+    IfGainCorrected = true;
+
   }
 
   else if (argc != 2) {
@@ -25,16 +27,22 @@ int main(int argc, char** argv) {
   //==================================================================================
   char outdir[200] =
       "/eos/home-v/valcayne/nTOFDataProcessing/2024_Er_Cu_U/2DHistos/"
-      "v03GainCorrected";
-
-  // char EOSPATH[200] =
-  //     "/eos/home-v/valcayne/nTOFDataProcessing/2024_Er_Cu_U/RootFiles/v02/"
-  //     "done/";
-  char EOSPATH[200] = "/eos/experiment/ntof/processing/official/done/";
-
+      "v03";
   char CalibDirName[200] =
       "/eos/home-v/valcayne/nTOFDataProcessing/2024_Er_Cu_U/Calibration/"
-      "CalibrationRunByRunGainCorrected";
+      "CalibrationRunByRun";
+
+  char EOSPATH[200] = "/eos/experiment/ntof/processing/official/done/";
+
+  if (IfGainCorrected) {
+    sprintf(outdir,
+            "/eos/home-v/valcayne/nTOFDataProcessing/2024_Er_Cu_U/2DHistos/"
+            "v03GainCorrected");
+    sprintf(CalibDirName,
+            "/eos/home-v/valcayne/nTOFDataProcessing/2024_Er_Cu_U/Calibration/"
+            "CalibrationRunByRunGainCorrected");
+  }
+
   //==================================================================================
 
   HistoInfo* HistoInfoC6D6 = new HistoInfo();
