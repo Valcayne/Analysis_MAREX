@@ -6,11 +6,14 @@ FolderPrograms=/afs/cern.ch/work/v/valcayne/2024_Er_U_ProgramsC6D6/Analysis_nTOF
 echo "${FolderPrograms}Make2DHistos ${Run}"
 ${FolderPrograms}Make2DHistos ${Run}
 
+echo " "
+echo " "
 
 
-echo "${FolderPrograms}../GainMonitoring/GainMonitoring01 AllBeamRuns 118885 inputs/GainMon01/inp01.inp ${Run} ${Run}" 
-${FolderPrograms}../GainMonitoring/GainMonitoring01 AllBeamRuns 118885 inputs/GainMon01/inp01.inp ${Run} ${Run} 
-
+echo "${FolderPrograms}../GainMonitoring/GainMonitoring01 AllBeamRuns 118885 /afs/cern.ch/work/v/valcayne/2024_Er_U_ProgramsC6D6/Analysis_nTOF_v01/GainMonitoring/inputs/GainMon01/inp01.inp ${Run} ${Run}" 
+${FolderPrograms}../GainMonitoring/GainMonitoring01 AllBeamRuns 118885 /afs/cern.ch/work/v/valcayne/2024_Er_U_ProgramsC6D6/Analysis_nTOF_v01/GainMonitoring/inputs/GainMon01/inp01.inp ${Run} ${Run} 
+echo " "
+echo " "
 
 echo "${FolderPrograms}../GainMonitoring/CreateCalibFiles01 /eos/home-v/valcayne/nTOFDataProcessing/2024_Er_Cu_U/Calibration/CalibrationRunByRunGainCorrected/ /eos/home-v/valcayne/nTOFDataProcessing/2024_Er_Cu_U/Calibration/CalibrationRunByRunGainCorrected// /eos/home-v/valcayne/nTOFDataProcessing/2024_Er_Cu_U/GainMonitoring/v03 SILI 1 AllBeamRuns 118885 ${Run} ${Run}"
 echo "${FolderPrograms}../GainMonitoring/CreateCalibFiles01 /eos/home-v/valcayne/nTOFDataProcessing/2024_Er_Cu_U/Calibration/CalibrationRunByRunGainCorrected/ /eos/home-v/valcayne/nTOFDataProcessing/2024_Er_Cu_U/Calibration/CalibrationRunByRunGainCorrected// /eos/home-v/valcayne/nTOFDataProcessing/2024_Er_Cu_U/GainMonitoring/v03 SILI 2 AllBeamRuns 118885 ${Run} ${Run}"
@@ -27,6 +30,8 @@ ${FolderPrograms}../GainMonitoring/CreateCalibFiles01 /eos/home-v/valcayne/nTOFD
 ${FolderPrograms}../GainMonitoring/CreateCalibFiles01 /eos/home-v/valcayne/nTOFDataProcessing/2024_Er_Cu_U/Calibration/CalibrationRunByRunGainCorrected/ /eos/home-v/valcayne/nTOFDataProcessing/2024_Er_Cu_U/Calibration/CalibrationRunByRunGainCorrected// /eos/home-v/valcayne/nTOFDataProcessing/2024_Er_Cu_U/GainMonitoring/v03 FIMG 1 AllBeamRuns 118885 ${Run} ${Run}
 ${FolderPrograms}../GainMonitoring/CreateCalibFiles01 /eos/home-v/valcayne/nTOFDataProcessing/2024_Er_Cu_U/Calibration/CalibrationRunByRunGainCorrected/ /eos/home-v/valcayne/nTOFDataProcessing/2024_Er_Cu_U/Calibration/CalibrationRunByRunGainCorrected// /eos/home-v/valcayne/nTOFDataProcessing/2024_Er_Cu_U/GainMonitoring/v03 FIMG 2 AllBeamRuns 118885 ${Run} ${Run}
 ${FolderPrograms}../GainMonitoring/CreateCalibFiles01 /eos/home-v/valcayne/nTOFDataProcessing/2024_Er_Cu_U/Calibration/CalibrationRunByRunGainCorrected/ /eos/home-v/valcayne/nTOFDataProcessing/2024_Er_Cu_U/Calibration/CalibrationRunByRunGainCorrected// /eos/home-v/valcayne/nTOFDataProcessing/2024_Er_Cu_U/GainMonitoring/v03 LIGL 1 AllBeamRuns 118885 ${Run} ${Run}
+echo " "
+echo " "
 
 
 echo "${FolderPrograms}Make2DHistos ${Run} GainCorrected"
