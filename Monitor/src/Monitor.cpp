@@ -2,7 +2,8 @@
 
 Monitor::Monitor(const char* ini_filename) {
   root_files_dir =
-      "/eos/home-v/valcayne/nTOFDataProcessing/2024_Er_Cu_U/2DHistos/v03";
+      "/eos/home-v/valcayne/nTOFDataProcessing/2024_Er_Cu_U/2DHistos/"
+      "v03GainCorrected";
   run_list_filename = "../RunLists/RunList2024_02.txt";
   run_type = "AllBeamRuns";
 
