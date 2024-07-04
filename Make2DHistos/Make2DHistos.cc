@@ -2,7 +2,14 @@
 #include "../GeneralFun/FillHistoFunctions.hh"
 
 int main(int argc, char** argv) {
-  if (argc != 2) {
+  if (argc == 3) {
+    cout << " ******* We create the 2DHistos with gain shift "
+            "***************"
+         << endl;
+    return 1;
+  }
+
+  else if (argc != 2) {
     cout << " ******* Input has to be like: Make2DHisto [RunNumber] "
             "***************"
          << endl;

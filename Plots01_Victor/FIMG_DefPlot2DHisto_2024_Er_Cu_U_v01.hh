@@ -44,7 +44,8 @@ string NameDetector = "FIMG";
 //     "2DHistos/v03/Histos01_";
 
 string Direction2DHisto =
-    " /home/victor93/ExperimentData_Outputs/2024_Er_U/2Dhistos/v03/Histos01_";
+    "/home/victor93/ExperimentData_Outputs/2024_Er_U/2Dhistos/v03GainCorrected/"
+    "/Histos01_";
 
 string DirectionSave2DHisto =
     "/home/victor93/ExperimentData_Outputs/2024_Er_U/ResultsPlot2DHisto/v03/";
