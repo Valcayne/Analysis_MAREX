@@ -3,14 +3,24 @@
 
 
 
-Hay dos formas de correr los programas DoMany
+Hay dos formas de correr los programas DoManyMake2DHisto
 
+La primera es crea todos los histogramas 2D sin GainCorrected, luego calcula todos las gain corrections y luego crea 2D con GainCorrected
+La segunda para cada run crea 2D sin GainCorrected, luego calcula las gain correction para este run y luego crea 2D con GainCorrected
+
+La diferencia es cuando un run por algun motivo no se calcula el cambio de ganancia. En el metodo 1 interpolará con los datos bien mientras que en el metodo 2 depende de que run haya cabado antes.
+
+
+
+#####################################################################################
 Forma uno 
+#####################################################################################
+
 # Creo los histogramas sin GainCalibrated
 DoManyMake2DHisto
 
 # Calculo el cambio de ganancia
-../GainMonitoring/GainMonitoring01 AllRuns 118885 inputs/GainMon01/inp01.inp
+../GainMonitoring/GainMonitoring01 AllRuns 118885 /afs/cern.ch/work/v/valcayne/2024_Er_U_ProgramsC6D6/Analysis_nTOF_v01/GainMonitoring/inputs/GainMon01/inp01.inp
 
 # Creo el fichero de calibracion par cada run
 
@@ -26,4 +36,7 @@ DoManyMake2DHisto
 DoManyMake2DHisto GainCorrected
 
 
-
+#####################################################################################
+Forma dos 
+#####################################################################################
+DoManyMake2DHisto GainCorrecting
