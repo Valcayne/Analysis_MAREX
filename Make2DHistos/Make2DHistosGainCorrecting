@@ -8,7 +8,7 @@ ${FolderPrograms}Make2DHistos ${Run}
 
 echo " "
 echo " "
-
+sleep 5
 
 echo "${FolderPrograms}../GainMonitoring/GainMonitoring01 AllRuns 118885 /afs/cern.ch/work/v/valcayne/2024_Er_U_ProgramsC6D6/Analysis_nTOF_v01/GainMonitoring/inputs/GainMon01/inp01.inp ${Run} ${Run}" 
 ${FolderPrograms}../GainMonitoring/GainMonitoring01 AllRuns 118885 /afs/cern.ch/work/v/valcayne/2024_Er_U_ProgramsC6D6/Analysis_nTOF_v01/GainMonitoring/inputs/GainMon01/inp01.inp ${Run} ${Run} 
