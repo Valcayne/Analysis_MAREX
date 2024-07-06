@@ -22,7 +22,7 @@ ProgramToSubmit=Condor/ProgramsLaunch/LaunchCondorMake2DGainCorrected.sh
 
 elif [  ${TypeProcess} == "GainCorrecting" ]; then
     echo "I do GainCorrecting"
-outdir=/eos/home-v/valcayne/nTOFDataProcessing/2024_Er_Cu_U/2DHistos/v03
+outdir=/eos/home-v/valcayne/nTOFDataProcessing/2024_Er_Cu_U/2DHistos/v03GainCorrected
 ProgramToSubmit=Condor/ProgramsLaunch/LaunchCondorMake2DGainCorrecting.sh
 
 else 
