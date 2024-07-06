@@ -172,11 +172,12 @@ TH1D* Project2DHistoSubtractBackground(
   }
 
   else {
-    rebinFactor = 10000;
+    rebinFactor = 10;
     double PulseTypForNoBeam = 3;  // can also be 0
     if (NameHisto == "TOF") {
       PulseTypForNoBeam = 0;
     }
+
     cout << "##################" << endl;
     cout << "hMeas " << NameMeasurement << endl;
     cout << "hDummy " << DummyPredefined[PositionBackgrounds] << endl;

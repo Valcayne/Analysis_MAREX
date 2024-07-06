@@ -50,6 +50,7 @@ echo "AmBe_3">>${Arguments}
 echo "Cs_3">>${Arguments}
 echo "Background_3">>${Arguments}
 echo "Er166_13_FilterBi">>${Arguments}
+echo "Er166_13_FilterS">>${Arguments}
 
 
 

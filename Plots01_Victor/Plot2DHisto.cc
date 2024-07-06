@@ -1,7 +1,7 @@
 
 #include "../GeneralFun/PlotFunctions_Victor.hh"
-#include "FIMG_DefPlot2DHisto_2024_Er_Cu_U_v01.hh"
-// #include "DefPlot2DHisto_2024_Er_Cu_U_v01.hh"
+// #include "FIMG_DefPlot2DHisto_2024_Er_Cu_U_v01.hh"
+#include "DefPlot2DHisto_2024_Er_Cu_U_v01.hh"
 //    #include "LIGL_DefPlot2DHisto_2024_Er_Cu_U_v01.hh"
 
 void plot2D(string NameHisto, std::vector<string> MeasurementType,
@@ -171,7 +171,7 @@ void plot2D(string NameHisto, std::vector<string> MeasurementType,
       hSimul = GetSimul(h1[0], MeasurementType[0], NameSimulArray,
                         NameSimulRootfile, TypeOfPlot);
       hSimul2 = GetSimul(h1[0], MeasurementType[0], NameSimulArray,
-                         NameSimulRootfile, TypeOfPlot);
+                         NameSimulRootfile2, TypeOfPlot);
     }
     hSimul->SetLineColor(10009);
     hSimul2->SetLineColor(kOrange);
@@ -349,6 +349,11 @@ void plot2D(string NameHisto, std::vector<string> MeasurementType,
   }
   c1->SetTickx();
   c1->SetTicky();
+  if (PType[0] == 1 || PType[0] == 2) {
+    c1->SetLogy();
+    // c1->SetLogx();
+  }
+
   if (IfEnOrEdep) {
     c1->SetLogy();
     c1->SetLogx();
@@ -467,7 +472,7 @@ void plot2DVariousCompareWithOneRun() {
   string NameSave;
   string PreNameSave = "ResultsPlot/ChangeGainMGAS/ChangeGainMGAS_1_";
   // for (int i = 118849; i <= 119000; i++) {
-  for (int i = 118883; i <= 119010; i++) {
+  for (int i = 118969; i <= 119028; i++) {
     NameSave = PreNameSave + to_string(i);
     vector<string> RunString;
     RunString.push_back(to_string(i));
