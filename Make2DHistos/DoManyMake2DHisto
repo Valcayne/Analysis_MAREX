@@ -67,7 +67,7 @@ echo "There is not run${number}.root so we do not launch"
 fi
 done
 echo "condor_submit ${ProgramToSubmit}"
-#condor_submit ${ProgramToSubmit}
+condor_submit ${ProgramToSubmit}
 exit
 
 
