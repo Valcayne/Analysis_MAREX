@@ -1,5 +1,23 @@
 
+
+
+
+
 #!/ bin / bash
+
+
+
+
+
+
+
+
+
+
+plot01("AllRuns", "SILI", 1, 2, 3, 4);
+plot01("AllRuns", "FIMG", 1, 2);
+plot01("AllRuns", "LIGL", 1);
+
 
 Junio de 2024
 
