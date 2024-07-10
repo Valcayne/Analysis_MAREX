@@ -17,8 +17,7 @@ int main(int argc, char** argv) {
 
   //==================================================================================
   char outdir[200] =
-      "/eos/home-v/valcayne/nTOFDataProcessing/2024_Er_Cu_U/2DHistos/"
-      "v03";
+      "/eos/home-v/valcayne/nTOFDataProcessing/2024_MAREX/2DHistos/v01/";
   char CalibDirName[200] =
       "//afs/cern.ch/user/v/valcayne/LinkEOS/nTOFDataProcessing/2024_MAREX/"
       "Calibration/v01";
