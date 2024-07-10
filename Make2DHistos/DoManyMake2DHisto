@@ -1,5 +1,5 @@
 #!/bin/bash
-RunMin=218259
+RunMin=218240
 RunMax=218306
 
 TypeProcess=$1
