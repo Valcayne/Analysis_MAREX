@@ -3,25 +3,16 @@
 ###########################################################################################################################################################
 ###########################################################################################################################################################
 ###########################################################################################################################################################
-To Launch Calibrations
-cd ../ApsC6D6/; git pull;cd EnergyCalibration/;doroot  MakeEnergyCalibration12VIC; cd ../../InputsFor_Er_Cu_U/; git pull;doroot MakeEnergyCalibration_2024_Er_Cu_U_L6D6;#
-MakeEnergyCalibration_2024_Er_Cu_U_L6D6;
-
-
-cd ../ApsC6D6/; git pull;cd EnergyCalibration/;doroot  MakeEnergyCalibration12VIC; cd ../../InputsFor_Er_Cu_U/; git pull;doroot MakeEnergyCalibration_2024_Er_Cu_U_L6D6;#
-MakeEnergyCalibration_2024_Er_Cu_U_L6D6;
-
-
-###########################################################################################################################################################
+########################################################################################################################################################
 ###########################################################################################################################################################
 
 To put all the calibrations equal for 2DHisto
-RunMin=118816
-RunMax=119100 
-PathCalibrations=/afs/cern.ch/user/v/valcayne/LinkEOS/nTOFDataProcessing/2024_Er_Cu_U/Calibration/CalibrationRunByRun
+RunMin=218200
+RunMax=218500
+PathCalibrations=/eos/home-v/valcayne/nTOFDataProcessing/2024_MAREX/Calibration/v01/
 for (( number=$RunMin; number<=$RunMax; number++ )); do
-echo " cp ${PathCalibrations}/Calib_Er_Cu_U_v03.dat  ${PathCalibrations}/Calib_${number}.dat "
- cp ${PathCalibrations}/Calib_Er_Cu_U_v03.dat  ${PathCalibrations}/Calib_${number}.dat
+echo " cp ${PathCalibrations}/Calib_MAREX_v01.dat  ${PathCalibrations}/Calib_${number}.dat "
+ cp ${PathCalibrations}/Calib_MAREX_v01.dat  ${PathCalibrations}/Calib_${number}.dat
 done
 ######################################################################################################################################################
 ###########################################################################################################################################################
