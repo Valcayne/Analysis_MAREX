@@ -65,7 +65,7 @@ vector<string> NameSimulArray = {"Au_13_100", "Au_40_200", "Er167_13",
                                  "Er166_13"};
 vector<string> NameSimulRootfile = {
     "DataPlot/Yield_Au_2_100", "DataPlot/Yield_Au_2_200",
-    "DataPlot/Yield_SAMMY_Er167_13mm", "DataPlot/Yield_SAMMY_Er166_13mm"};
+    "DataPlot/Yield_TC_Er167_13mm_ENDF8", "DataPlot/Yield_TC_Er166_13mm_ENDF8"};
 
 vector<string> NameSimulRootfile2 = {"DataPlot/Yield_Au_2_100",
                                      "DataPlot/Yield_Au_2_200",
@@ -80,42 +80,42 @@ vector<string> NameSimulArrayEdep = {
 vector<string> NameSimulRootfileEdep = {
     "/media/victor93/Elements/Valcayne/ExperimentData_Outputs/"
     "2024_Er_Cu_U/"
-    "Simulations/v01/2024_Er_Cu_U_v01_Cs_1e7.root",
+    "Simulations/v01/2024_Er_Cu_U_v01_Cs_1e8.root",
     "/media/victor93/Elements/Valcayne/ExperimentData_Outputs/"
     "2024_Er_Cu_U/"
-    "Simulations/v01/2024_Er_Cu_U_v01_Co_1e7.root",
+    "Simulations/v01/2024_Er_Cu_U_v01_Co_1e8.root",
     "/media/victor93/Elements/Valcayne/ExperimentData_Outputs/"
     "2024_Er_Cu_U/"
-    "Simulations/v01/2024_Er_Cu_U_v01_Mn_1e7.root",
+    "Simulations/v01/2024_Er_Cu_U_v01_Mn_1e8.root",
     "/media/victor93/Elements/Valcayne/ExperimentData_Outputs/"
     "2024_Er_Cu_U/"
-    "Simulations/v01/2024_Er_Cu_U_v01_Co57_1e7.root",
+    "Simulations/v01/2024_Er_Cu_U_v01_Co57_1e8.root",
     "/media/victor93/Elements/Valcayne/ExperimentData_Outputs/"
     "2024_Er_Cu_U/"
-    "Simulations/v01/2024_Er_Cu_U_v01_Bi_1e7.root",
+    "Simulations/v01/2024_Er_Cu_U_v01_Bi_1e8.root",
     "/media/victor93/Elements/Valcayne/ExperimentData_Outputs/"
     "2024_Er_Cu_U/"
-    "Simulations/v01/2024_Er_Cu_U_v01_Ba_1e7.root",
+    "Simulations/v01/2024_Er_Cu_U_v01_Ba_1e8.root",
     "/media/victor93/Elements/Valcayne/ExperimentData_Outputs/"
     "2024_Er_Cu_U/"
-    "Simulations/v01/2024_Er_Cu_U_v01_AmBe_1e7.root",
+    "Simulations/v01/2024_Er_Cu_U_v01_AmBe_1e8.root",
     "/media/victor93/Elements/Valcayne/ExperimentData_Outputs/"
     "2024_Er_Cu_U/"
-    "Simulations/v01/2024_Er_Cu_U_v01_CmC_1e7.root",
+    "Simulations/v01/2024_Er_Cu_U_v01_CmC_1e8.root",
     "/media/victor93/Elements/Valcayne/ExperimentData_Outputs/"
     "2024_Er_Cu_U/"
-    "Simulations/v01/2024_Er_Cu_U_v01_Eu_1e7.root",
+    "Simulations/v01/2024_Er_Cu_U_v01_Eu_1e8.root",
     "/media/victor93/Elements/Valcayne/ExperimentData_Outputs/"
     "2024_Er_Cu_U/"
-    "Simulations/v01/2024_Er_Cu_U_v01_Y_1e7.root",
+    "Simulations/v01/2024_Er_Cu_U_v01_Y_1e8.root",
     "/media/victor93/Elements/Valcayne/ExperimentData_Outputs/2024_Er_Cu_U/"
-    "Simulations/v01/2024_Er_Cu_U_v01_Au_25_1e7.root",
+    "Simulations/v01/2024_Er_Cu_U_v01_Au_25_1e8.root",
     "/media/victor93/Elements/Valcayne/ExperimentData_Outputs/2024_Er_Cu_U/"
-    "Simulations/v01/2024_Er_Cu_U_v01_Au_25_1e7.root",
+    "Simulations/v01/2024_Er_Cu_U_v01_Au_25_1e8.root",
     "/media/victor93/Elements/Valcayne/ExperimentData_Outputs/2024_Er_Cu_U/"
-    "Simulations/v01/2024_Er_Cu_U_v01_Er167_v02_1e7.root",
+    "Simulations/v01/2024_Er_Cu_U_v01_Er167_v02_1e8.root",
     "/media/victor93/Elements/Valcayne/ExperimentData_Outputs/2024_Er_Cu_U/"
-    "Simulations/v01/2024_Er_Cu_U_v01_Er166_v02_1e7.root"};
+    "Simulations/v01/2024_Er_Cu_U_v01_Er166_v02_1e8.root"};
 
 vector<double> Activity_kBq = {282, 17.4,  4.02,   9.27, 31.5, 16.4, 1,
                                1,   10.05, 237.38, 1,    1,    1,    1};
@@ -159,7 +159,7 @@ double NormalizeMaxEdep = 5.5;
 
 // Edep for the xaxis plot
 double ForPlotEminEdep = 0.05;
-double ForPlotEmaxEdep = 10;
+double ForPlotEmaxEdep = 3;
 
 // For the Y axis of compare
 double MinYForCompare = 0.1;

@@ -227,6 +227,9 @@ void plot2D(string NameHisto, std::vector<string> MeasurementType,
     if (TypeOfPlot == "Counts") {
       cout << "Counts" << endl;
       h1[i]->GetYaxis()->SetTitle("counts");
+    } else if (TypeOfPlot == "CPulse") {
+      h1[i]->Scale(8.e12 / npulses[i]);
+      h1[i]->GetYaxis()->SetTitle("counts/Pulses ");
     } else if (TypeOfPlot == "CP") {
       h1[i]->Scale(8.e12 / nprotons[i]);
       h1[i]->GetYaxis()->SetTitle("counts/8#upoint10^{12} protons  ");

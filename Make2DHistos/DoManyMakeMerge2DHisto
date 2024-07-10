@@ -44,14 +44,20 @@ echo "Background_2">>${Arguments}
 echo "Er167_13_FilterBi">>${Arguments}
 echo "Er167_13_FilterS">>${Arguments}
 echo "Er166_13">>${Arguments}
-
+echo "Ba_3">>${Arguments}
 echo "Y_3">>${Arguments}
 echo "AmBe_3">>${Arguments}
 echo "Cs_3">>${Arguments}
 echo "Background_3">>${Arguments}
 echo "Er166_13_FilterBi">>${Arguments}
 echo "Er166_13_FilterS">>${Arguments}
-
+echo "Er166_13_FilterS">>${Arguments}
+echo "ErNat_13">>${Arguments}
+echo "Pb_13">>${Arguments}
+echo "Y_4">>${Arguments}
+echo "Cs_4">>${Arguments}
+echo "AmBe_4">>${Arguments}
+echo "Background_4">>${Arguments}
 
 
 more $Arguments
