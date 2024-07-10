@@ -503,15 +503,15 @@ void plot2DChangeGainWithSources() {
   ForPlotEmaxEdep = 2.5;
   NormalizeMinEdep = 0.5;
   NormalizeMaxEdep = 2.5;
-  plot2D("Edep", {"Y", "Y_1", "Y_2", "Y_3"}, {1}, {0.01}, {1e6}, {3}, "CR", 10,
-         false, true, false, false,
+  plot2D("Edep", {"Y", "Y_1", "Y_2", "Y_3", "Y_4"}, {1}, {0.01}, {1e6}, {3},
+         "CR", 10, false, true, false, false,
          "ResultsPlot/ChangeGainWithSources/ChangeGainWithSources_Det1_Y");
   ForPlotEminEdep = 0.1;
   ForPlotEmaxEdep = 1;
   NormalizeMinEdep = 0.3;
   NormalizeMaxEdep = 0.7;
-  plot2D("Edep", {"Cs", "Cs_1", "Cs_2", "Cs_3"}, {1}, {0.01}, {1e6}, {3}, "CR",
-         4, false, true, false, false,
+  plot2D("Edep", {"Cs", "Cs_1", "Cs_2", "Cs_3", "Cs_4"}, {1}, {0.01}, {1e6},
+         {3}, "CR", 4, false, true, false, false,
          "ResultsPlot/ChangeGainWithSources/ChangeGainWithSources_Det1_Cs");
   ForPlotEminEdep = 2;
   ForPlotEmaxEdep = 6;
@@ -525,15 +525,15 @@ void plot2DChangeGainWithSources() {
   ForPlotEmaxEdep = 2.5;
   NormalizeMinEdep = 0.5;
   NormalizeMaxEdep = 2.5;
-  plot2D("Edep", {"Y", "Y_1", "Y_2", "Y_3"}, {2}, {0.01}, {1e6}, {3}, "CR", 10,
-         false, true, false, false,
+  plot2D("Edep", {"Y", "Y_1", "Y_2", "Y_3", "Y_4"}, {2}, {0.01}, {1e6}, {3},
+         "CR", 10, false, true, false, false,
          "ResultsPlot/ChangeGainWithSources/ChangeGainWithSources_Det2_Y");
   ForPlotEminEdep = 0.1;
   ForPlotEmaxEdep = 1;
   NormalizeMinEdep = 0.3;
   NormalizeMaxEdep = 0.7;
-  plot2D("Edep", {"Cs", "Cs_1", "Cs_2", "Cs_3"}, {2}, {0.01}, {1e6}, {3}, "CR",
-         4, false, true, false, false,
+  plot2D("Edep", {"Cs", "Cs_1", "Cs_2", "Cs_3", "Cs_4"}, {2}, {0.01}, {1e6},
+         {3}, "CR", 4, false, true, false, false,
          "ResultsPlot/ChangeGainWithSources/ChangeGainWithSources_Det2_Cs");
   ForPlotEminEdep = 2;
   ForPlotEmaxEdep = 6;
@@ -547,15 +547,15 @@ void plot2DChangeGainWithSources() {
   ForPlotEmaxEdep = 2.5;
   NormalizeMinEdep = 0.5;
   NormalizeMaxEdep = 2.5;
-  plot2D("Edep", {"Y", "Y_1", "Y_2", "Y_3"}, {3}, {0.01}, {1e6}, {3}, "CR", 10,
-         false, true, false, false,
+  plot2D("Edep", {"Y", "Y_1", "Y_2", "Y_3", "Y_4"}, {3}, {0.01}, {1e6}, {3},
+         "CR", 10, false, true, false, false,
          "ResultsPlot/ChangeGainWithSources/ChangeGainWithSources_Det3_Y");
   ForPlotEminEdep = 0.1;
   ForPlotEmaxEdep = 1;
   NormalizeMinEdep = 0.3;
   NormalizeMaxEdep = 0.7;
-  plot2D("Edep", {"Cs", "Cs_1", "Cs_2", "Cs_3"}, {3}, {0.01}, {1e6}, {3}, "CR",
-         4, false, true, false, false,
+  plot2D("Edep", {"Cs", "Cs_1", "Cs_2", "Cs_3", "Cs_4"}, {3}, {0.01}, {1e6},
+         {3}, "CR", 4, false, true, false, false,
          "ResultsPlot/ChangeGainWithSources/ChangeGainWithSources_Det3_Cs");
   ForPlotEminEdep = 2;
   ForPlotEmaxEdep = 6;
@@ -569,15 +569,15 @@ void plot2DChangeGainWithSources() {
   ForPlotEmaxEdep = 2.5;
   NormalizeMinEdep = 0.5;
   NormalizeMaxEdep = 2.5;
-  plot2D("Edep", {"Y", "Y_1", "Y_2", "Y_3"}, {4}, {0.01}, {1e6}, {3}, "CR", 10,
-         false, true, false, false,
+  plot2D("Edep", {"Y", "Y_1", "Y_2", "Y_3", "Y_4"}, {4}, {0.01}, {1e6}, {3},
+         "CR", 10, false, true, false, false,
          "ResultsPlot/ChangeGainWithSources/ChangeGainWithSources_Det4_Y");
   ForPlotEminEdep = 0.1;
   ForPlotEmaxEdep = 1;
   NormalizeMinEdep = 0.3;
   NormalizeMaxEdep = 0.7;
-  plot2D("Edep", {"Cs", "Cs_1", "Cs_2", "Cs_3"}, {4}, {0.01}, {1e6}, {3}, "CR",
-         4, false, true, false, false,
+  plot2D("Edep", {"Cs", "Cs_1", "Cs_2", "Cs_3", "Cs_4"}, {4}, {0.01}, {1e6},
+         {3}, "CR", 4, false, true, false, false,
          "ResultsPlot/ChangeGainWithSources/ChangeGainWithSources_Det4_Cs");
   ForPlotEminEdep = 2;
   ForPlotEmaxEdep = 6;
@@ -586,4 +586,21 @@ void plot2DChangeGainWithSources() {
   plot2D("Edep", {"AmBe_1", "AmBe_2", "AmBe_3"}, {4}, {0.01}, {1e6}, {3}, "CR",
          50, false, true, false, false,
          "ResultsPlot/ChangeGainWithSources/ChangeGainWithSources_Det4_AmBe");
+
+  ForPlotEminEdep = 0.1;
+  ForPlotEmaxEdep = 1;
+  NormalizeMinEdep = 0.3;
+  NormalizeMaxEdep = 0.7;
+  plot2D("Edep", {"Cs", "Cs_1", "Cs_2", "Cs_3", "Cs_4"}, {1}, {0.01}, {1e6},
+         {3}, "CR", 10, false, false, false, false,
+         "ResultsPlot/ChangeGainWithSources/Efficiency_Det1_Cs");
+  plot2D("Edep", {"Cs", "Cs_1", "Cs_2", "Cs_3", "Cs_4"}, {2}, {0.01}, {1e6},
+         {3}, "CR", 10, false, false, false, false,
+         "ResultsPlot/ChangeGainWithSources/Efficiency_Det2_Cs");
+  plot2D("Edep", {"Cs", "Cs_1", "Cs_2", "Cs_3", "Cs_4"}, {3}, {0.01}, {1e6},
+         {3}, "CR", 10, false, false, false, false,
+         "ResultsPlot/ChangeGainWithSources/Efficiency_Det3_Cs");
+  plot2D("Edep", {"Cs", "Cs_1", "Cs_2", "Cs_3", "Cs_4"}, {4}, {0.01}, {1e6},
+         {3}, "CR", 10, false, false, false, false,
+         "ResultsPlot/ChangeGainWithSources/Efficiency_Det4_Cs");
 }
