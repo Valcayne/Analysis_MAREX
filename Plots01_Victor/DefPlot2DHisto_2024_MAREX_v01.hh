@@ -26,29 +26,14 @@
 using namespace std;
 
 double TimeMeasurement_ns = 1e8;
-string NameDetector = "C6D6";
-
-// string Direction2DHisto =
-//     "/afs/cern.ch/user/v/valcayne/LinkEOS/nTOFDataProcessing/2024_Test_L6D6/"
-//     "2DHisto/v01/2DHisto_";
-// string DirectionSave2DHisto =
-//     "/afs/cern.ch/user/v/valcayne/LinkEOS/nTOFDataProcessing/2024_Test_L6D6/"
-//     "ResultsPlot2DHisto/v01/";
-
-// string Direction2DHisto =
-//   "/media/victor93/Elements/Valcayne/ExperimentData_Outputs/2024_Test_L6D6/"
-//  "2DHisto/v07/2DHisto_";
-
-// string Direction2DHisto =
-//     "/media/victor93/Elements/Valcayne/ExperimentData_Outputs/2024_Er_Cu_U/"
-//     "2DHistos/v03/Histos01_";
+string NameDetector = "sTED";
 
 string Direction2DHisto =
-    " /home/victor93/ExperimentData_Outputs/2024_Er_U/2Dhistos/"
-    "v03GainCorrected/Histos01_";
+    " /home/victor93/ExperimentData_Outputs/2024_MAREX/2DHistos/"
+    "v01/Histos01_";
 
 string DirectionSave2DHisto =
-    "/home/victor93/ExperimentData_Outputs/2024_Er_U/ResultsPlot2DHisto/v03/";
+    "/home/victor93/ExperimentData_Outputs/2024_MAREX/ResultsPlot2DHisto/v01/";
 
 double TOFD = 184;
 // For subtract backgroudnS

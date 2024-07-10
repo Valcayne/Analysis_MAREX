@@ -9,55 +9,12 @@ rm $Arguments
 
 
 #echo "EmptyTimePiX">>${Arguments}
-echo "Y">>${Arguments}
-echo "Cs">>${Arguments}
-echo "Background">>${Arguments}
-echo "Empty_Er">>${Arguments}
-echo "C_2_6000">>${Arguments}
-
-echo "AmBe_1">>${Arguments}
-echo "Cs_1">>${Arguments}
-echo "Co_1">>${Arguments}
-echo "Eu_1">>${Arguments}
-echo "Bi_1">>${Arguments}
-echo "Mn_1">>${Arguments}
-echo "CmC_1">>${Arguments}
-echo "Ba_1">>${Arguments}
-echo "Co57_1">>${Arguments}
-echo "Y_1">>${Arguments}
-echo "Background_1">>${Arguments}
-
-
-echo "Au_13_100">>${Arguments}
-echo "Au_40_200">>${Arguments}
-echo "Er167_13">>${Arguments}
-
-
-echo "Co57_AllDet_2">>${Arguments}
-echo "Co57_Det1_2">>${Arguments}
-echo "Co57_Det2_2">>${Arguments}
-echo "Y_2">>${Arguments}
-echo "AmBe_2">>${Arguments}
-echo "Cs_2">>${Arguments}
-echo "Background_2">>${Arguments}
-
-echo "Er167_13_FilterBi">>${Arguments}
-echo "Er167_13_FilterS">>${Arguments}
-echo "Er166_13">>${Arguments}
-echo "Ba_3">>${Arguments}
-echo "Y_3">>${Arguments}
-echo "AmBe_3">>${Arguments}
-echo "Cs_3">>${Arguments}
-echo "Background_3">>${Arguments}
-echo "Er166_13_FilterBi">>${Arguments}
-echo "Er166_13_FilterS">>${Arguments}
-echo "Er166_13_FilterS">>${Arguments}
-echo "ErNat_13">>${Arguments}
-echo "Pb_13">>${Arguments}
-echo "Y_4">>${Arguments}
-echo "Cs_4">>${Arguments}
-echo "AmBe_4">>${Arguments}
-echo "Background_4">>${Arguments}
+echo "Y_Mo">>${Arguments}
+echo "Cs_Mo">>${Arguments}
+echo "AmBe_Mo">>${Arguments}
+echo "Empty_Mo">>${Arguments}
+echo "Pb_Mo">>${Arguments}
+echo "C_Mo">>${Arguments}
 
 
 more $Arguments

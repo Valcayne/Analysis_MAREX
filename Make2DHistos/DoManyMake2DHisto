@@ -1,36 +1,17 @@
 #!/bin/bash
-RunMin=118816
-RunMax=119100
+RunMin=218259
+RunMax=218306
 
 TypeProcess=$1
 
 
-GainCorrected
 
-#EOSPATH=/eos/home-v/valcayne/nTOFDataProcessing/2024_Er_Cu_U/RootFiles/v02/done/
 EOSPATH=/eos/experiment/ntof/processing/official/done
 Arguments=Condor/Inputs/ArgumentsForCondor2DHisto.txt
-
-
-
-
-if [  ${TypeProcess} == "GainCorrected" ]; then
-    echo "I do GainCorrected"
-    GainCorrected="GainCorrected"
-outdir=/eos/home-v/valcayne/nTOFDataProcessing/2024_Er_Cu_U/2DHistos/v03GainCorrected
-ProgramToSubmit=Condor/ProgramsLaunch/LaunchCondorMake2DGainCorrected.sh
-
-elif [  ${TypeProcess} == "GainCorrecting" ]; then
-    echo "I do GainCorrecting"
-outdir=/eos/home-v/valcayne/nTOFDataProcessing/2024_Er_Cu_U/2DHistos/v03GainCorrected
-ProgramToSubmit=Condor/ProgramsLaunch/LaunchCondorMake2DGainCorrecting.sh
-
-else 
  echo "I do no correct gain"
-outdir=/eos/home-v/valcayne/nTOFDataProcessing/2024_Er_Cu_U/2DHistos/v03
+outdir=/eos/home-v/valcayne/nTOFDataProcessing/2024_MAREX/2DHistos/v01
 ProgramToSubmit=Condor/ProgramsLaunch/LaunchCondorMake2D.sh
 
-fi
 
 
 
@@ -57,8 +38,8 @@ if [ $SizeRootFile -lt 1000 ];
  then 
  echo " The file run${number}.root is too small (${SizeRootFile}) we do not launch "
  else
- echo "We launch run $number  $GainCorrected"
-echo "$number $GainCorrected">>${Arguments}
+ echo "We launch run $number "
+echo "$number ">>${Arguments}
  fi
 
 else
