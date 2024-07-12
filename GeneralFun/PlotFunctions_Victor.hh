@@ -51,6 +51,49 @@ TH1D* TH1DFromMC_Resol_v01(TH1D* h1, string MCFile, int detn, double Resa,
   delete f;
   return hmc;
 }
+void DivideByNeutronFluence_EAR2(TH1D* h1) {
+  // cout << " Dividing by neutron fluence "
+  //         "...data/h_EAR1_Flux_FLUKA4.3_L184.4m_r4.5cm"
+  //      << endl;
+  // // TFile* f1=new TFile("data2/flux_ear2.root","READ");
+  // TFile* f1 =
+  //     new TFile("data/h_EAR1_Flux_FLUKA4.3_L184.4m_r4.5cm.root", "READ");
+
+  cout << " Dividing by neutron fluence "
+          "...DataPlot/EAR2_Fluka_simu_flux_500BDP.root"
+       << endl;
+  TFile* f1 = new TFile("DataPlot/EAR2_Fluka_simu_flux_500BDP.root", "READ");
+
+  if (f1->IsZombie()) {
+    cout << " ########### Error in " << __FILE__ << ", line " << __LINE__
+         << " ###########" << endl;
+    exit(1);
+  }
+  //  TH1F* n_flux = (TH1F*)f1->Get("h_EAR2_Flux");
+  TH1F* n_flux = (TH1F*)f1->Get("hEnergy");
+
+  int nbins = h1->GetNbinsX();
+  double ene1, ene2, ene, Nneutrons;
+  for (int i = 1; i <= nbins; i++) {
+    ene1 = h1->GetBinLowEdge(i);
+    ene2 = h1->GetBinLowEdge(i + 1);
+    ene = h1->GetBinCenter(i);
+    Nneutrons = n_flux->Interpolate(ene) * log(ene2 / ene1);
+
+    if (Nneutrons == 0) {
+      //  cout << " ########### warning in " << __FILE__ << ", line " <<
+      //  __LINE__<< " the numbers of neutrons at energy" << ene1 << " is zero
+      //  ###########"      << endl;
+      Nneutrons = 1e10;
+    }
+    h1->SetBinContent(i, h1->GetBinContent(i) / Nneutrons);
+    h1->SetBinError(i, h1->GetBinError(i) / Nneutrons);
+  }
+  h1->GetYaxis()->SetTitle("Yield");
+
+  f1->Close();
+  delete f1;
+}
 
 void DivideByNeutronFluence_2023(TH1D* h1) {
   // cout << " Dividing by neutron fluence "

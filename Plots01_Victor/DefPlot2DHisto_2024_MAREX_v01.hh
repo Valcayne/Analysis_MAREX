@@ -37,17 +37,15 @@ string DirectionSave2DHisto =
 
 double TOFD = 184;
 // For subtract backgroudnS
-vector<string> MeasPredefined = {"Predefined", "Au_2_Si"};
-vector<string> BackgroundMeasPredefined = {"Background_1", "Background_Si"};
-vector<string> DummyPredefined = {"Empty_Er", "Empty_Si"};
+vector<string> MeasPredefined = {"Predefined"};
+vector<string> BackgroundMeasPredefined = {"Background_Mo"};
+vector<string> DummyPredefined = {"Empty_Mo"};
 vector<string> BackgroundDummyPredefined = {
-    "Background_1",
-    "Background_Si",
+    "Background_Mo",
 };
 
 // For GetSimul
-vector<string> NameSimulArray = {"Au_13_100", "Au_40_200", "Er167_13",
-                                 "Er166_13"};
+vector<string> NameSimulArray = {"Au_Mo", "Au_40_200", "Er167_13", "Er166_13"};
 vector<string> NameSimulRootfile = {
     "DataPlot/Yield_Au_2_100", "DataPlot/Yield_Au_2_200",
     "DataPlot/Yield_TC_Er167_13mm_ENDF8", "DataPlot/Yield_TC_Er166_13mm_ENDF8"};
@@ -129,12 +127,12 @@ vector<double> ResolParameter2 = {0.00255673, 0.00198803, 0.00200657,
 // double NormalizeMinEn = 100;
 // double NormalizeMaxEn = 500;
 
-double NormalizeMinEn = 14;
-double NormalizeMaxEn = 17;
+double NormalizeMinEn = 3;
+double NormalizeMaxEn = 6;
 
 // En or the xaxis plot
-double ForPlotEminEn = 0.1;
-double ForPlotEmaxEn = 1.0e7;
+double ForPlotEminEn = 0.001;
+double ForPlotEmaxEn = 1.0e6;
 
 // Edep for integrals normalize
 // double NormalizeMinEdep = 0.1;

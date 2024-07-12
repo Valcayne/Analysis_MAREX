@@ -260,7 +260,7 @@ void plot2D(string NameHisto, std::vector<string> MeasurementType,
 
     else if (TypeOfPlot == "Yield") {
       h1[i]->Scale(7.e12 / nprotons[i]);
-      DivideByNeutronFluence_2023(h1[i]);
+      DivideByNeutronFluence_EAR2(h1[i]);
 
       h1[i]->GetYaxis()->SetTitle("Yield* ");
     }

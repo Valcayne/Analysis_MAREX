@@ -16,6 +16,7 @@ echo "Empty_Mo">>${Arguments}
 echo "Pb_Mo">>${Arguments}
 echo "C_Mo">>${Arguments}
 echo "Background_Mo">>${Arguments}
+echo "Au_Mo">>${Arguments}
 
 
 more $Arguments
