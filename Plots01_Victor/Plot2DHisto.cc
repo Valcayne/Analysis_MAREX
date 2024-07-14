@@ -279,8 +279,23 @@ void plot2D(string NameHisto, std::vector<string> MeasurementType,
         ene1 = h1[i]->GetBinCenter(j);
         cout << ene1 << " " << val << endl;
       }
+    } else if (TypeOfPlot ==
+               "CPTXT") {  /// counts per 7e12 protons per bin width
+      cout << " Do CPTXT" << endl;
+      h1[i]->Scale(8.e12 / nprotons[i]);
+      h1[i]->GetYaxis()->SetTitle("counts/8#upoint10^{12} protons  ");
 
-      h1[i]->GetYaxis()->SetTitle("counts/7#upoint10^{12} protons/BinWidth");
+      int nbins = h1[i]->GetNbinsX() - 1;
+      double val, err, ene1, ene2;
+      for (int j = 1; j <= nbins; j++) {
+        val = h1[i]->GetBinContent(j);
+        err = h1[i]->GetBinError(j);
+        ene1 = h1[i]->GetBinLowEdge(j);
+        ene2 = h1[i]->GetBinLowEdge(j + 1);
+
+        cout << ene1 << " " << ene2 << " " << val << endl;
+      }
+
     } else {
       cout << " ########### Error in " << __FILE__ << ", line " << __LINE__
            << " ###########" << endl;
