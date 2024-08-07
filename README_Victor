@@ -7,7 +7,7 @@
 ###########################################################################################################################################################
 To put all the calibrations equal for 2DHisto
 RunMin=218200
-RunMax=218500
+RunMax=218600
 PathCalibrations=/eos/home-v/valcayne/nTOFDataProcessing/2024_MAREX/Calibration/v01/
 for (( number=$RunMin; number<=$RunMax; number++ )); do
 echo " cp ${PathCalibrations}/Calib_MAREX_v01.dat  ${PathCalibrations}/Calib_${number}.dat "

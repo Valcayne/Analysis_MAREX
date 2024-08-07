@@ -13,8 +13,8 @@ requirements = (OpSysAndVer =?= "AlmaLinux9")
 #requirements = (OpSysAndVer =?= "CentOS7")
 #+JobFlavour = "workday"
 #+JobFlavour = "espresso"
-+JobFlavour = "microcentury"
-
+#+JobFlavour = "microcentury"
++JobFlavour = "longlunch"
 
 
 queue run from /afs/cern.ch/user/v/valcayne/Workspace/2024_MAREX/Analysis_MAREX/Make2DHistos/Condor/Inputs/ArgumentsForCondorMerge2DHistos.txt
