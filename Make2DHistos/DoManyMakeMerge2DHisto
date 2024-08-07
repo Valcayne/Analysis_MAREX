@@ -18,6 +18,12 @@ echo "C_Mo">>${Arguments}
 echo "Background_Mo">>${Arguments}
 echo "Au_Mo">>${Arguments}
 
+echo "Capsule">>${Arguments}
+echo "Background">>${Arguments}
+echo "Ar200Bar">>${Arguments}
+echo "Au">>${Arguments}
+echo "C">>${Arguments}
+
 
 more $Arguments
 condor_submit Condor/ProgramsLaunch/LaunchCondorMergeMake2D.sh
